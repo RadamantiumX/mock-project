@@ -1,6 +1,6 @@
 
 
-export const Videos = () => {
+export default function Videos () {
   return (
     <div>Videos</div>
   )
