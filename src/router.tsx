@@ -1,26 +1,44 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import GuestLayout from "./layout/GuestLayout";
+import ProfileLayout from "./layout/ProfileLayout";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Element from "./pages/Element";
 
 const router = createBrowserRouter([
-     {
-        path: '/',
-        element: <Home/>
-     },
-     {
-        path: '/profile',
-        element: <Profile/>
-     },
-     {
-        path: '/element',
-        element: <Element/>
-     },
-     {
-        path: '*',
+    {
+        path: "/",
+        element: <GuestLayout/>,
+        children: [
+            {
+                path: "/",
+                element: <Navigate to="/home"/>
+            },
+            {
+                path: "/home",
+                element: <Home/>
+            },
+            {
+                path: "/element",
+                element: <Element/>
+            }
+        ]
+    },
+    {
+        path: "/profile",
+        element: <ProfileLayout/>,
+        children: [
+            {
+                path: "/profile",
+                element: <Profile/>
+            }
+        ]
+    },
+    {
+        path: "*",
         element: <NotFound/>
-     }
+    }
 ])
 
 export default router;
