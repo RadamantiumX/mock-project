@@ -1,0 +1,6 @@
+### Web seach petition
+GET https://www.eporner.com/api/v2/video/search/?query=popular&per_page=10&page=2&thumbsize=big&order=latest&gay=1&lq=1&format=json
+
+
+### Only methods
+GET https://www.eporner.com/api/v2/video
