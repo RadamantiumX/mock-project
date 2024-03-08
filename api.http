@@ -2,5 +2,13 @@
 GET https://www.eporner.com/api/v2/video/search/?query=popular&per_page=10&page=2&thumbsize=big&order=latest&gay=1&lq=1&format=json
 
 
+
 ### Only methods
 GET https://www.eporner.com/api/v2/video
+
+### Some API
+GET https://steppschuh-json-porn-v1.p.rapidapi.com/porn/?offset=0&pornId=5073292679446528&producerId=4554967436230656&pornType=4&count=5&actorId=5681034041491456&genreId=5245132710346752 HTTP/1.1
+X-Rapidapi-Key: a69854d087mshbb6c40a3be79322p13d765jsnfc63de23fdea
+X-Rapidapi-Host: steppschuh-json-porn-v1.p.rapidapi.com
+Host: steppschuh-json-porn-v1.p.rapidapi.com
+
