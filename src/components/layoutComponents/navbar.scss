@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+
+
+.subnav {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.7rem;
+    color: rgb(219, 219, 219);
+    margin-left: 1.8rem;
+    &:hover {
+        color:  #dd2471 ; 
+      }
+  }
+  
