@@ -25,7 +25,7 @@ export default function Videos () {
      {
       videos.map((item) =>(
         <div key={item.id}>
-        <MovieCard title={item.title} url={item.url} image={item.default_thumb.src} id={item.id}/>
+        <MovieCard title={item.title} image={item.default_thumb.src} id={item.id} lengthMin={item.length_min} views={item.views}/>
         </div>
       ))
      }
