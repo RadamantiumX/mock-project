@@ -21,7 +21,7 @@ export default function Videos () {
   }, [])
   return (
     <section>
-    <div className="grid grid-cols-3 w-full m-1 justify-center gap-2">
+    <div className="grid grid-cols-3 w-full m-1 justify-center ">
      {
       videos.map((item) =>(
         <div key={item.id}>
