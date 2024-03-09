@@ -4,7 +4,7 @@ import ProfileLayout from "./layout/ProfileLayout";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
-import Element from "./pages/Element";
+import Video from "./pages/Video"
 
 const router = createBrowserRouter([
     {
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
                 element: <Home/>
             },
             {
-                path: "/element",
-                element: <Element/>
+                path: "/video/:id",
+                element: <Video/>
             }
         ]
     },

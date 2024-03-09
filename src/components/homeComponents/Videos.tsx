@@ -24,7 +24,9 @@ export default function Videos () {
     <div className="grid grid-cols-3 w-full m-1 justify-center gap-2">
      {
       videos.map((item) =>(
-        <MovieCard title={item.title} url={item.url} image={item.default_thumb.src}/>
+        <div key={item.id}>
+        <MovieCard title={item.title} url={item.url} image={item.default_thumb.src} id={item.id}/>
+        </div>
       ))
      }
     </div>
