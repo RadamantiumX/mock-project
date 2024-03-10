@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './movieCard.scss'
 
 /**
  * Props:
@@ -47,7 +48,7 @@ export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views, 
         </a>
     </div>
     <div className="px-6 py-4 mb-auto">
-        <Link to={`/video/${id}/${replaceString}`}
+        <Link to={`/video/${id}`}
             className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out mb-2 truncate">{title}</Link>
         <p className="text-gray-500 text-sm border rounded-md text-center">
             {lengthMin} 
