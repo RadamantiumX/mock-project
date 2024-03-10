@@ -48,7 +48,7 @@ export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views, 
         </a>
     </div>
     <div className="px-6 py-4 mb-auto">
-        <Link to={`/video/${id}`}
+        <Link to={`/video/${id}/${keywords}`}
             className="font-medium text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out mb-2 truncate">{title}</Link>
         <p className="text-gray-500 text-sm border rounded-md text-center">
             {lengthMin} 
@@ -84,24 +84,6 @@ export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views, 
 
 </div>
 
-
-
-
-{/* <article className="max-w-sm  border rounded-lg shadow bg-gray-800 border-gray-700">
-   
-    <div className="p-5">
-        <a href={url} target="_blank">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white truncate">{title}</h5>
-        </a>
-        <a href={url}>
-          <img src={image} alt={title} />  
-        </a>
-        
-        
-
-
-    </div>
-</article> */}
 
 </>
 
