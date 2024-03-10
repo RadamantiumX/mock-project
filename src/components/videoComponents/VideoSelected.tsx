@@ -1,9 +1,14 @@
-
+import { useEffect } from "react";
 interface Props {
     id: string;
+    keywords: string;
 }
 
-export const VideoSelected:React.FC<Props> = ({id}) => {
+export const VideoSelected:React.FC<Props> = ({id, keywords}) => {
+  useEffect(()=>{
+  console.log(keywords)
+  },[])
+
   return (
     <section>
         <div className="embed-responsive embed-responsive-16by9">

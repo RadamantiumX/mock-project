@@ -6,16 +6,8 @@ import { MovieCard } from "../commonComponents/MovieCard"
 export default function Videos () {
   const [videos, setVideos] = useState<Video[]>([])
 
-  
-
   useEffect( () => {
-  // const resolvedVideos = await getLatestContent()
-    // const data = getLatestContent()
-    // console.log(data)
   
-   // const videos = getLatestContent()
-   
-   // setVideos([resolvedVideos, ...videos])
   getLatestContent().then((data) => setVideos(data))
 
   }, [])
@@ -25,7 +17,7 @@ export default function Videos () {
      {
       videos.map((item) =>(
         <div key={item.id}>
-        <MovieCard title={item.title} image={item.default_thumb.src} id={item.id} lengthMin={item.length_min} views={item.views}/>
+        <MovieCard title={item.title} image={item.default_thumb.src} id={item.id} lengthMin={item.length_min} views={item.views} keywords={item.keywords}/>
         </div>
       ))
      }
