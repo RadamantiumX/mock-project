@@ -6,7 +6,8 @@ interface Props {
 
 export const VideoSelected:React.FC<Props> = ({id, keywords}) => {
   useEffect(()=>{
-  console.log(keywords)
+  const received = keywords  
+  console.log(received)
   },[])
 
   return (
