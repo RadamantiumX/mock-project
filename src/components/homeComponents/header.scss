@@ -17,10 +17,9 @@
         border-radius: 5em;
         -webkit-border-radius: 5em;
         font-size: 16px;
-
-        &:hover {
-            background-color: #ffffff;
-        }
+        margin-left: 0.6rem;
+        color: #FFF;
+        background-color: #dd2471;
     }
 
     .black & {
@@ -31,9 +30,5 @@
             border-color: #191919;
             color: #191919;
         }
-    }
-
-    @media (max-width: 767px) {
-        display: none; 
     }
 }
