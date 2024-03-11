@@ -28,7 +28,7 @@ export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views }
               <a href="#" target="_blank" className="block">
                   <div className="aspect-w-2 aspect-h-1 rounded-2xl shadow overflow-hidden bg-gray-100 relative">
                       <Link to={`/video/${id}`}>
-                          <img src={image} loading="lazy" className="object-center object-cover" />
+                          <img src={image} loading="lazy" className="object-center object-cover" alt='Image Porn dirtyhub'/>
                           <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white ml-2 mb-1 p-2 text-sm">{lengthMin} min</div>
                       </Link>
                   </div>
