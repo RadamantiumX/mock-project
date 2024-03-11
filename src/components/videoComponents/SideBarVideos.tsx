@@ -1,46 +1,34 @@
-// Related Videos displayed
-export const SideBarVideos = () => {
-   
-  const relatedVideos = [
-    { 
-        title: "Video-1",
-        src: "https://png.pngtree.com/png-vector/20190215/ourmid/pngtree-play-video-icon-graphic-design-template-vector-png-image_530837.jpg"
-    },
-    { 
-        title: "Video-2",
-        src: "https://png.pngtree.com/png-vector/20190215/ourmid/pngtree-play-video-icon-graphic-design-template-vector-png-image_530837.jpg"
-    },
-    { 
-        title: "Video-3",
-        src: "https://png.pngtree.com/png-vector/20190215/ourmid/pngtree-play-video-icon-graphic-design-template-vector-png-image_530837.jpg"
-    },
-    { 
-        title: "Video-4",
-        src: "https://png.pngtree.com/png-vector/20190215/ourmid/pngtree-play-video-icon-graphic-design-template-vector-png-image_530837.jpg"
-    },
-    { 
-        title: "Video-5",
-        src: "https://png.pngtree.com/png-vector/20190215/ourmid/pngtree-play-video-icon-graphic-design-template-vector-png-image_530837.jpg"
-    },
-    { 
-        title: "Video-6",
-        src: "https://png.pngtree.com/png-vector/20190215/ourmid/pngtree-play-video-icon-graphic-design-template-vector-png-image_530837.jpg"
-    },
-    { 
-        title: "Video-7",
-        src: "https://png.pngtree.com/png-vector/20190215/ourmid/pngtree-play-video-icon-graphic-design-template-vector-png-image_530837.jpg"
-    },
+import { getRelatedVideos } from "../../services/resources"
+import { useEffect, useState } from "react"
+import { type Video } from "../../types/eporner"
+import { Link } from "react-router-dom"
 
-  ]  
+interface Props {
+    keywords: string
+}
+
+// Related Videos displayed
+export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
+  const [videos, setVideos] = useState<Video[]>([])  
+  const lowerCase = keywords.toLowerCase()
+
+  const stringSplit = lowerCase.split(" ")
+    
+  useEffect(() => {
+  getRelatedVideos(stringSplit[2]).then((data) => setVideos(data))
+
+  },[])
 
   return (
     <aside>
         <h3>Related Videos</h3>
         <div>
-            {relatedVideos.map((video,index) => (
+            {videos.map((video,index) => (
                 <article key={index}>
-                    <img className="size-60 border-gray-600 rounded-md" src={video.src} alt={video.title} />
-                    <h4>{video.title}</h4>
+                    <Link className="gap-2" to={`/video/${video.id}/${video.keywords}`} target="_blank">
+                       <img className="size-60 border-gray-600 rounded-md" src={video.default_thumb.src} alt={video.title} />
+                       <h4 className="truncate">{video.title}</h4>
+                    </Link>
                 </article>
             ))}
         </div>
@@ -48,5 +36,5 @@ export const SideBarVideos = () => {
   )
 }
 
-// Some response: ', creampie, japanese, old man, blowjob, big tits, milf, Forbidden Care Suikawa Yuri 476'
+// Some example response: ', creampie, japanese, old man, blowjob, big tits, milf, Forbidden Care Suikawa Yuri 476'
 
