@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getLatestContent } from "../../services/resources"
-import { Video } from "../../types/eporner"
+import { type Video } from "../../types/eporner"
 import { MovieCard } from "../commonComponents/MovieCard"
 
 export default function Videos () {
