@@ -17,10 +17,13 @@ interface Props {
     image: string,
     id: string,
     lengthMin: string,
-    views: number
+    views: number,
+    keywords: string
 }
 
-export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views }) => {
+export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views, keywords }) => {
+
+    const replaceString: string = keywords.replace(" ,", "-")
   return (
     <>
    

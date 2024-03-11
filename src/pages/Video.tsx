@@ -4,14 +4,15 @@ import { SideBarVideos } from "../components/videoComponents/SideBarVideos"
 
 type Param = {
   id: string;
+  keywords: string;
 }
 export default function Video() {
   const { id } = useParams()
-
+  const { keywords } = useParams()
   return (
     <main>
       <div className="flex flex-row gap-20">
-      <VideoSelected id={id}/>
+      <VideoSelected id={id} keywords={keywords}/>
       <SideBarVideos/>
       </div>
    </main>

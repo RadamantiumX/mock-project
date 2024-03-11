@@ -11,3 +11,7 @@ GET https://steppschuh-json-porn-v1.p.rapidapi.com/porn/?offset=0&pornId=5073292
 X-Rapidapi-Key: a69854d087mshbb6c40a3be79322p13d765jsnfc63de23fdea
 X-Rapidapi-Host: steppschuh-json-porn-v1.p.rapidapi.com
 Host: steppschuh-json-porn-v1.p.rapidapi.com
+
+
+### Another query string
+GET https://www.eporner.com/api/v2/video/search/?query=japanese&per_page=10&page=2&thumbsize=big&order=top-weekly&gay=1&lq=1&format=json
