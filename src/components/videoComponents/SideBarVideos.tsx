@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { Ghost } from "../icons/Ghost"
 
 interface Props {
-    keywords: string
+    keywords?: string
 }
 
 // Related Videos displayed
@@ -13,7 +13,7 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
   const [videos, setVideos] = useState<Video[]>([])  
  const [counter, setCounter] = useState<number>(0)
  const [loading, setLoading] = useState(true)
-  const lowerCase = keywords.toLowerCase()
+  const lowerCase = keywords!.toLowerCase()
 
   const stringSplit = lowerCase.split(" ")
   const handleResults = () => {

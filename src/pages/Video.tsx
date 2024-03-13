@@ -1,14 +1,14 @@
-import {VideoSelected} from "../components/videoComponents/VideoSelected"
+import { VideoSelected } from "../components/videoComponents/VideoSelected"
 import { useParams } from "react-router-dom"
 import { SideBarVideos } from "../components/videoComponents/SideBarVideos"
 
-type Param = {
+type Params = {
   id: string;
   keywords: string;
 }
 export default function Video() {
-  const { id } = useParams()
-  const { keywords } = useParams()
+  const { id } = useParams<Params>()
+  const { keywords } = useParams<Params>()
   return (
     <main>
       <div className="flex flex-row gap-20">
