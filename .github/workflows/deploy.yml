@@ -19,8 +19,6 @@ jobs:
             key: ${{ secrets.SSH_PRIVATE_KEY }}
             port: ${{ secrets.SSH_PORT }}
             script: |
-                export NVM_DIR=~/.nvm 
-                source ~/.nvm/nvm.sh
                 cd ${{ secrets.WORK_DIR }}
                 git fetch
                 git checkout ${{ secrets.MAIN_BRANCH }}
