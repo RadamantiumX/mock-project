@@ -1,13 +1,10 @@
-import { useEffect } from "react";
 interface Props {
     id: string;
     keywords: string;
 }
 
-export const VideoSelected:React.FC<Props> = ({id, keywords}) => {
-  useEffect(()=>{
-  console.log(keywords)
-  },[])
+export const VideoSelected:React.FC<Props> = ({ id }) => {
+
 
   return (
     <section>

@@ -23,14 +23,13 @@ interface Props {
 
 export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views, keywords }) => {
 
-    const replaceString: string = keywords.replace(" ,", "-")
   return (
     <>
    
           <div className="block relative group transition max-w-sm mx-auto mt-3 mb-4">
-              <a href="#" target="_blank" className="block">
+              <Link to={`/video/${id}/${keywords}`} className="block">
                   <div className="aspect-w-2 aspect-h-1 rounded-2xl shadow overflow-hidden bg-gray-100 relative">
-                      <Link to={`/video/${id}`}>
+                      <Link to={`/video/${id}/${keywords}`}>
                           <img src={image} loading="lazy" className="object-center object-cover" alt='Image Porn dirtyhub'/>
                           <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white ml-2 mb-1 p-2 text-sm">{lengthMin} min</div>
                       </Link>
@@ -38,7 +37,7 @@ export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views, 
                   <div className="p-2 space-y-1">
                       <div className="flex items-start justify-between gap-4">
                           <h3 className="flex-1 text-base font-medium text-gray-100 truncate-multiline">
-                              <Link to={`/video/${id}`}>
+                              <Link to={`/video/${id}/${keywords}`}>
                                   {title}
                               </Link>
                           </h3>
@@ -54,7 +53,7 @@ export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views, 
                           </span>
                       </div>
                   </div>
-              </a>
+              </Link>
           </div>
        
 </>

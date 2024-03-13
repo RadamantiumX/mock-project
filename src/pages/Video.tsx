@@ -12,8 +12,8 @@ export default function Video() {
   return (
     <main>
       <div className="flex flex-row gap-20">
-      <VideoSelected id={id} keywords={keywords}/>
-      <SideBarVideos/>
+      <VideoSelected id={id}/>
+      <SideBarVideos keywords={keywords}/>
       </div>
    </main>
   )
