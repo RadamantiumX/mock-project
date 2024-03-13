@@ -1,23 +1,20 @@
-import {VideoSelected} from "../components/videoComponents/VideoSelected"
-import { useParams } from "react-router-dom"
-import { SideBarVideos } from "../components/videoComponents/SideBarVideos"
+import { VideoSelected } from "../components/videoComponents/VideoSelected";
+import { useParams } from "react-router-dom";
+import { SideBarVideos } from "../components/videoComponents/SideBarVideos";
 
-type Param = {
-  id: string;
-  keywords: string;
-}
 export default function Video() {
-  const { id } = useParams()
-  const { keywords } = useParams()
+  const { id, title, keywords, views } = useParams<{ id: string; title: string; keywords: string; views: number  }>();
+
   return (
     <main>
-      <div className="flex flex-row gap-20">
-      <VideoSelected id={id}/>
-      <SideBarVideos keywords={keywords}/>
+      <div className="gap-20">
+        <VideoSelected id={id} title={title} keywords={keywords} views={views} />
+        <SideBarVideos keywords={keywords} />
       </div>
-   </main>
-  )
+    </main>
+  );
 }
+
 
 /**
  * ❗ Realizar una QUERY donde se obtengan resultados a partir de una query 
