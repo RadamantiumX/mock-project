@@ -16,6 +16,8 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
   const lowerCase = keywords!.toLowerCase()
 
   const stringSplit = lowerCase.split(" ")
+
+  
   const handleResults = () => {
     setCounter(counter + 1)
     getRelatedVideos(stringSplit[counter])
