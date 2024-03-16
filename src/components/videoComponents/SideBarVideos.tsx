@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import { type Video } from "../../types/eporner"
 import { Link } from "react-router-dom"
 import { Ghost } from "../icons/Ghost"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { getSource } from "../../redux/sourceSlice"
 
 interface Props {
     keywords?: string
@@ -13,12 +15,15 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
   const [videos, setVideos] = useState<Video[]>([])  
  const [counter, setCounter] = useState<number>(0)
  const [loading, setLoading] = useState(true)
+
   const lowerCase = keywords!.toLowerCase()
 
   const stringSplit = lowerCase.split(" ")
-
+  const dispatch = useAppDispatch()
+  const source = useAppSelector(state => state.source.data)
   
   const handleResults = () => {
+    dispatch(getSource(stringSplit[0]))
     setCounter(counter + 1)
     getRelatedVideos(stringSplit[counter])
                .then((data) => {
@@ -39,7 +44,7 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
     <aside>
         <h3>Related Videos</h3>
         {loading ? <div>Cargando</div> : <div> {videos.length !== 0 ?<div>
-            {videos.map((video,index) => (
+            {source?.map((video,index) => (
                 <article key={index}>
                     <Link className="gap-2" to={`/video/${video.id}/${video.keywords}`} target="_blank">
                        <img className="size-60 border-gray-600 rounded-md" src={video.default_thumb.src} alt={video.title} />

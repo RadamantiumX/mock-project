@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-
+import { getLatestContent } from '../services/resources'
+import { getRelatedVideos } from '../services/resources'
+import  { type Video } from '../types/eporner'
 export interface SourceState {
-  data: [] | null,
+  data: Video[] | null,
   loading: boolean,
   error: string | null
 }
@@ -13,10 +15,22 @@ const initialState: SourceState = {
   error: ""
 }
 
-export const getSource = createAsyncThunk("source", async () => {
-   return fetch(`${import.meta.env.VITE_EPORNER_API_URL}api/v2/video/search/?query=popular&per_page=10&page=2&thumbsize=big&order=latest&gay=1&lq=1&format=json`)
-    .then(res => res.json())
+export const getSource = createAsyncThunk("source", async (params: string | null) => {
+  if (params !== null){
+    return await getRelatedVideos(params)
+  }else{
+  return await getLatestContent()
+}
+
 })
+
+
+
+/**
+ * Agregar la otra funcion de fetch, para related videos aqui
+ * Utilizar un segundo case en "extraReducers"
+ * 
+ */
 
 export const sourceSlice = createSlice({
   name: 'source',
@@ -32,11 +46,13 @@ export const sourceSlice = createSlice({
          state.error = null
          state.data = action.payload
        })
+       // eslint-disable-next-line @typescript-eslint/no-explicit-any
        .addCase(getSource.rejected, (state, action: PayloadAction<any>) => { // Rejected state
          state.loading = false
          state.error = action.payload
          state.data = []
        })
+     
   }
 })
 
