@@ -1,6 +1,6 @@
-import { getRelatedVideos } from "../../services/resources"
+// import { getRelatedVideos } from "../../services/resources"
 import { useEffect, useState } from "react"
-import { type Video } from "../../types/eporner"
+// import { type Video } from "../../types/eporner"
 import { Link } from "react-router-dom"
 import { Ghost } from "../icons/Ghost"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
@@ -12,38 +12,48 @@ interface Props {
 
 // Related Videos displayed
 export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
-  const [videos, setVideos] = useState<Video[]>([])  
- const [counter, setCounter] = useState<number>(0)
- const [loading, setLoading] = useState(true)
 
+ const [loading, setLoading] = useState(true)
+ // eslint-disable-next-line @typescript-eslint/no-unused-vars
+ const [trimWord, setTrimWord] = useState<string[]>([])
+ const [limited, setLimited] = useState<string[]>([])
   const lowerCase = keywords!.toLowerCase()
 
   const stringSplit = lowerCase.split(" ")
+  
+  const selection = stringSplit.filter((str) => str.length > 4 && str.length < 10)
+ 
   const dispatch = useAppDispatch()
   const source = useAppSelector(state => state.source.data)
   
-  const handleResults = () => {
-    dispatch(getSource(stringSplit[0]))
-    setCounter(counter + 1)
-    getRelatedVideos(stringSplit[counter])
-               .then((data) => {
-               setVideos(data)
-            }             
-    )
-  } 
+  
   useEffect(() => {
-  getRelatedVideos(stringSplit[counter])
-               .then((data) => {
-               setVideos(data)
-               setLoading(false)
-            }             
-    ) 
+  dispatch(getSource(selection[0]))
+  if (source !== null) setLoading(false)
+
+  selection.forEach(sel =>{
+    if (sel.includes(",")) {
+       const trimmed:string = sel.substring(0,sel.length -1)
+       trimWord.push(trimmed)
+    }
+  })
+ setLimited(trimWord.slice(0,10))
 },[])
 
   return (
     <aside>
+      <div className="flex flex-row gap-3">
+        {/* Tags */}
+        {
+          limited?.map((str) => (
+            <div className="border rounded-md bg-gray-600 px-1"><Link to={`/search/${str}`}>{str}</Link></div>
+          ))
+        }
+        {/* Tags */}
+        </div>
         <h3>Related Videos</h3>
-        {loading ? <div>Cargando</div> : <div> {videos.length !== 0 ?<div>
+        
+        {loading ? <div>Cargando</div> : <div> {source?.length !== 0 ?<div>
             {source?.map((video,index) => (
                 <article key={index}>
                     <Link className="gap-2" to={`/video/${video.id}/${video.keywords}`} target="_blank">
@@ -54,7 +64,7 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
             ))}
         </div> : <div>
                <h3>We can't found related videos <Ghost/></h3>
-               <button onClick={handleResults}>Cargar más resultados</button>
+               
             </div>}</div>}
     </aside>
   )

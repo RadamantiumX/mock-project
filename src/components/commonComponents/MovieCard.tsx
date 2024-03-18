@@ -22,12 +22,11 @@ interface Props {
 }
 
 export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views, keywords }) => {
-  const splitString = keywords.split(" ")
   return (
     <>
    
           <div className="block relative group transition max-w-sm mx-auto mt-3 mb-4">
-          <p>{splitString[0]}</p>
+          
               <Link to={`/video/${id}/${keywords}`} className="block">
                   <div className="aspect-w-2 aspect-h-1 rounded-2xl shadow overflow-hidden bg-gray-100 relative">
                       <Link to={`/video/${id}/${keywords}`}>

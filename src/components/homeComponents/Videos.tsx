@@ -1,20 +1,11 @@
-import { useEffect } from "react"
-// import { getLatestContent } from "../../services/resources"
-// import { type Video } from "../../types/eporner"
 import { MovieCard } from "../commonComponents/MovieCard"
-import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getSource } from "../../redux/sourceSlice"
+import { type Video } from "../../types/eporner"
+interface Props {
+  source: Video[] | null
+}
 
-export default function Videos () {
-  // const [videos, setVideos] = useState<Video[]>([])
- const dispatch = useAppDispatch()
- const source = useAppSelector(state => state.source.data)
+export const Videos: React.FC<Props> =  ({ source }) => {
  
-  useEffect( () => {
- // getLatestContent().then((data) => setVideos(data))
-   dispatch(getSource(null))
-  }, [])
-  
   return (
     <section>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full m-1 justify-center mt-12 mb-12">

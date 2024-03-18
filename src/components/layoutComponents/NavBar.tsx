@@ -45,10 +45,10 @@ export default function NavBar() {
             <div className="absolute top-full left-0 w-full bg-gray-900 z-50">
               <div className="max-w-6xl mx-auto px-4 pt-4 pb-4">
                 <div className="mobile-menu md:hidden">
+                  <a className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" href="#">Home</a>
                   <a className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" href="#">Categories</a>
-                  <a className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" href="#">Stuff</a>
-                  <a className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" href="#">Locates</a>
-                  <a className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" href="#">About</a>
+                  <a className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" href="#">Models</a>
+                  <a className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" href="#">Photos</a>
                 </div>
               </div>
             </div>
@@ -59,10 +59,10 @@ export default function NavBar() {
         <div className="hidden md:flex mt-2 w-full justify-center md:justify-around">
           <nav>
             <ul className="flex flex-row gap-4 mobile-menu">
+              <li><Link className="subnav" to="/">Home</Link></li>
               <li><a className="subnav" href="#">Categories</a></li>
-              <li><a className="subnav" href="#">Stuff</a></li>
-              <li><a className="subnav" href="#">Locates</a></li>
-              <li><a className="subnav" href="#">About</a></li>
+              <li><a className="subnav" href="#">Models</a></li>
+              <li><a className="subnav" href="#">Photos</a></li>
             </ul>
           </nav>
         </div>

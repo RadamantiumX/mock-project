@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Video from "./pages/Video"
+import Search from "./pages/Search";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
             {
                 path: "/video/:id/:keywords",
                 element: <Video/>
+            },
+            {
+                path: "/search/:query",
+                element: <Search/>
             }
         ]
     },
