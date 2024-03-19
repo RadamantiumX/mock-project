@@ -7,8 +7,8 @@ type Params = {
   keywords: string;
 }
 export default function Video() {
-  const { id } = useParams<Params>()
-  const { keywords } = useParams<Params>()
+  const { id, keywords } = useParams<Params>()
+  //const { keywords } = useParams<Params>()
   return (
     <main>
       <div className="flex flex-row gap-20">
