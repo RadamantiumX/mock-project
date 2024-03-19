@@ -1,19 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { VideoSelected } from "../components/videoComponents/VideoSelected"
 import { useParams } from "react-router-dom"
 import { SideBarVideos } from "../components/videoComponents/SideBarVideos"
 
 type Params = {
-  id: string;
-  keywords: string;
-  title: string;
+   id: string;
+   keywords: string;
+   title: string;
 }
-type ParamsNumber = {
-  views: number;
-}
+
+
 
 export default function Video() {
   const { id, title, keywords } = useParams<Params>();
-  const { views } = useParams<ParamsNumber>();
+  const { views } = useParams() as any;
 
   return (
     <main>
