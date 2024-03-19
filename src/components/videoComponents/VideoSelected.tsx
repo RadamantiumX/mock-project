@@ -3,7 +3,7 @@ interface Props {
     keywords?: string;
 }
 
-export const VideoSelected:React.FC<Props> = ({ id, keywords }) => {
+export const VideoSelected:React.FC<Props> = ({ id }) => {
 
 
   return (
