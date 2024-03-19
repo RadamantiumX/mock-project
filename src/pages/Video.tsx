@@ -5,19 +5,26 @@ import { SideBarVideos } from "../components/videoComponents/SideBarVideos"
 type Params = {
   id: string;
   keywords: string;
+  title: string;
 }
+type ParamsNumber = {
+  views: number;
+}
+
 export default function Video() {
-  const { id, keywords } = useParams<Params>()
-  //const { keywords } = useParams<Params>()
+  const { id, title, keywords } = useParams<Params>();
+  const { views } = useParams<ParamsNumber>();
+
   return (
     <main>
-      <div className="flex flex-row gap-20">
-      <VideoSelected id={id}/>
-      <SideBarVideos keywords={keywords}/>
+      <div className="gap-20">
+        <VideoSelected id={id} title={title} views={views} />
+        <SideBarVideos keywords={keywords} />
       </div>
-   </main>
-  )
+    </main>
+  );
 }
+
 
 /**
  * ❗ Realizar una QUERY donde se obtengan resultados a partir de una query 
