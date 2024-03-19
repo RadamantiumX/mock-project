@@ -13,7 +13,7 @@ export const getLatestContent = async () => {
 
 export const getRelatedVideos = async ( params: string ) => {
    
-    const res = await fetch(`${import.meta.env.VITE_EPORNER_API_URL}api/v2/video/search/?query=${params}&per_page=10&page=2&thumbsize=big&order=latest&gay=1&lq=1&format=json`)
+    const res = await fetch(`${import.meta.env.VITE_EPORNER_API_URL}api/v2/video/search/?query=${params}&per_page=7&page=2&thumbsize=big&order=latest&gay=1&lq=1&format=json`)
     const {videos: data} = await res.json() as APIEpornerResponse
     return data
   
