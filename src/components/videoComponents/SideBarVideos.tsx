@@ -1,6 +1,4 @@
-// import { getRelatedVideos } from "../../services/resources"
 import { useEffect, useState } from "react"
-// import { type Video } from "../../types/eporner"
 import { Link } from "react-router-dom"
 import { Ghost } from "../icons/Ghost"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
