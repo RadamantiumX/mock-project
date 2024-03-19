@@ -1,11 +1,12 @@
 import { MovieCard } from "../commonComponents/MovieCard"
 import { type Video } from "../../types/eporner"
+
 interface Props {
-  source: Video[] | null
+    source?: Video[] | null
 }
 
-export const Videos: React.FC<Props> =  ({ source }) => {
- 
+export const VideosResults:React.FC<Props> = ({ source }) => {
+  
   return (
     <section>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full m-1 justify-center mt-12 mb-12">
@@ -18,3 +19,5 @@ export const Videos: React.FC<Props> =  ({ source }) => {
   </section>
   )
 }
+
+

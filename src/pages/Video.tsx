@@ -1,8 +1,18 @@
+import { VideoSelected } from "../components/videoComponents/VideoSelected"
+import { useParams } from "react-router-dom"
+import { SideBarVideos } from "../components/videoComponents/SideBarVideos"
+
+type Params = {
+  id: string;
+  keywords: string;
+}
 import { VideoSelected } from "../components/videoComponents/VideoSelected";
 import { useParams } from "react-router-dom";
 import { SideBarVideos } from "../components/videoComponents/SideBarVideos";
 
 export default function Video() {
+  const { id } = useParams<Params>()
+  const { keywords } = useParams<Params>()
   const { id, title, keywords, views } = useParams<{ id: string; title: string; keywords: string; views: number  }>();
 
   return (

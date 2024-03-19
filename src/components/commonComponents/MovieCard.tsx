@@ -22,7 +22,6 @@ interface Props {
 }
 
 export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views, keywords }) => {
-
   return (
     <>
    
@@ -40,6 +39,7 @@ export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views, 
                               <Link to={`/video/${id}/${keywords}/${title}/${views}`}>
                                   {title}
                               </Link>
+                            
                           </h3>
                           <span className="mt-1 shrink-0 text-xs inline-flex items-center gap-1">
                               {views}
