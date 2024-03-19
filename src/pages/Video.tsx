@@ -5,20 +5,20 @@ import { SideBarVideos } from "../components/videoComponents/SideBarVideos"
 type Params = {
   id: string;
   keywords: string;
+  title: string;
 }
-import { VideoSelected } from "../components/videoComponents/VideoSelected";
-import { useParams } from "react-router-dom";
-import { SideBarVideos } from "../components/videoComponents/SideBarVideos";
+type ParamsNumber = {
+  views: number;
+}
 
 export default function Video() {
-  const { id } = useParams<Params>()
-  const { keywords } = useParams<Params>()
-  const { id, title, keywords, views } = useParams<{ id: string; title: string; keywords: string; views: number  }>();
+  const { id, title, keywords } = useParams<Params>();
+  const { views } = useParams<ParamsNumber>();
 
   return (
     <main>
       <div className="gap-20">
-        <VideoSelected id={id} title={title} keywords={keywords} views={views} />
+        <VideoSelected id={id} title={title} views={views} />
         <SideBarVideos keywords={keywords} />
       </div>
     </main>
