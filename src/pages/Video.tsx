@@ -13,7 +13,7 @@ type Params = {
 
 export default function Video() {
   const { id, title, keywords } = useParams<Params>();
-  const { views } = useParams() as any;
+  const { views } = useParams() as any; /** Temporal FIX 😎 */
 
   return (
     <main>
