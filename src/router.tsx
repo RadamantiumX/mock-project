@@ -9,6 +9,7 @@ import Search from "./pages/Search";
 import Categories from "./pages/Categories";
 import Models from "./pages/Models";
 import Video4k from "./pages/Video4k";
+import Photos from "./pages/Photos";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: "/videos4k",
                 element: <Video4k/>
+            },
+            {
+                path: "/photos",
+                element: <Photos/>
             }
         ]
     },
