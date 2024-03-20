@@ -6,6 +6,9 @@ import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Video from "./pages/Video"
 import Search from "./pages/Search";
+import Categories from "./pages/Categories";
+import Models from "./pages/Models";
+import Video4k from "./pages/Video4k";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +30,18 @@ const router = createBrowserRouter([
             {
                 path: "/search/:query",
                 element: <Search/>
+            },
+            {
+                path: "/categories",
+                element: <Categories/>
+            },
+            {
+                path: "/models",
+                element: <Models/>
+            },
+            {
+                path: "/videos4k",
+                element: <Video4k/>
             }
         ]
     },
