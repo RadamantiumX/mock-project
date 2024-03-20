@@ -40,12 +40,16 @@ const stringSplit = lowerCase.split(" ")
 
     return (
         <section className="ml-10 mr-10 mb-10">
-             {
-          limited?.map((str) => (
-            <div className="border rounded-md bg-gray-600 px-1"><Link to={`/search/${str}`}>{str}</Link></div>
-          ))
-        }
-        <h3 style={{fontSize:"1.4rem", color:"#DBDBDB"}} className="text-lg font-semibold pb-2 border-b border-gray-300 mb-4">Related Videos</h3>
+            <div className="flex flex-wrap justify-center md:justify-start">
+                {limited?.map((str, index) => (
+                    <div key={index} className="mr-2 mb-8 md:mb-6 mt-3">
+                        <div className="border rounded-md bg-pink-600 px-2 py-1 my-[-1.8rem] md:my-[-2.3rem] hover:bg-pink-700 transition duration-300 ease-in-out">
+                            <Link to={`/search/${str}`} className="text-white text-xs md:text-sm">{str}</Link>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <h3 style={{fontSize:"1.4rem", color:"#DBDBDB"}} className="text-lg font-semibold pb-2 border-b border-gray-300 border-solid border-b-1 mb-4">Related Videos</h3>
         {loading ? (
             <div>Cargando</div>
         ) : (
@@ -71,35 +75,7 @@ const stringSplit = lowerCase.split(" ")
     )
  }
 
-//   return (
-//     <aside>
-//       <div className="flex flex-row gap-3">
-//         {/* Tags */}
-//         {
-//           limited?.map((str) => (
-//             <div className="border rounded-md bg-gray-600 px-1"><Link to={`/search/${str}`}>{str}</Link></div>
-//           ))
-//         }
-//         {/* Tags */}
-//         </div>
-//         <h3>Related Videos</h3>
-        
-//         {loading ? <div>Cargando</div> : <div> {source?.length !== 0 ?<div>
-//             {source?.map((video,index) => (
-//                 <article key={index}>
-//                     <Link className="gap-2" to={`/video/${video.id}/${video.keywords}`} target="_blank">
-//                        <img className="size-60 border-gray-600 rounded-md" src={video.default_thumb.src} alt={video.title} />
-//                        <h4 className="truncate">{video.title}</h4>
-//                     </Link>
-//                 </article>
-//             ))}
-//         </div> : <div>
-//                <h3>We can't found related videos <Ghost/></h3>
-               
-//             </div>}</div>}
-//     </aside>
-//   )
-// }
+
 
 
 
