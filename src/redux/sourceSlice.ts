@@ -15,22 +15,20 @@ const initialState: SourceState = {
   error: ""
 }
 
-export const getSource = createAsyncThunk("source", async (params: string | null) => {
-  if (params !== null){
-    return await getRelatedVideos(params)
+
+
+export const getSource = createAsyncThunk("source", async (payload:string | number) => {
+  if (typeof payload === "string"){
+    
+    return await getRelatedVideos(payload)
   }else{
-  return await getLatestContent()
+ 
+  return await getLatestContent(payload)
 }
 
 })
 
 
-
-/**
- * Agregar la otra funcion de fetch, para related videos aqui
- * Utilizar un segundo case en "extraReducers"
- * 
- */
 
 export const sourceSlice = createSlice({
   name: 'source',
