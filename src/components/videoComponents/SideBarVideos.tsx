@@ -9,16 +9,18 @@ interface Props {
 }
 
 export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
-    const [loading, setLoading] = useState(true)
+ const [loading, setLoading] = useState(true)
  // eslint-disable-next-line @typescript-eslint/no-unused-vars
  const [trimWord, setTrimWord] = useState<string[]>([])
  const [limited, setLimited] = useState<string[]>([])
-  const lowerCase = keywords!.toLowerCase()
+ const lowerCase = keywords!.toLowerCase()
 
-const stringSplit = lowerCase.split(" ")
-    
-    
-    
+  const stringSplit = lowerCase.split(" ")
+  
+  // Defult number to set more related results
+  const DEFAULT_NUM = 3 
+   
+  // Filter data to avoid empty results
   const selection = stringSplit.filter((str) => str.length > 4 && str.length < 10)
  
   const dispatch = useAppDispatch()
@@ -26,7 +28,7 @@ const stringSplit = lowerCase.split(" ")
   
   
   useEffect(() => {
-  dispatch(getSource(selection[0]))
+  dispatch(getSource(selection[0].concat(" ", DEFAULT_NUM.toString())))
   if (source !== null) setLoading(false)
 
   selection.forEach(sel =>{
