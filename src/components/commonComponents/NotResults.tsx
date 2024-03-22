@@ -1,3 +1,6 @@
+/**
+ * This's NOT RESULTS (code: 200) component, is not the same as the NOT FOUND (code: 404) page
+ */
 import { Link } from "react-router-dom"
 
 export const NotResults = () => {
