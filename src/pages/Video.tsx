@@ -2,6 +2,9 @@
 import { VideoSelected } from "../components/videoComponents/VideoSelected"
 import { useParams } from "react-router-dom"
 import { SideBarVideos } from "../components/videoComponents/SideBarVideos"
+import { PostCommentForm } from "../components/videoComponents/PostCommentForm"
+import { Comments } from "../components/videoComponents/Comments"
+import { SingInButton } from "../components/videoComponents/SingInButton"
 
 type Params = {
    id: string;
@@ -9,6 +12,7 @@ type Params = {
    title: string;
 }
 
+const TOKEN  = false
 
 
 export default function Video() {
@@ -20,6 +24,8 @@ export default function Video() {
       <div className="gap-20">
         <VideoSelected id={id} title={title} views={views} />
         <SideBarVideos keywords={keywords} />
+        {TOKEN ? <PostCommentForm />: <SingInButton/>}
+        <Comments />
       </div>
     </main>
   );
