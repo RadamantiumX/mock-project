@@ -23,7 +23,7 @@ export default function Home () {
         <main>
           <Header/>
           <Videos source={source}/>
-         <LoadButton onClick={handleResults}/>
+         <LoadButton onClick={handleResults} title={'Load more Videos..'}/>
         </main>
     )
 }
