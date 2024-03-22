@@ -35,7 +35,7 @@ export default function Search() {
     <main>
       <h1 className="text-2xl">Results of search for: <span className="font-bold">{query}</span></h1>
       {
-      source?.length !== 0 ? <div><VideosResults source={source}/><LoadButton onClick={handleResults}/></div>
+      source?.length !== 0 ? <div><VideosResults source={source}/><LoadButton onClick={handleResults} title={'Load more videos...'}/></div>
       : <NotResults/>
       }
     </main>
