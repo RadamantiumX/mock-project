@@ -12,7 +12,7 @@ type Params = {
    title: string;
 }
 
-const TOKEN  = false
+const TOKEN  = true
 
 
 export default function Video() {
