@@ -15,10 +15,8 @@ export const Comments = () => {
 ]
 
   return (
-    <section className="flex flex-col items-center mt-5 mb-5">
-        <h3>Latest Comments</h3>
+    <section className="flex flex-col  mt-5 mb-5">
         <div className="flex flex-col">
-            
            {
              MOCK_DATA.length > 0 ? MOCK_DATA.map((item)=> (
                <CommentArticle id={item.id} nick_name={item.nick_name} comment={item.comment} /> 
