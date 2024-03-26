@@ -1,6 +1,7 @@
 export const PostCommentForm = () => {
   return (
-    <>
+    
+  <form>
 <div id="commentsContainer" className="w-full md:w-1/2 p-2 pt-4 rounded shadow-lg mx-auto sm:ml-4">
   <div className="flex">
     <div>
@@ -8,7 +9,7 @@ export const PostCommentForm = () => {
     </div>
   </div>
   <div className="mt-3 p-3">
-    <textarea className="border p-2 rounded w-full" placeholder="Write your comment here..."></textarea>
+    <textarea id="comment" className="border p-2 rounded w-full" placeholder="Write your comment here..."></textarea>
   </div>
   <div className="flex justify-between mx-3">
     <div>
@@ -17,7 +18,7 @@ export const PostCommentForm = () => {
     <div></div>
   </div>
 </div>
-
-    </>
+</form>  
+   
   )
 }
