@@ -33,10 +33,14 @@ export default function Search() {
 
   return (
     <main>
-      <h1 className="text-2xl">Results of search for: <span className="font-bold">{query}</span></h1>
+     <h1 className="text-2xl sm:text-3xl md:text-2xl lg:text-3xl xl:text-3xl text-center sm:text-left ml-5 mt-9">Results of search for: <span className="font-bold text-pink-600">{query}</span></h1>
       {
-      source?.length !== 0 ? <div><VideosResults source={source}/><LoadButton onClick={handleResults} title={'Load more videos...'}/></div>
-      : <NotResults/>
+        source?.length !== 0 ? 
+        <div className="mt-8">
+          <VideosResults source={source} />
+          <LoadButton onClick={handleResults} title={'Load more videos...'} />
+        </div>
+        : <NotResults />
       }
     </main>
   )

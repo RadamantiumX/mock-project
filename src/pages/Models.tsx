@@ -1,8 +1,13 @@
+import CardsModels from "../components/modelsComponents/CardsModels";
+import SearchModel from "../components/modelsComponents/SearchModel";
 
 
 export default function Models() {
   return (
-    <div>Models</div>
+	<>
+	<SearchModel/>
+    <CardsModels/>
+	</>
   )
 }
 // ❗ La respuesta puede contener mucho mas resultados.
