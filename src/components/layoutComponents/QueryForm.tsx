@@ -52,7 +52,6 @@ export const QueryForm = () => {
                 />
 
             </search>
-</div>
 
 
             
