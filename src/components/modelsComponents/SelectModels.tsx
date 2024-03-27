@@ -25,7 +25,7 @@ export default function SelectModels() {
             </svg>
           </Link>
           <div className={`dropdown-menu absolute ${isOpen ? '' : 'hidden'} text-gray-700 pt-1`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ zIndex: 100, width: '600px', maxHeight: '600px', overflowY: 'auto' }}>
-            <div className="bg-gray-900 p-4">
+            <div className="bg-black bg-opacity-95 p-4">
               <div className="grid grid-cols-4 gap-4">
                 {/* fila de imágenes */}
                 <div className="rounded-lg overflow-hidden">

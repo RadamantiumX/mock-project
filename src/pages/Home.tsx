@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import {Header} from "../components/homeComponents/Header"
 import { Videos } from "../components/homeComponents/Videos"
 import { useAppDispatch, useAppSelector } from "../redux/hooks"
 import { getSource } from "../redux/sourceSlice"
@@ -21,7 +20,6 @@ export default function Home () {
   },[counter])
     return(
         <main>
-          <Header/>
           <Videos source={source}/>
          <LoadButton onClick={handleResults} title={'Load more Videos..'}/>
         </main>
