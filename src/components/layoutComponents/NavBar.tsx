@@ -33,8 +33,9 @@ export default function NavBar() {
               </button>
             </div>
           </div>
-          <div className='mb-4 w-full md:mb-0 md:w-1/4'>
+          <div className='flex flex-row mb-4 w-full md:mb-0 md:w-1/4 gap-5'>
             <QueryForm />
+            <Link className="border rounded-md w-1/2" to="/auth/portal/signin">Sign In</Link>
           </div>
           {isMenuOpen && (
             <div className="absolute top-full left-0 w-full bg-black z-50">
