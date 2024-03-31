@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Ghost } from "../icons/Ghost"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getSource } from "../../redux/sourceSlice"
+import { getSource } from "../../redux/epornerSources/sourceSlice"
 
 interface Props {
     keywords?: string
