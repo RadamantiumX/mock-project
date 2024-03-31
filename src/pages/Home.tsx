@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Videos } from "../components/homeComponents/Videos"
 import { useAppDispatch, useAppSelector } from "../redux/hooks"
-import { getSource } from "../redux/sourceSlice"
+import { getSource } from "../redux/epornerSources/sourceSlice"
 import { LoadButton } from "../components/commonComponents/LoadButton"
 
 export default function Home () {
