@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { getLatestContent } from '../services/resources'
-import { getRelatedVideos } from '../services/resources'
-import  { type Video } from '../types/eporner'
+import { getLatestContent } from '../../services/resources'
+import { getRelatedVideos } from '../../services/resources'
+import  { type Video } from '../../types/eporner'
 export interface SourceState {
   data: Video[] | null,
   loading: boolean,
