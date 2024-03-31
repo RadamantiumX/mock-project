@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { NotResults } from "../components/commonComponents/NotResults"
 import { useAppDispatch, useAppSelector } from "../redux/hooks"
-import { getSource } from "../redux/sourceSlice"
+import { getSource } from "../redux/epornerSources/sourceSlice"
 import { LoadButton } from "../components/commonComponents/LoadButton"
 
 type Params = {
