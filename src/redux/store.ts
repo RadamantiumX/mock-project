@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import sourceReducer from './sourceSlice'
+import sourceReducer from './epornerSources/sourceSlice'
 
 export const store = configureStore({
   reducer: {
