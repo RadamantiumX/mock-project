@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Ghost } from "../icons/Ghost"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getSource } from "../../redux/epornerSources/sourceSlice"
+import { getEpornerSource } from "../../redux/epornerSources/sourceSlice"
 
 interface Props {
     keywords?: string
@@ -24,12 +24,12 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
   const selection = stringSplit.filter((str) => str.length > 4 && str.length < 10)
  
   const dispatch = useAppDispatch()
-  const source = useAppSelector(state => state.source.data)
+  const eporner = useAppSelector(state => state.source.data)
   
   
   useEffect(() => {
-  dispatch(getSource(selection[0].concat(" ", DEFAULT_NUM.toString())))
-  if (source !== null) setLoading(false)
+  dispatch(getEpornerSource(selection[0].concat(" ", DEFAULT_NUM.toString())))
+  if (eporner !== null) setLoading(false)
 
   selection.forEach(sel =>{
     if (sel.includes(",")) {
@@ -61,8 +61,8 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
             <div>Cargando</div>
         ) : (
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                {source?.length !== 0 ? (
-                    source?.map((video, index) => (
+                {eporner?.length !== 0 ? (
+                    eporner?.map((video, index) => (
                         <article key={index} className="col-span-1">
                             <Link to={`/video/${video.id}/${video.keywords}/${video.title}/${video.views}`} target="_blank">
                                 <img className="w-full rounded-md mb-2" src={video.default_thumb.src} alt={video.title} />

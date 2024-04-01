@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import { Videos } from "../components/homeComponents/Videos"
 import { useAppDispatch, useAppSelector } from "../redux/hooks"
-import { getSource } from "../redux/epornerSources/sourceSlice"
+import { getEpornerSource } from "../redux/epornerSources/sourceSlice"
 import { LoadButton } from "../components/commonComponents/LoadButton"
 
 export default function Home () {
   const [counter, setCounter] = useState<number>(12)
   const dispatch = useAppDispatch()
-  const source = useAppSelector(state => state.source.data)
+  const eporner = useAppSelector(state => state.source.data)
   
   const handleResults = () => {
     setCounter(counter + 10)
@@ -15,12 +15,12 @@ export default function Home () {
 
   useEffect(() => {
     
-    dispatch(getSource(counter))
+    dispatch(getEpornerSource(counter))
    
   },[counter])
     return(
         <main>
-          <Videos source={source}/>
+          <Videos source={eporner}/>
          <LoadButton onClick={handleResults} title={'Load more Videos..'}/>
         </main>
     )
