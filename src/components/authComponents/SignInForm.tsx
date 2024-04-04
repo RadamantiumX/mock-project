@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { signIn } from "../../redux/authSources/authSlice"
+import { useStateContext } from "../../contexts/ContextProvider"
 
 export const SignIn = () => {
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("") 
+
+  const { setToken,setId } = useStateContext()
+  
+   const dispatch = useDispatch()
+
     
    const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
@@ -11,7 +19,7 @@ export const SignIn = () => {
         email: email,
         password: password
       }
-    // const formData = new FormData(e.target as HTMLFormElement)
+    
      const results = await fetch('http://localhost:4000/auth/signin',{
             method: 'POST',
             headers: {'Content-type': 'application/json'},         
@@ -20,9 +28,13 @@ export const SignIn = () => {
       })
 
      const data = await results.json()
-      console.log(data)
+     dispatch(signIn(data.response))
+     setToken(data.response.token)
+     setId(data.response.id)
+     console.log(data)
     
    }
+  
 
 
   return (
