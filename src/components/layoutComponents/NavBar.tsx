@@ -7,9 +7,11 @@ import { MagnifyingGlass } from "../icons/MagnifyingGlass";
 import SelectModels from "../modelsComponents/SelectModels";
 import SelectCategories from "../categoriesComponents/SelectCategories";
 import { Header } from "../homeComponents/Header";
+import { useStateContext } from "../../contexts/ContextProvider";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { token } = useStateContext()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,7 +37,12 @@ export default function NavBar() {
           </div>
           <div className='flex flex-row mb-4 w-full md:mb-0 md:w-1/4 gap-5'>
             <QueryForm />
-            <Link className="border rounded-md w-1/2" to="/auth/portal/signin">Sign In</Link>
+
+
+            {token ? <div>User</div> : <Link className="border rounded-md w-1/2" to="/auth/portal/signin">Sign In</Link>}
+
+
+
           </div>
           {isMenuOpen && (
             <div className="absolute top-full left-0 w-full bg-black z-50">
