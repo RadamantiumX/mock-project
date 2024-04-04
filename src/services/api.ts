@@ -10,7 +10,7 @@ export const login = async (payload:UserPayload) => {
         })
 
      const data = await response.json()
-     return data
+     console.log(data)
     } catch (err) {
       return  console.log(err)
     }
