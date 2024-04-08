@@ -5,12 +5,13 @@ export const login = async (payload:UserPayload) => {
         const response = await fetch('http://localhost:4000/auth/signin',{
             method: 'POST',
             headers: { 'Content-Type' : 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({ payload })    
+        
+            body: JSON.stringify(payload)    
         })
 
      const data = await response.json()
-     console.log(data)
+     return data.response
+
     } catch (err) {
       return  console.log(err)
     }
