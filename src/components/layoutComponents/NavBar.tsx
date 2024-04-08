@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router-dom";
 import Logo from "../../assets/project/logo.png";
 import { useState } from "react";
@@ -8,10 +9,12 @@ import SelectModels from "../modelsComponents/SelectModels";
 import SelectCategories from "../categoriesComponents/SelectCategories";
 import { Header } from "../homeComponents/Header";
 import { useStateContext } from "../../contexts/ContextProvider";
+import { useSelector } from "react-redux";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { token } = useStateContext()
+  const nickname = useSelector((state:any) => state.auth.nickname)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -39,7 +42,7 @@ export default function NavBar() {
             <QueryForm />
 
 
-            {token ? <div>User</div> : <Link className="border rounded-md w-1/2" to="/auth/portal/signin">Sign In</Link>}
+            {token ? <img className="rounded-full" src={`https://ui-avatars.com/api/?name=${nickname}&background=0D8ABC&color=fff`} alt="User Avatar" title="Avatar for Vanilla Leak User"/> : <Link className="border rounded-md w-1/2" to="/auth/portal/signin">Sign In</Link>}
 
 
 
