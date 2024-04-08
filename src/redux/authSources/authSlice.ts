@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 // import { PayloadAction } from "@reduxjs/toolkit"
 import { User } from "../../types/api"
@@ -11,6 +12,10 @@ const initialState = {
     token: localStorage.getItem('auth-token')
 }
 
+const persistanceMiddleware = (store) => (next) => (action) => {
+    
+}
+
 export const getAuthSource = createAsyncThunk ("auth", async (payload: UserPayload) => {
       if (Object.keys(payload).length === 2){
         return await login(payload)
@@ -21,7 +26,7 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        signIn: (state, action) => {
+        signIn: (state:any, action) => {
             const { id, nickname, email, token }:User = action.payload     
             state.id = id   
             state.nickname = nickname
