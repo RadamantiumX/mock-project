@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { signIn } from "../../redux/authSources/authSlice"
 import { useStateContext } from "../../contexts/ContextProvider"
-import { login } from "../../services/api"
+import axiosClientAuth from "../../services/axios-client-auth"
 
 
 export const SignIn = () => {
@@ -23,22 +23,22 @@ export const SignIn = () => {
         password: password
       }
 
-     const data:any= await login(payload)
+        axiosClientAuth.post('/signin', payload)
+          .then(({data}):any => {
+            dispatch(signIn(data.response))
+            setToken(data.response.token)
+            setId(data.response.id)
+          })
+          .catch(err => {
+            const response = err.response
+            console.log(response)
+         })
+          
+
+   /*  const data:any= await login(payload)
      dispatch(signIn(data))
      setToken(data.token)
-     setId(data.id)  
-    //  const results = await fetch('http://localhost:4000/auth/signin',{
-    //         method: 'POST',
-    //         headers: {'Content-type': 'application/json'},         
-    //         body: JSON.stringify(payload),
-           
-    //   })
-
-    //  const data = await results.json()
-    //  dispatch(signIn(data.response))
-    //  setToken(data.response.token)
-    //  setId(data.response.id)
-    //  console.log(data)
+     setId(data.id) */
     
    }
   

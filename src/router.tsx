@@ -12,6 +12,8 @@ import Models from "./pages/Models";
 import Video4k from "./pages/Video4k";
 import Photos from "./pages/Photos";
 import Auth from "./pages/Auth";
+import Redirect from "./pages/Redirect";
+
 // Only for Auth InnerLayout //
 import { InnerLayout } from "./components/authComponents/InnerLayout";
 import { ForgotPassword } from "./components/authComponents/ForgotPassword";
@@ -56,6 +58,10 @@ const router = createBrowserRouter([
             {
                 path: "/photos",
                 element: <Photos/>
+            },
+            {
+                path: "/redirect",
+                element: <Redirect/>
             }
         ]
     },

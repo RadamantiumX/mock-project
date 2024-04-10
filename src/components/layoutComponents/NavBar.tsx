@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/project/logo.png";
 import { useState } from "react";
 import { QueryForm } from "./QueryForm";
@@ -10,16 +10,33 @@ import SelectCategories from "../categoriesComponents/SelectCategories";
 import { Header } from "../homeComponents/Header";
 import { useStateContext } from "../../contexts/ContextProvider";
 import { useSelector } from "react-redux";
+import axiosClientAuth from "../../services/axios-client-auth";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { token } = useStateContext()
+  const { token, setToken, setId } = useStateContext()
   const nickname = useSelector((state:any) => state.auth.nickname)
+  const navigate = useNavigate()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // If user LOGOUT --> GO TO --> AUTH PAGE
+  const logout = () => {
+    axiosClientAuth.post('/logout')
+    .then(() => {
+       localStorage.clear() // Clear full storage
+       setToken(null) // Token too
+       setId(null)
+       navigate('/auth/portal/signin')
+    })
+    .catch(err => {
+      const response = err.response
+      console.log(response)
+   })
+    
+  }
 
  
 
@@ -42,7 +59,12 @@ export default function NavBar() {
             <QueryForm />
 
 
-            {token ? <img className="rounded-full" src={`https://ui-avatars.com/api/?name=${nickname}&background=0D8ABC&color=fff`} alt="User Avatar" title="Avatar for Vanilla Leak User"/> : <Link className="border rounded-md w-1/2" to="/auth/portal/signin">Sign In</Link>}
+            {token ? 
+              <div>
+              <img className="rounded-full" src={`https://ui-avatars.com/api/?name=${nickname}&background=0D8ABC&color=fff`} alt="User Avatar" title="Avatar for Vanilla Leak User"/>
+              <button onClick={logout}>Logout</button>
+              </div> : 
+              <Link className="border rounded-md w-1/2" to="/auth/portal/signin">Sign In</Link>}
 
 
 

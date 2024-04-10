@@ -3,22 +3,27 @@ import { createContext, useContext, useState, PropsWithChildren, SetStateAction,
 
 type ContextType = {
     token: string | null,
-    setToken: Dispatch<SetStateAction<string>>,
+    setToken: Dispatch<SetStateAction<string | null>>, // Mandatory Types
     id: number | null,
-    setId: Dispatch<SetStateAction<number>>
+    setId: Dispatch<SetStateAction<number | null>>, // Mandatory Types
+    path: string | null,
+    setPath: Dispatch<SetStateAction<string | null>>
 }
 
 const StateContext = createContext<ContextType>({
     token: null,
     id: null,
+    path: null,
 
     setToken: () => {},
-    setId: () => {}
+    setId: () => {},
+    setPath: () => {}
 })
 
 export const ContextProvider = ({ children }:PropsWithChildren) => {
     const [token, _setToken] = useState(localStorage.getItem('auth-token')) 
     const [id, setId] = useState<any>(null)
+    const [path, setPath] = useState<any>("")
 
     const setToken = (token:any) => {
         _setToken(token)
@@ -30,7 +35,7 @@ export const ContextProvider = ({ children }:PropsWithChildren) => {
     }
 
     return (
-        <StateContext.Provider value={{ token, setToken, id, setId }}>
+        <StateContext.Provider value={{ token, setToken, id, setId, path, setPath }}>
             {children}
         </StateContext.Provider>
     )
