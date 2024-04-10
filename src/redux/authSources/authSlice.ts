@@ -5,16 +5,24 @@ import { User } from "../../types/api"
 import { UserPayload } from "../../types/api"
 import { login } from "../../services/api"
 
-const initialState = {
-    id: null,
+const DEFAULT_STATE = {
+    id: null ,
     nickname: "",
     email: "",
-    token: localStorage.getItem('auth-token')
-}
-
-const persistanceMiddleware = (store) => (next) => (action) => {
     
 }
+
+// Persistan state after signin
+const initialState = (()=> {
+    const persistedState = localStorage.getItem("__auth__state__")
+    if (persistedState){
+        return JSON.parse(persistedState).auth
+    } 
+  return DEFAULT_STATE
+      
+}) 
+
+
 
 export const getAuthSource = createAsyncThunk ("auth", async (payload: UserPayload) => {
       if (Object.keys(payload).length === 2){
@@ -27,11 +35,12 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         signIn: (state:any, action) => {
-            const { id, nickname, email, token }:User = action.payload     
+            const { id, nickname, email }:User = action.payload     
             state.id = id   
             state.nickname = nickname
             state.email = email
-            state.token = localStorage.setItem('auth-token', token)
+            
+          
             
         }
     },

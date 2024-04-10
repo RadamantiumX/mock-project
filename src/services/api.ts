@@ -1,7 +1,18 @@
 import { UserPayload } from "../types/api"
+import axiosClientAuth from "./axios-client-auth"
 
 export const login = async (payload:UserPayload) => {
-    try{
+
+   await axiosClientAuth.post('/signin', payload)
+     .then(({data}) => {
+         return data.response
+     })
+     .catch(err => {
+        const response = err.response
+        return response
+     })
+
+   /* try{
         const response = await fetch('http://localhost:4000/auth/signin',{
             method: 'POST',
             headers: { 'Content-Type' : 'application/json' },
@@ -14,5 +25,5 @@ export const login = async (payload:UserPayload) => {
 
     } catch (err) {
       return  console.log(err)
-    }
+    }*/
 }
