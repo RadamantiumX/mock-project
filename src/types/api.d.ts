@@ -1,8 +1,9 @@
 export interface User  {
-    id: number 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    id: number | any 
     nickname: string
     email: string
-    token: string
+   
 }
 
 export interface UserPayload  {
