@@ -11,7 +11,7 @@ export const SignIn = () => {
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("") 
 
-  const { setToken,setId } = useStateContext()
+  const { setToken,setId, setPath } = useStateContext()
   
    const dispatch = useDispatch()
 
@@ -28,6 +28,7 @@ export const SignIn = () => {
             dispatch(signIn(data.response))
             setToken(data.response.token)
             setId(data.response.id)
+            setPath('home')
           })
           .catch(err => {
             const response = err.response
