@@ -7,7 +7,7 @@ export default function AuthLayout() {
 
   
   if(token){
-    return <Navigate to="/"/>
+    return <Navigate to="/redirect"/>
   }
 
 
