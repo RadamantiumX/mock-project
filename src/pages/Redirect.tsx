@@ -1,22 +1,23 @@
 import { useStateContext } from "../contexts/ContextProvider"
-import { Advice } from "../components/redirectComponents/Advice"
-import { useNavigate } from "react-router-dom"
+import { Loading } from "../components/redirectComponents/Loading"
+import {  Navigate } from "react-router-dom"
 
 export default function Redirect() {
-  const { path } = useStateContext()
-  const navigate = useNavigate()
+  const { path, setPath } = useStateContext()
+ 
   // Without "path", has to be redirected to home page instantly
   if (path === ""){
-    navigate('/')
+       return <Navigate to="/"/>
   } else {
-    setTimeout(() => {
-        navigate(`/${path}`)
-    },3000)
+   setTimeout(() => {
+        setPath("")
+        return <Navigate to={`/${path}`}/>
+    },2000)
   }
 
   return (
     <main>
-      <Advice/>
+      <Loading/>
     </main>
   )
 }
