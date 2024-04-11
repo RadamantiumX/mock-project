@@ -14,7 +14,7 @@ import axiosClientAuth from "../../services/axios-client-auth";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { token, setToken, setId } = useStateContext()
+  const { token, setToken, setId, setPath } = useStateContext()
   const nickname = useSelector((state:any) => state.auth.nickname)
   const navigate = useNavigate()
 
@@ -29,7 +29,8 @@ export default function NavBar() {
        localStorage.clear() // Clear full storage
        setToken(null) // Token too
        setId(null)
-       navigate('/auth/portal/signin')
+       setPath('home')
+       navigate('/redirect')
     })
     .catch(err => {
       const response = err.response
