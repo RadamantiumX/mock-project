@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./selectCategories.scss"
+import { CATEGORIES } from "../const/categories";
 
 export default function SelectCategories() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,8 +28,8 @@ export default function SelectCategories() {
     <div className="bg-black bg-opacity-95 p-5">
     <div className="grid grid-cols-6 gap-4">
   {/* Lista de palabras "lorem" */}
-  {[...Array(71)].map((_, index) => (
-    <a className=" text-categories cursor-pointer" key={index}>Lorem</a>
+  {CATEGORIES.map((cat, index) => (
+    <Link to={`/categories/${cat}`} className=" text-categories cursor-pointer" key={index}>{cat}</Link>
   ))}
   {/* Fin de la lista de palabras "lorem" */}
 </div>
