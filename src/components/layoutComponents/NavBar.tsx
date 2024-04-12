@@ -11,6 +11,9 @@ import { Header } from "../homeComponents/Header";
 import { useStateContext } from "../../contexts/ContextProvider";
 import { useSelector } from "react-redux";
 import axiosClientAuth from "../../services/axios-client-auth";
+import { UserButton } from "../commonComponents/UserButton";
+
+import { Selection } from "./Selection";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,10 +49,11 @@ export default function NavBar() {
       <nav className="relative ">
         <header className=" md:flex md:items-center md:justify-around p-4 pb-0  md:pb-4">
           <div className="flex items-center justify-between mb-4 md:mb-0">
-            <Link style={{ width: "16rem" }} to="/"><img src={Logo} alt="Logo DirtyHub" /></Link>
+            <Link style={{ width: "16rem" }} to="/"><img src={Logo} alt="Logo DirtyHub" aria-labelledby="Vanilla Leak Logo"/></Link>
             <a className="text-black hover:text-orange md:hidden" href="#">
               <i className="fa fa-2x fa-bars"></i>
             </a>
+            <Selection/>
             <div className="md:hidden flex items-center">
               <button className="mobile-menu-button" onClick={toggleMenu} aria-label="menu">
                 <MagnifyingGlass/>
@@ -61,10 +65,7 @@ export default function NavBar() {
 
 
             {token ? 
-              <div>
-              <img className="rounded-full" src={`https://ui-avatars.com/api/?name=${nickname}&background=0D8ABC&color=fff`} alt="User Avatar" title="Avatar for Vanilla Leak User"/>
-              <button onClick={logout}>Logout</button>
-              </div> : 
+              <UserButton onClick={logout} nickname={nickname}/> : 
               <Link className="border rounded-md w-1/2" to="/auth/portal/signin">Sign In</Link>}
 
 
