@@ -5,6 +5,8 @@ import { SideBarVideos } from "../components/videoComponents/SideBarVideos"
 import { PostCommentForm } from "../components/videoComponents/PostCommentForm"
 import { Comments } from "../components/videoComponents/Comments"
 import { SingInButton } from "../components/videoComponents/SingInButton"
+import { useStateContext } from "../contexts/ContextProvider"
+import { useEffect } from "react"
 
 type Params = {
    id: string;
@@ -12,19 +14,20 @@ type Params = {
    title: string;
 }
 
-const TOKEN  = true
-
-
 export default function Video() {
   const { id, title, keywords } = useParams<Params>();
   const { views } = useParams() as any; /** Temporal FIX 😎 */
+  const { token } = useStateContext()
 
+  useEffect(()=>{
+
+  },[])
   return (
     <main>
       <div className="gap-20">
         <VideoSelected id={id} title={title} views={views} />
         <SideBarVideos keywords={keywords} />
-        {TOKEN ? <PostCommentForm />: <SingInButton/>}
+        {token ? <PostCommentForm />: <SingInButton/>}
         <Comments />
       </div>
     </main>
