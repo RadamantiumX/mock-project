@@ -3,11 +3,16 @@ import {  type APIEpornerResponse } from "../types/eporner"
 // const configValue : string = (process.env.EPORNER_API_URL as string)
 
 
-export const getLatestContent = async ( payload: number = 12 ) => {
+export const getLatestContent = async ( payload: number ) => {
     // Traer un numero de los parametros, si es menor o igual a 1, aumentamos "binary", sino, aumentamos "qty"
+    let qty = 12
     let binary = 0
-    const qty = payload.toString();
-    const res = await fetch(`${import.meta.env.VITE_EPORNER_API_URL}api/v2/video/search/?query=popular&per_page=${qty}&page=1&thumbsize=big&order=latest&gay=${binary.toString()}&lq=1&format=json`)
+    if (payload <= 1){
+        binary = payload
+    }else{
+        qty = qty + payload
+    }
+    const res = await fetch(`${import.meta.env.VITE_EPORNER_API_URL}api/v2/video/search/?query=popular&per_page=${qty.toString()}&page=1&thumbsize=big&order=latest&gay=${binary.toString()}&lq=1&format=json`)
     const {videos: data} = await res.json() as APIEpornerResponse
    
     return data
