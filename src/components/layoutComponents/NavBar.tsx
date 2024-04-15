@@ -16,7 +16,7 @@ import { Selection } from "./Selection";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { token, setToken, user, setUser, setPath } = useStateContext()
+  const { token, setToken, nickname, setNickname, setPath } = useStateContext()
   
   const navigate = useNavigate()
 
@@ -31,7 +31,7 @@ export default function NavBar() {
     .then(() => {
        localStorage.clear() // Clear full storage
        setToken(null) // Token too
-       setUser(null)
+       setNickname(null)
        setPath('home')
        navigate('/redirect')
     })
@@ -65,7 +65,7 @@ export default function NavBar() {
 
 
             {token ? 
-              <UserButton onClick={logout} nickname={user?.nickname}/> : 
+              <UserButton onClick={logout} nickname={nickname}/> : 
               <Link className="border rounded-md w-1/2" to="/auth/portal/signin">Sign In</Link>}
 
 
