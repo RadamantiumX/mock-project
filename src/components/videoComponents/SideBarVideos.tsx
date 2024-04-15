@@ -3,6 +3,9 @@ import { Link } from "react-router-dom"
 import { Ghost } from "../icons/Ghost"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getEpornerSource } from "../../redux/epornerSources/sourceSlice"
+import { Tags } from "./Tags"
+import { Hearth } from "../icons/Hearth"
+import { Share } from "../icons/Share"
 
 interface Props {
     keywords?: string
@@ -12,7 +15,7 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
  const [loading, setLoading] = useState(true)
  // eslint-disable-next-line @typescript-eslint/no-unused-vars
  const [trimWord, setTrimWord] = useState<string[]>([])
- const [limited, setLimited] = useState<string[]>([])
+ const [limited, setLimited] = useState<string[]>([]) // Tags State
  const lowerCase = keywords!.toLowerCase()
 
   const stringSplit = lowerCase.split(" ")
@@ -31,31 +34,27 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
   dispatch(getEpornerSource(selection[0].concat(" ", DEFAULT_NUM.toString())))
   if (eporner !== null) setLoading(false)
 
+  // Remove words with coma ","  
   selection.forEach(sel =>{
     if (sel.includes(",")) {
        const trimmed:string = sel.substring(0,sel.length -1)
        trimWord.push(trimmed)
     }
   })
- setLimited(trimWord.slice(0,10))
+ setLimited(trimWord.slice(0,10)) // Set the tag state
 },[])
 
     return (
         <section className="ml-10 mr-10 mb-10">
-            <div className="flex flex-wrap justify-center md:justify-start">
-                {limited?.map((str, index) => (
-                    <div key={index} className="mr-2 mb-8 md:mb-6 mt-3">
-                        <div className=" rounded-md bg-pink-600 px-2 py-1 my-[-1.8rem] md:my-[-2.3rem] hover:bg-pink-700 transition duration-300 ease-in-out">
-                            <Link to={`/search/${str}`} className="text-white text-xs md:text-sm">{str}</Link>
-                        </div>
-                    </div>
-                ))}
-            </div>
+           <Tags limited={limited} />
+           <div className="flex flex-row gap-2">
             <a href="#commentsContainer" className="rounded-lg px-6 py-2 bg-gray-600 text-gray-100 hover:bg-gray-700 duration-300">
                 <i className="fa-regular fa-comment mr-2"></i>
                 Comment <span className="font-bold">19</span>
             </a>
-
+            <button className="border rounded-md flex flex-row p-2 gap-1"><Hearth/>Add favorites</button>
+            <button className="border rounded-md flex flex-row p-2 gap-1"><Share/>Share video</button>
+            </div>
             <h3 style={{fontSize:"1.4rem", color:"#DBDBDB"}} className="text-lg font-semibold pb-2   mb-4 mt-6">Related Videos</h3>
         {loading ? (
             <div>Cargando</div>
