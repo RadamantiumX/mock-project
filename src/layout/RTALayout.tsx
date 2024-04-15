@@ -1,20 +1,19 @@
 import { Navigate } from "react-router-dom"
-import { useCookies } from "react-cookie"
+import { useStateContext } from "../contexts/ContextProvider"
 
 export default function RTALayout() {
- const [cookie, setCookie] = useCookies(['rta'])
-  if(cookie){
-     return <Navigate to="/"/>
+  const { age, setAge } = useStateContext()
+  if(age){
+    return <Navigate to="/"/>
   }
-
-  const handleCookie = () => {
-    setCookie("rta", "ok", {path: '/'})
-  }
+ const handleAccess = () =>{
+   setAge('ok')
+ }
   return (
     <div>
         <div>
       <h1>Eres mayor de 18 años?</h1>
-      <button onClick={handleCookie}>Yes</button> <a href="https://www.google.com/">No</a>
+      <button onClick={handleAccess}>Yes</button> <a href="https://www.google.com/">No</a>
       </div>
     </div>
   )

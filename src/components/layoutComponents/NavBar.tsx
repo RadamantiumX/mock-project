@@ -9,7 +9,6 @@ import SelectModels from "../modelsComponents/SelectModels";
 import SelectCategories from "../categoriesComponents/SelectCategories";
 import { Header } from "../homeComponents/Header";
 import { useStateContext } from "../../contexts/ContextProvider";
-import { useSelector } from "react-redux";
 import axiosClientAuth from "../../services/axios-client-auth";
 import { UserButton } from "../commonComponents/UserButton";
 
@@ -17,10 +16,11 @@ import { Selection } from "./Selection";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { token, setToken, setId, setPath } = useStateContext()
-  const nickname = useSelector((state:any) => state.auth.nickname)
+  const { token, setToken, user, setUser, setPath } = useStateContext()
+  
   const navigate = useNavigate()
 
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -31,7 +31,7 @@ export default function NavBar() {
     .then(() => {
        localStorage.clear() // Clear full storage
        setToken(null) // Token too
-       setId(null)
+       setUser(null)
        setPath('home')
        navigate('/redirect')
     })
@@ -65,7 +65,7 @@ export default function NavBar() {
 
 
             {token ? 
-              <UserButton onClick={logout} nickname={nickname}/> : 
+              <UserButton onClick={logout} nickname={user?.nickname}/> : 
               <Link className="border rounded-md w-1/2" to="/auth/portal/signin">Sign In</Link>}
 
 

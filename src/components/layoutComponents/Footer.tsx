@@ -15,8 +15,7 @@ export default function Footer() {
           <p
             className="max-w-md mx-auto mt-6 leading-relaxed text-center text-gray-400 sm:max-w-xs sm:mx-0 sm:text-left"
           >
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt
-            consequuntur amet culpa cum itaque neque.
+            Special content and unlimited content for FREE, with the popular porn stars & amateur videos.
           </p>
         </div>
   
@@ -30,25 +29,25 @@ export default function Footer() {
               <ul className="space-y-4 text-sm">
                 <li>
                   <a className="text-white transition hover:text-white/75" href="/">
-                    Category
+                    About us
                   </a>
                 </li>
   
                 <li>
                   <a className="text-white transition hover:text-white/75" href="/">
-                    Stuff
+                    Contact us
                   </a>
                 </li>
   
                 <li>
                   <a className="text-white transition hover:text-white/75" href="/">
-                  Locates
+                  Developers
                   </a>
                 </li>
   
                 <li>
                   <a className="text-white transition hover:text-white/75" href="/">
-                    About
+                    Site map
                   </a>
                 </li>
               </ul>
@@ -84,7 +83,7 @@ export default function Footer() {
             <span>&middot;</span>
           </p>
           <p className="mt-4 text-sm text-gray-500 sm:order-first sm:mt-0">
-            &copy; 2024 Lorem
+            &copy; 2024 Vanilla Leaks
           </p>
         </div>
       </div>

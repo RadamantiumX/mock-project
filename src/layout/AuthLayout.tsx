@@ -4,7 +4,7 @@ import { useStateContext } from "../contexts/ContextProvider"
 // import axiosClientAuth from "../services/axios-client-auth"
 
 export default function AuthLayout() {
- const { token } = useStateContext()
+ const { token, age } = useStateContext()
 
 /*const payload = {
   token: token
@@ -12,6 +12,10 @@ export default function AuthLayout() {
   
   if(token){
     return <Navigate to="/redirect"/>
+  }
+
+  if(!age){
+    return <Navigate to="/rta"/>
   }
 
 /*useEffect(()=>{

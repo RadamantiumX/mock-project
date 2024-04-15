@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router-dom"
 import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { signIn } from "../../redux/authSources/authSlice"
 import { useStateContext } from "../../contexts/ContextProvider"
 import axiosClientAuth from "../../services/axios-client-auth"
 
@@ -11,11 +9,8 @@ export const SignIn = () => {
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("") 
 
-  const { setToken,setId, setPath } = useStateContext()
+  const { setToken, setPath, setUser } = useStateContext()
   
-   const dispatch = useDispatch()
-
-    
    const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
       const payload = {
@@ -25,21 +20,20 @@ export const SignIn = () => {
 
         axiosClientAuth.post('/signin', payload)
           .then(({data}):any => {
-            dispatch(signIn(data.response))
             setToken(data.response.token)
-            setId(data.response.id)
             setPath('home')
+            const user = {
+                id: data.response.id,
+                nickname: data.response.nickname,
+                email: data.response.email
+            }
+            setUser(user)
           })
           .catch(err => {
             const response = err.response
             console.log(response)
          })
           
-
-   /*  const data:any= await login(payload)
-     dispatch(signIn(data))
-     setToken(data.token)
-     setId(data.id) */
     
    }
   
