@@ -1,21 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createContext, useContext, useState, PropsWithChildren, SetStateAction, Dispatch } from "react";
+import { createContext, useContext, useState, PropsWithChildren } from "react";
+import { type ContextType } from "../types/api";
 
-
-type ContextType = {
-    nickname: string | null,
-    setNickname: Dispatch<SetStateAction<string | null>>, // Mandatory Types
-    email: string | null,
-    setEmail: Dispatch<SetStateAction<string | null>>, // Mandatory Types
-    id: number | null,
-    setId: Dispatch<SetStateAction<number | null>>, // Mandatory Types
-    token: string | null,
-    setToken: Dispatch<SetStateAction<string | null>>, // Mandatory Types
-    path: string | null,
-    setPath: Dispatch<SetStateAction<string | null>>,
-    age: string | null,
-    setAge: Dispatch<SetStateAction<string | null>>, // Mandatory Types
-}
 
 const StateContext = createContext<ContextType>({
     nickname: null,
