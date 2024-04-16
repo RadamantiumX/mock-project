@@ -1,6 +1,9 @@
 import './videoSelected.scss'
 import { Eye } from '../icons/Eye';
-
+import { Hearth } from '../icons/Hearth';
+import { Share } from '../icons/Share';
+import { isAuthenticated } from '../../services/api';
+import { useStateContext } from '../../contexts/ContextProvider';
 interface Props {
     id?: string;
     title?: string,
@@ -8,8 +11,13 @@ interface Props {
 }
 
 export const VideoSelected:React.FC<Props> = ({ id, title, views }) => {
+  const { token } = useStateContext()
 
   const MAX_TITLE_WORDS = 10; 
+
+  const handleAuth = () => {
+    isAuthenticated(token)
+  }
 
   const truncateTitle = () => {
     const words = title?.split(' ');
@@ -42,6 +50,10 @@ export const VideoSelected:React.FC<Props> = ({ id, title, views }) => {
                 allowFullScreen
               ></iframe>
             </div>
+          </div>
+          <div className='flex flex-row gap-2'>
+            <button onClick={handleAuth} className="border rounded-md flex flex-row p-2 gap-1"><Hearth/>Add favorites</button>
+            <button className="border rounded-md flex flex-row p-2 gap-1"><Share/>Share video</button>
           </div>
   </div>
 </section>

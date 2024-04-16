@@ -4,8 +4,7 @@ import { Ghost } from "../icons/Ghost"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getEpornerSource } from "../../redux/epornerSources/sourceSlice"
 import { Tags } from "./Tags"
-import { Hearth } from "../icons/Hearth"
-import { Share } from "../icons/Share"
+
 
 interface Props {
     keywords?: string
@@ -48,14 +47,13 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
     return (
         <section className="ml-10 mr-10 mb-10">
            <Tags limited={limited} />
-           <div className="flex flex-row gap-2">
+           
             <a href="#commentsContainer" className="rounded-lg px-6 py-2 bg-gray-600 text-gray-100 hover:bg-gray-700 duration-300">
                 <i className="fa-regular fa-comment mr-2"></i>
                 Comment <span className="font-bold">19</span>
             </a>
-            <button className="border rounded-md flex flex-row p-2 gap-1"><Hearth/>Add favorites</button>
-            <button className="border rounded-md flex flex-row p-2 gap-1"><Share/>Share video</button>
-            </div>
+            
+            
             <h3 style={{fontSize:"1.4rem", color:"#DBDBDB"}} className="text-lg font-semibold pb-2   mb-4 mt-6">Related Videos</h3>
         {loading ? (
             <div>Cargando</div>

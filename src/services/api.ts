@@ -27,3 +27,14 @@ export const login = async (payload:UserPayload) => {
       return  console.log(err)
     }*/
 }
+
+export const isAuthenticated = async (payload:string | null) => {
+    await axiosClientAuth.post('/token', payload)
+      .then(({data})=> {
+       return console.log(data.status)
+      })
+      .catch(err => {
+        const response = err.response
+        return  console.log(response.status)
+      })
+}
