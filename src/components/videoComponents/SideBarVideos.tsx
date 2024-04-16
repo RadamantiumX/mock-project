@@ -14,7 +14,8 @@ interface Props {
 export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
  const [loading, setLoading] = useState(true)
  // eslint-disable-next-line @typescript-eslint/no-unused-vars
- const [trimWord, setTrimWord] = useState<string[]>([])
+ // const [trimWord, setTrimWord] = useState<string[]>([])
+ const trimWord:string[] = []
  const [limited, setLimited] = useState<string[]>([]) // Tags State
  const lowerCase = keywords!.toLowerCase()
 
