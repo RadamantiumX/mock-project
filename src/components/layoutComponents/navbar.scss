@@ -14,7 +14,22 @@
   
 .navresponsive{
     font-family: 'Oswald', sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-left: 0.6rem;
     margin-top: 0.5rem;
 }
+
+.text-nav {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    color: rgb(219, 219, 219);
+    &:hover {
+        color:  #dd2471 ; 
+      }
+  }
+
+  .text-lenguaje{
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    color: rgb(219, 219, 219);
+  }
