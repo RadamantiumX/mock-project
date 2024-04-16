@@ -1,15 +1,22 @@
+import  { useState } from "react";
+import flagEsp from "../../assets/project/Spain_flags_flag_8858.png";
+import flagUk from "../../assets/project/icon-uk.png";
+
 export const Selection = () => {
-  
+  const [selectedFlag, setSelectedFlag] = useState(flagEsp);
+
+  const toggleFlag = () => {
+    setSelectedFlag(selectedFlag === flagEsp ? flagUk : flagEsp);
+  };
+
   return (
-    <div className="grid">
-    <select className="row-start-1 col-start-1 bg-slate-50 dark:bg-slate-800 w-25 rounded-md p-1" name="user_selection" id="user_selection">
-        <option value="Spanish">Spa</option>
-        <option value="Gay">UK</option>
-    
-    </select>
-   
+    <div className="relative flex items-center" onClick={toggleFlag}>
+      <p className="text-lenguaje">Idioma:</p>
+      <img
+        src={selectedFlag}
+        alt={selectedFlag === flagEsp ? "Bandera de España" : "UK Flag"}
+        className="inline-block w-8 h-8 cursor-pointer"
+      />     
     </div>
-  )
-}
-
-
+  );
+};

@@ -17,10 +17,10 @@ import { Selection } from "./Selection";
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { token, setToken, nickname, setNickname, setPath } = useStateContext()
-  
+
   const navigate = useNavigate()
 
-  
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -28,49 +28,57 @@ export default function NavBar() {
   // If user LOGOUT --> GO TO --> AUTH PAGE
   const logout = () => {
     axiosClientAuth.post('/logout')
-    .then(() => {
-       localStorage.clear() // Clear full storage
-       setToken(null) // Token too
-       setNickname(null)
-       setPath('home')
-       navigate('/redirect')
-    })
-    .catch(err => {
-      const response = err.response
-      console.log(response)
-   })
-    
+      .then(() => {
+        localStorage.clear() // Clear full storage
+        setToken(null) // Token too
+        setNickname(null)
+        setPath('home')
+        navigate('/redirect')
+      })
+      .catch(err => {
+        const response = err.response
+        console.log(response)
+      })
+
   }
 
- 
+
 
   return (
     <>
-      <nav className="relative ">
-        <header className=" md:flex md:items-center md:justify-around p-4 pb-0  md:pb-4">
+      <nav className="relative">
+        <header className="md:flex md:items-center md:justify-around p-4 pb-0 md:pb-4">
           <div className="flex items-center justify-between mb-4 md:mb-0">
-            <Link style={{ width: "16rem" }} to="/"><img src={Logo} alt="Logo DirtyHub" aria-labelledby="Vanilla Leak Logo"/></Link>
-            <a className="text-black hover:text-orange md:hidden" href="#">
-              <i className="fa fa-2x fa-bars"></i>
-            </a>
-            <Selection/>
+            <Link className="-mt-3" style={{ width: "16rem" }} to="/">
+              <img src={Logo} alt="Logo DirtyHub" aria-labelledby="Vanilla Leak Logo" />
+            </Link>
             <div className="md:hidden flex items-center">
-              <button className="mobile-menu-button" onClick={toggleMenu} aria-label="menu">
-                <MagnifyingGlass/>
+              {token ?
+                <UserButton onClick={logout} nickname={nickname} /> :
+                <Link className="sm:flex text-center text-nav w-20" to="/auth/portal/signin">
+                  <i className="fa-regular fa-user" style={{ color: "#ffff" }}></i>
+                </Link>
+              }
+              <button className="mobile-menu-button ml-3" onClick={toggleMenu} aria-label="menu">
+                <i className="fa fa-2x fa-bars"></i>
               </button>
             </div>
           </div>
-          <div className='flex flex-row mb-4 w-full md:mb-0 md:w-1/4 gap-5'>
+          <div className="flex flex-col sm:flex-row mb-4 w-full md:mb-0 md:w-1/4 gap-5">
             <QueryForm />
-
-
-            {token ? 
-              <UserButton onClick={logout} nickname={nickname}/> : 
-              <Link className="border rounded-md w-1/2" to="/auth/portal/signin">Sign In</Link>}
-
-
-
           </div>
+          <div className="flex flex-col sm:flex-row mb-4 w-full md:mb-0 md:w-1/4 gap-5">
+            {token ?
+              <div className=" hidden sm:flex">
+                <UserButton onClick={logout} nickname={nickname} />
+              </div> :
+              <Link className=" hidden sm:flex text-center text-nav w-20" to="/auth/portal/signin">Sign In</Link>
+            }
+            <div className="flex-1 hidden sm:flex">
+              <Selection />
+            </div>
+          </div>
+
           {isMenuOpen && (
             <div className="absolute top-full left-0 w-full bg-black z-50">
               <div className="max-w-6xl mx-auto px-4 pt-4 pb-4">
@@ -79,8 +87,11 @@ export default function NavBar() {
                   <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/categories">Categories</Link>
                   <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/models">Models</Link>
                   <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/photos">Photos</Link>
+                  <div className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800">
+                    <Selection />
+                  </div>
                   <div className="mt-2">
-                  <Header/>
+                    <Header />
                   </div>
                 </div>
               </div>
@@ -93,14 +104,15 @@ export default function NavBar() {
           <nav>
             <ul className="flex flex-row gap-4 mobile-menu">
               <li><Link className="subnav" to="/">Home</Link></li>
-              <SelectCategories/>
-              <SelectModels/>
+              <SelectCategories />
+              <SelectModels />
               <li><Link className="subnav" to="/photos">Photos</Link></li>
-              <Header/>
+              <Header />
             </ul>
           </nav>
         </div>
       )}
+
     </>
   )
 }
