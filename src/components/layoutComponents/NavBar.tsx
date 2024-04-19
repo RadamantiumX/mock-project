@@ -4,7 +4,6 @@ import Logo from "../../assets/project/logo.png";
 import { useState } from "react";
 import { QueryForm } from "./QueryForm";
 import "./navbar.scss";
-import { MagnifyingGlass } from "../icons/MagnifyingGlass";
 import SelectModels from "../modelsComponents/SelectModels";
 import SelectCategories from "../categoriesComponents/SelectCategories";
 import { Header } from "../homeComponents/Header";
@@ -27,7 +26,7 @@ export default function NavBar() {
 
   // If user LOGOUT --> GO TO --> AUTH PAGE
   const logout = () => {
-    axiosClientAuth.post('/logout')
+    axiosClientAuth.post('/auth/logout')
       .then(() => {
         localStorage.clear() // Clear full storage
         setToken(null) // Token too

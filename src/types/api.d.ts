@@ -11,6 +11,10 @@ export interface UserPayload  {
     email: string
     password: string
 }
+export interface FavsPayload  {
+    videoId: string | null
+    token: string | null
+}
 
 export type ContextType = {
     nickname: string | null,
@@ -25,4 +29,6 @@ export type ContextType = {
     setPath: Dispatch<SetStateAction<string | null>>,
     age: string | null,
     setAge: Dispatch<SetStateAction<string | null>>, // Mandatory Types
+    notification: string | null,
+    setNotification: Dispatch<SetStateAction<string | null>> 
 }

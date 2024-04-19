@@ -1,22 +1,11 @@
-import { UserPayload } from "../types/api"
-import axiosClientAuth from "./axios-client-auth"
+import { FavsPayload } from "../types/api"
 
-export const login = async (payload:UserPayload) => {
+export const isFav = async ({ payload }:FavsPayload) => {
 
-   await axiosClientAuth.post('/signin', payload)
-     .then(({data}) => {
-         return data.response
-     })
-     .catch(err => {
-        const response = err.response
-        return response
-     })
-
-   /* try{
-        const response = await fetch('http://localhost:4000/auth/signin',{
+    try{
+        const response = await fetch('http://localhost:4000/social/isfav',{
             method: 'POST',
             headers: { 'Content-Type' : 'application/json' },
-        
             body: JSON.stringify(payload)    
         })
 
@@ -25,16 +14,6 @@ export const login = async (payload:UserPayload) => {
 
     } catch (err) {
       return  console.log(err)
-    }*/
+    }
 }
 
-export const isAuthenticated = async (payload:string | null) => {
-    await axiosClientAuth.post('/token', payload)
-      .then(({data})=> {
-       return console.log(data.status)
-      })
-      .catch(err => {
-        const response = err.response
-        return  console.log(response.status)
-      })
-}

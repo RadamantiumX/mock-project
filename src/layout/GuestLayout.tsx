@@ -2,17 +2,19 @@ import { Outlet, Navigate } from "react-router-dom"
 import NavBar from "../components/layoutComponents/NavBar"
 import Footer from "../components/layoutComponents/Footer"
 import { useStateContext } from "../contexts/ContextProvider"
+import { Toaster, toast } from "sonner"
 
 
 export default function GuestLayout() {
-  const { age } = useStateContext()
-  
+  const { age, notification } = useStateContext()
+ toast(notification)
  if(!age){
    return <Navigate to="/rta" />
  }
 
   return (
     <>
+    <Toaster/>
     <NavBar />
     <Outlet />
     <Footer />

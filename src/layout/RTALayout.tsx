@@ -2,8 +2,8 @@ import { Navigate } from "react-router-dom"
 import { useStateContext } from "../contexts/ContextProvider"
 
 export default function RTALayout() {
-  const { age, setAge, token } = useStateContext()
-  if(age || token){
+  const { age, setAge } = useStateContext()
+  if(age){
     return <Navigate to="/"/>
   }
  const handleAccess = () =>{

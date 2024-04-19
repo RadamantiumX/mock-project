@@ -10,13 +10,15 @@ const StateContext = createContext<ContextType>({
     token: null,
     path: null,
     age: null,
+    notification: null,
 
     setNickname: () => {},
     setEmail: () => {},
     setId: () => {},
     setToken: () => {},
     setPath: () => {},
-    setAge: () => {}
+    setAge: () => {},
+    setNotification: ()=>{}
 })
 
 export const ContextProvider = ({ children }:PropsWithChildren) => {
@@ -26,6 +28,7 @@ export const ContextProvider = ({ children }:PropsWithChildren) => {
     const [token, _setToken] = useState(localStorage.getItem('auth-token'))
     const [path, setPath] = useState<any>("")
     const [age, _setAge] = useState(localStorage.getItem('rta'))
+    const [notification, _setNotification] = useState("")
     
     const setToken = (token:any) => {
         _setToken(token)
@@ -72,8 +75,12 @@ export const ContextProvider = ({ children }:PropsWithChildren) => {
         }
     }
 
+    const setNotification = (message:any) => {
+          _setNotification(message)
+    }
+
     return (
-        <StateContext.Provider value={{ nickname, setNickname, path, setPath, age, setAge, token, setToken, email, setEmail, id, setId }}>
+        <StateContext.Provider value={{ nickname, setNickname, path, setPath, age, setAge, token, setToken, email, setEmail, id, setId, notification, setNotification }}>
             {children}
         </StateContext.Provider>
     )

@@ -19,7 +19,7 @@ export const SignIn = () => {
         password: password
       }
 
-        axiosClientAuth.post('/signin', payload)
+        axiosClientAuth.post('/auth/signin', payload)
           .then(({data}):any => {
             // Set the local Storage
             setToken(data.response.token)

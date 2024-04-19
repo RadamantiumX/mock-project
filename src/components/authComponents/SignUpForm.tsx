@@ -6,13 +6,13 @@ export const SignUp = () => {
       <h1 className="text-4xl text-center font-subtitle">Register a new account</h1>
       <img style={{width:"24rem"}} className="mb-2 text-center -mt-5 sm:max-w-xs lg:max-w-full" src={Logo} alt="logo" /> 
       <label className="block text-withe-700 text-sm">Nickname</label>
-      <input className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="text" placeholder="nickname"/>
+      <input className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="text" placeholder="johndoe"/>
       <label className="block text-withe-700 text-sm">Email</label>
-      <input className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="text" placeholder="email"/>
+      <input className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="text" placeholder="user@example.com"/>
       <label className="block text-withe-700 text-sm">Password</label>
-      <input className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="text" placeholder="password" />
+      <input className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="password"/>
       <label className="block text-withe-700 text-sm">Confirm password</label>
-      <input className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="text" placeholder="Confirm password"/>
+      <input className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="password" />
       <div className="text-center mt-3 sm:text-left">
       <button className="text-white bg-[#dd2471] hover:bg-[#dd2471]/80 focus:ring-4 focus:ring-[#FF9119]/50 font-medium rounded-lg text-base px-3 py-2 inline-flex items-center dark:hover:bg-[#dd2471]/80 dark:focus:ring-[#dd2471]/40 mb-2">Sign Up</button>
       </div>
