@@ -27,31 +27,31 @@ export default function Footer() {
             className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 md:grid-cols-4"
           >
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-white">VanillaLeak</p>
+              <p className="text-lg font-medium text-white">Vanilla Leak</p>
 
               <nav className="mt-8">
                 <ul className="space-y-4 text-sm">
                   <li>
-                    <a className="text-white transition hover:text-white/75" href="/">
-                      Category
+                    <a className="text-white transition hover:text-white/75" target="blank" href="https://www.eporner.com/">
+                      Source
                     </a>
                   </li>
 
                   <li>
                     <a className="text-white transition hover:text-white/75" href="/">
-                      Stuff
+                      Contact us
                     </a>
                   </li>
 
                   <li>
-                    <a className="text-white transition hover:text-white/75" href="/">
-                      Locates
+                    <a className="text-white transition hover:text-white/75" target="blanck" href="https://epsiweb.online/">
+                      Developers
                     </a>
                   </li>
 
                   <li>
-                    <a className="text-white transition hover:text-white/75" href="/">
-                      About
+                    <a className="text-white transition hover:text-white/75" target="blanck" href="https://theporndude.com/">
+                      Best Porn sites
                     </a>
                   </li>
                 </ul>
@@ -87,7 +87,7 @@ export default function Footer() {
             <span>&middot;</span>
           </p>
           <p className="mt-8 text-sm text-gray-500 sm:order-first sm:mt-0">
-            &copy; 2024 Vanilla Leaks
+            &copy; 2024 Vanilla Leak
           </p>
         </div>
 
