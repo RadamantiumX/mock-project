@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 // import { PayloadAction } from "@reduxjs/toolkit"
 import { User } from "../../types/api"
 import { UserPayload } from "../../types/api"
-import { login } from "../../services/api"
+
 
 const DEFAULT_STATE = {
     id: null ,
@@ -25,9 +25,7 @@ const initialState = (()=> {
 
 
 export const getAuthSource = createAsyncThunk ("auth", async (payload: UserPayload) => {
-      if (Object.keys(payload).length === 2){
-        return await login(payload)
-      }
+     
 }) 
 
 export const authSlice = createSlice({
