@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import './videoSelected.scss'
 import { Eye } from '../icons/Eye';
 import { Hearth } from '../icons/Hearth';
@@ -8,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import axiosClientAuth from '../../services/axios-client-auth';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getFavsSource } from '../../redux/favSources/favsSlice';
+import { Frame } from './Frame';
 
 
 interface Props {
@@ -17,11 +19,14 @@ interface Props {
 }
 
 export const VideoSelected:React.FC<Props> = ({ id, title, views }) => {
-  const { token, setNotification } = useStateContext()
+ const fav:any = useAppSelector(state => state.favs.data)
+ const { token, setNotification } = useStateContext()
  const [filled, setFilled] = useState("none") // To fill "Hearth" icon
  const [innerMessage, setInnerMessage] = useState('Add to Favorites')
  const navigate = useNavigate()
+
  const dispatch = useAppDispatch()
+ 
 
   const MAX_TITLE_WORDS = 10; 
 
@@ -71,8 +76,11 @@ export const VideoSelected:React.FC<Props> = ({ id, title, views }) => {
     return title;
   }
   useEffect(()=>{
-     const payload = {token: token, videoId: id}
-     dispatch(getFavsSource(payload))
+    if(token){
+    const payload = {token: token, videoId: id}
+    dispatch(getFavsSource({payload}))
+    console.log(fav)
+  }
   },[])
 
   return (
@@ -86,18 +94,8 @@ export const VideoSelected:React.FC<Props> = ({ id, title, views }) => {
    <Eye size={'w-6 h-6 '}/>
     <span style={{verticalAlign: "middle"}}>{views}</span>
   </span>
-</h2>
-
-    <div className="relative overflow-hidden" style={{ maxWidth: "1150px", width: "100%" }}>
-            <div style={{ paddingBottom: "54.25%", position: "relative" }}>
-              <iframe
-                className="absolute top-0 left-0 w-full h-full desktop-height"
-                src={`https://eporner.com/embed/${id}`}
-                allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
+        </h2>
+        <Frame id={id}/>{/* Video Embed */}
           <div className='flex flex-row gap-2'>
             <button onClick={handleToken} className="border rounded-md flex flex-row p-2 gap-1"><Hearth filled={filled}/>{innerMessage}</button>
           
