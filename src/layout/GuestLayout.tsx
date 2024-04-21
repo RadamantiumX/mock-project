@@ -7,7 +7,10 @@ import { Toaster, toast } from "sonner"
 
 export default function GuestLayout() {
   const { age, notification } = useStateContext()
- toast(notification)
+if(notification){
+  toast(notification)
+}
+ 
  if(!age){
    return <Navigate to="/rta" />
  }
