@@ -76,6 +76,7 @@ export const ContextProvider = ({ children }:PropsWithChildren) => {
     }
 
     const setNotification = (message:any) => {
+
           _setNotification(message)
     }
 
