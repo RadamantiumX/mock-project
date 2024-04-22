@@ -10,6 +10,7 @@ import axiosClientAuth from '../../services/axios-client-auth';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getFavsSource } from '../../redux/favSources/favsSlice';
 import { Frame } from './Frame';
+import { useTruncateTitle } from '../../customsHooks/useTruncateTitle';
 
 
 interface Props {
@@ -20,16 +21,14 @@ interface Props {
 
 export const VideoSelected:React.FC<Props> = ({ id, title, views }) => {
  const fav:any = useAppSelector(state => state.favs.data)
- const { token, setNotification } = useStateContext()
+ const { token, setNotification, setToken, setNickname } = useStateContext()
  const [filled, setFilled] = useState("none") // To fill "Hearth" icon
  const [innerMessage, setInnerMessage] = useState('Add to Favorites')
  const navigate = useNavigate()
+ const shortTitle = useTruncateTitle(title) // Use the custom Hook to truncate
 
  const dispatch = useAppDispatch()
  
-
-  const MAX_TITLE_WORDS = 10; 
-
   const handleToken = async () => {
      if(!token){
        navigate('/auth/portal/signin')
@@ -47,8 +46,17 @@ export const VideoSelected:React.FC<Props> = ({ id, title, views }) => {
          setInnerMessage('Favorite')
        })
        .catch(err => {
+        // When token expired --> redirect to login page
         const response = err.response
-        setNotification(response)
+        setNotification(`${response.data.message} - Session expired`)
+        if(response.status === 403){
+          setToken(null)
+          setNickname(null)
+          setTimeout(()=>{
+            navigate('/auth/portal/signin') // ---> Redirect
+          },2000)
+          
+        }
        })
     } 
     if(filled === "red") {
@@ -60,26 +68,27 @@ export const VideoSelected:React.FC<Props> = ({ id, title, views }) => {
          setInnerMessage('Add to Favorites')
        })
        .catch(err => {
+        // When token expired --> redirect to login page
         const response = err.response
-        setNotification(response)
+        setNotification(`${response.data.message} - Session expired`)
+        if(response.status === 403){
+          setToken(null)
+          setNickname(null)
+          setTimeout(()=>{
+            navigate('/auth/portal/signin') // ---> Redirect
+          },2000)
+          
+        }
        })
     }
   }
 
-  const truncateTitle = () => {
-    const words = title?.split(' ');
-    if (words !== undefined) {
-    if (words?.length > MAX_TITLE_WORDS || words !== undefined) {
-      return words?.slice(0, MAX_TITLE_WORDS).join(' ') + '...';
-    }
-  }
-    return title;
-  }
+  
   useEffect(()=>{
     if(token){
     const payload = {token: token, videoId: id}
-    dispatch(getFavsSource({payload}))
-    console.log(fav)
+    dispatch(getFavsSource(payload))
+    console.log(fav.message)
   }
   },[])
 
@@ -89,7 +98,7 @@ export const VideoSelected:React.FC<Props> = ({ id, title, views }) => {
   
   <div className="mt-7 mb-7 ml-10 h-full relative">
   <h2 style={{fontSize:"1.7rem"}} className="flex-1 text-xl md:text-2xl font-bold text-gray-100 mb-5 truncate-multiline font-title">
-  {truncateTitle()}
+  {shortTitle}
   <span style={{verticalAlign: "middle"}} className="mt-1 shrink-0 ml-3 text-sm sm:text-lg inline-flex items-center gap-2">
    <Eye size={'w-6 h-6 '}/>
     <span style={{verticalAlign: "middle"}}>{views}</span>
