@@ -6,13 +6,13 @@ import { isFav } from '../../services/api'
 
 
 export interface FavsState {
-  data: string | null,
+  data: any | null,
   loading: boolean,
   error: string | null
 }
 
 const initialState: FavsState = {
-  data: "",
+  data: [],
   loading: false,
   error: ""
 }
@@ -20,7 +20,7 @@ const initialState: FavsState = {
 
 
 export const getFavsSource = createAsyncThunk("favs", async ({ payload }:any) => {
-  return await isFav(payload)
+  return await isFav({payload})
 })
 
 
@@ -43,7 +43,7 @@ export const favsSlice = createSlice({
        .addCase(getFavsSource.rejected, (state, action: PayloadAction<any>) => { // Rejected state
          state.loading = false
          state.error = action.payload
-         state.data = ""
+         state.data = []
        })
      
   }
