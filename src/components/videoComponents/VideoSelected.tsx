@@ -6,12 +6,10 @@ import { Share } from '../icons/Share';
 import { useStateContext } from '../../contexts/ContextProvider';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosClientAuth from '../../services/axios-client-auth';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getFavsSource } from '../../redux/favSources/favsSlice';
 import { Frame } from './Frame';
-import { useTruncateTitle } from '../../customsHooks/useTruncateTitle';
-
+import { useTruncateTitle, useFetchPost } from '../../customsHooks/customsHooks';
 
 interface Props {
     id?: string;
@@ -26,60 +24,47 @@ export const VideoSelected:React.FC<Props> = ({ id, title, views }) => {
  const [innerMessage, setInnerMessage] = useState('Add to Favorites')
  const navigate = useNavigate()
  const shortTitle = useTruncateTitle(title) // Use the custom Hook to truncate
-
- const dispatch = useAppDispatch()
  
-  const handleToken = async () => {
+ const dispatch = useAppDispatch()
+ const payload = {
+  token: token,
+  videoId: id
+}
+const { postData }:any = useFetchPost()
+  const handleFavs = async() => { 
      if(!token){
        navigate('/auth/portal/signin')
      }
-    if(filled === "none"){
-      setFilled('red')
-      const payload = {
-         token: token,
-         videoId: id
-      }
-      // Adding to Favorites
-      await axiosClientAuth.post('/social/fav',payload)
-       .then(({data})=>{
-         setNotification(data.message)
-         setInnerMessage('Favorite')
-       })
-       .catch(err => {
-        // When token expired --> redirect to login page
-        const response = err.response
-        setNotification(`${response.data.message} - Session expired`)
-        if(response.status === 403){
+    if(filled === "none"){   // Adding to Favorites   
+     const favs = await postData('/social/fav',payload)
+     if (favs.status === 200) {
+        setFilled("red")
+        setNotification('Adding to favorites')
+        setInnerMessage('Favorite')
+       } else {
+          setNotification('Session expired')
           setToken(null)
           setNickname(null)
           setTimeout(()=>{
-            navigate('/auth/portal/signin') // ---> Redirect
-          },2000)
-          
-        }
-       })
+          navigate('/auth/portal/signin') // ---> Redirect
+           },2000)
+       }
     } 
-    if(filled === "red") {
-      setFilled('none')
-      // Deleting from favorites
-      await axiosClientAuth.post('/social/delfav',{videoId: id, token: token})
-       .then(({data})=>{
-         setNotification(data.message)
-         setInnerMessage('Add to Favorites')
-       })
-       .catch(err => {
-        // When token expired --> redirect to login page
-        const response = err.response
-        setNotification(`${response.data.message} - Session expired`)
-        if(response.status === 403){
+    if(filled === "red") { // Deleting from favorites
+      const delFavs = await postData('/social/delfav',payload)
+      console.log(delFavs)
+      if (delFavs.status === 200) {
+        setFilled("none")
+        setNotification('Delete from favorites')
+        setInnerMessage('Add to Favorites')
+       } else {
+          setNotification('Session expired')
           setToken(null)
           setNickname(null)
           setTimeout(()=>{
-            navigate('/auth/portal/signin') // ---> Redirect
-          },2000)
-          
-        }
-       })
+          navigate('/auth/portal/signin') // ---> Redirect
+           },2000)
+       }      
     }
   }
 
@@ -106,7 +91,7 @@ export const VideoSelected:React.FC<Props> = ({ id, title, views }) => {
         </h2>
         <Frame id={id}/>{/* Video Embed */}
           <div className='flex flex-row gap-2'>
-            <button onClick={handleToken} className="border rounded-md flex flex-row p-2 gap-1"><Hearth filled={filled}/>{innerMessage}</button>
+            <button onClick={handleFavs} className="border rounded-md flex flex-row p-2 gap-1"><Hearth filled={filled}/>{innerMessage}</button>
           
             <button className="border rounded-md flex flex-row p-2 gap-1"><Share/>Share video</button>
           </div>
