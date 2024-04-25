@@ -30,5 +30,7 @@ export type ContextType = {
     age: string | null,
     setAge: Dispatch<SetStateAction<string | null>>, // Mandatory Types
     notification: string | null,
-    setNotification: Dispatch<SetStateAction<string | null>> 
+    setNotification: Dispatch<SetStateAction<string | null>>,
+    videoId: string | undefined,
+    setVideoId: Dispatch<SetStateAction<string | undefined>> 
 }
