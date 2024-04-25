@@ -12,14 +12,14 @@ export interface FavsState {
 }
 
 const initialState: FavsState = {
-  data: [],
+  data: 0,
   loading: false,
   error: ""
 }
 
 
 
-export const getFavsSource = createAsyncThunk("favs", async ({ payload }:any) => {
+export const getFavsSource = createAsyncThunk("favs", async ({payload}:any) => {
   return await isFav({payload})
 })
 
@@ -43,7 +43,7 @@ export const favsSlice = createSlice({
        .addCase(getFavsSource.rejected, (state, action: PayloadAction<any>) => { // Rejected state
          state.loading = false
          state.error = action.payload
-         state.data = []
+         state.data = 0
        })
      
   }
