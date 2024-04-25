@@ -26,7 +26,7 @@ export const useFetchPost = () => {
      },
      body: JSON.stringify(payload)
   })
-  // const json = await response.json()
+
 
   if (!response.ok){
     return response
