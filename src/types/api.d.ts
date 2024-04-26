@@ -34,3 +34,10 @@ export type ContextType = {
     videoId: string | undefined,
     setVideoId: Dispatch<SetStateAction<string | undefined>> 
 }
+
+export type Post = {
+    id: number | null,
+    content: string | null,
+    authorId: number | null,
+    videoId: string | null
+}

@@ -1,6 +1,11 @@
 import { CommentArticle } from "./CommentArticle"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { getPostsSource } from "../../redux/postSources/postsSlice"
+import { useEffect } from "react"
 
 export const Comments = () => {
+  const posts = useAppSelector( state => state.posts.data )
+  const dispatch = useAppDispatch()
   const MOCK_DATA = [
   {id:58,nick_name:"droulston0",comment:"mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus"},
   {id:97,nick_name:"fcrumpton1",comment:"eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum"},
@@ -13,7 +18,9 @@ export const Comments = () => {
   {id:65,nick_name:"morr8",comment:"enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem"},
   {id:35,nick_name:"mmclagan9",comment:"libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu"}
 ]
-
+useEffect(()=>{
+  dispatch(getPostsSource('yRqakpnxc6e'))
+},[])
   return (
     <section className="flex flex-col  mt-5 mb-5">
         <div className="flex flex-col">

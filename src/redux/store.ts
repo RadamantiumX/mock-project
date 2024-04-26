@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import sourceReducer from './epornerSources/sourceSlice'
 import favsReducer from './favSources/favsSlice'
+import postsReducer from './postSources/postsSlice'
 
 
 export const store = configureStore({
   reducer: {
     source: sourceReducer,
-    favs: favsReducer
+    favs: favsReducer,
+    posts: postsReducer
   },
  
 })

@@ -23,6 +23,7 @@ export const QueryForm = () => {
             setShow(false)
             setBorder("")
             setMessage("")
+            setQuery("")
             }else{
                 setShow(true)
                 setBorder("border-2 border-red-900")
