@@ -80,7 +80,11 @@ export const ContextProvider = ({ children }:PropsWithChildren) => {
 
     const setNotification = (message:any) => {
 
-          _setNotification(message)
+        _setNotification(message);
+
+        setTimeout(() => {
+          _setNotification('')
+        }, 5000)
     }
 
     return (
