@@ -4,6 +4,7 @@ import { getPostsSource } from "../../redux/postSources/postsSlice"
 import { useEffect } from "react"
 
 export const Comments = () => {
+  const videoId = 'yRqakpnxc6e'
   const posts = useAppSelector( state => state.posts.data )
   const dispatch = useAppDispatch()
   const MOCK_DATA = [
@@ -18,9 +19,11 @@ export const Comments = () => {
   {id:65,nick_name:"morr8",comment:"enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem"},
   {id:35,nick_name:"mmclagan9",comment:"libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu"}
 ]
+
 useEffect(()=>{
-  dispatch(getPostsSource('yRqakpnxc6e'))
-},[])
+  dispatch(getPostsSource(videoId))
+  console.log(posts)
+},[videoId])
   return (
     <section className="flex flex-col  mt-5 mb-5">
         <div className="flex flex-col">

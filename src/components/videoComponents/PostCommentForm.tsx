@@ -15,7 +15,6 @@ export const PostCommentForm = () => {
     }
       await axiosClientAuth.post('/post/newpost',payload)
        .then(({data})=>{
-         console.log(data)
          setNotification(data.message)
          setContent('') // <--- reset form
        })
