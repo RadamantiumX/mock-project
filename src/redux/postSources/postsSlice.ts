@@ -15,7 +15,7 @@ const initialState: PostsState = {
     error: ""
   }
 
-export const getPostsSource = createAsyncThunk("posts", async({payload}:any)=>{
+export const getPostsSource = createAsyncThunk("posts", async(payload:string | null)=>{
      return await latestPosts(payload)
 })
 

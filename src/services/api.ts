@@ -17,7 +17,7 @@ export const isFav = async ( {payload}:any) => {
 }
 
 // Recovery POST from current video
-export const latestPosts = async ({payload}:any) => {
+export const latestPosts = async (payload:string | null) => {
     const response = await fetch('http://localhost:4000/post/allpost',{
             method: 'POST',
             headers: { 'Content-Type' : 'application/json' },
