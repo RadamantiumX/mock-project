@@ -17,11 +17,11 @@ type Params = {
 export default function Video() {
   const { id, title, keywords } = useParams<Params>();
   const { views } = useParams() as any; /** Temporal FIX 😎 */
-  const { token } = useStateContext()
+  const { token, setVideoId } = useStateContext()
 
   useEffect(()=>{
-
-  },[])
+    setVideoId(id)
+  },[setVideoId])
   return (
     <main>
       <div className="gap-20">
