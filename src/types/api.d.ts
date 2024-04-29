@@ -34,10 +34,15 @@ export type ContextType = {
     videoId: string | undefined,
     setVideoId: Dispatch<SetStateAction<string | undefined>> 
 }
-
+export type APIVanillaLeakResponse = {
+    count: number,
+    posts: Post[]
+}
 export type Post = {
     id: number | null,
     content: string | null,
+    nickname: string | null,
     authorId: number | null,
+    createdAt: string | null,
     videoId: string | null
 }
