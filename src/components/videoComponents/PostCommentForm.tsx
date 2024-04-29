@@ -2,10 +2,13 @@ import { MessageCircle } from "../icons/MessageCircle"
 import axiosClientAuth from "../../services/axios-client-auth"
 import { useState, useEffect } from "react"
 import { useStateContext } from "../../contexts/ContextProvider"
+import { useAppDispatch } from "../../redux/hooks"
+import { getPostsSource } from "../../redux/postSources/postsSlice"
 
 export const PostCommentForm = () => {
   const { token, videoId, setNotification } = useStateContext()
   const [content, setContent] = useState('')
+  const dispatch = useAppDispatch()
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const payload = {
@@ -16,7 +19,8 @@ export const PostCommentForm = () => {
       await axiosClientAuth.post('/post/newpost',payload)
        .then(({data})=>{
          setNotification(data.message)
-         setContent('') // <--- reset form
+         setContent('')// <--- reset form
+         dispatch(getPostsSource(videoId)) // <--- Change the state
        })
        .catch( err => {
          const res = err.response
