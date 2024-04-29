@@ -27,8 +27,8 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
   const selection = stringSplit.filter((str) => str.length > 4 && str.length < 10)
  
   const dispatch = useAppDispatch()
-  const eporner = useAppSelector(state => state.source.data)
-  
+  const eporner = useAppSelector(state => state.source.data) // resources videos EPORNER
+  const commentsCount = useAppSelector(state => state.posts.data) // posts quantity
   
   useEffect(() => {
   dispatch(getEpornerSource(selection[0].concat(" ", DEFAULT_NUM.toString())))
@@ -50,7 +50,7 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
            
             <a href="#commentsContainer" className="rounded-lg px-6 py-2 bg-gray-600 text-gray-100 hover:bg-gray-700 duration-300">
                 <i className="fa-regular fa-comment mr-2"></i>
-                Comment <span className="font-bold">19</span>
+                Comment <span className="font-bold">{commentsCount.count}</span>
             </a>
             
             
