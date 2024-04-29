@@ -1,21 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import  { type Post } from '../../types/api'
+import  { type APIVanillaLeakResponse } from '../../types/api'
 import { latestPosts } from '../../services/api'
 
 export interface PostsState{
-    data: Post[] | null,
+    data: APIVanillaLeakResponse | null | any,
     loading: boolean,
     error: string | null
 }
 
 const initialState: PostsState = {
-    data: [],
+    data: {},
     loading: false,
     error: ""
   }
 
-export const getPostsSource = createAsyncThunk("posts", async(payload:string | null)=>{
+export const getPostsSource = createAsyncThunk("posts", async(payload:string | any)=>{
      return await latestPosts(payload)
 })
 
@@ -37,7 +38,7 @@ export const postsSlice = createSlice({
         .addCase(getPostsSource.rejected, (state, action: PayloadAction<any>) => { // Rejected state
           state.loading = false
           state.error = action.payload
-          state.data = []
+          state.data = {}
         })
     }
 }) 
