@@ -12,7 +12,7 @@ export const getLatestContent = async ( payload: number ) => {
     }else{
         qty = qty + payload
     }
-    const res = await fetch(`${import.meta.env.VITE_EPORNER_API_URL}api/v2/video/search/?query=popular&per_page=${qty.toString()}&page=1&thumbsize=big&order=latest&gay=${binary.toString()}&lq=1&format=json`)
+    const res = await fetch(`${import.meta.env.VITE_EPORNER_API_URL}api/v2/video/search/?per_page=${qty.toString()}&page=1&thumbsize=big&order=latest&gay=${binary.toString()}&lq=1&format=json`)
     const {videos: data} = await res.json() as APIEpornerResponse
    
     return data
