@@ -19,7 +19,7 @@ interface Props {
 
 export const VideoSelected:React.FC<Props> = ({ id, title, views }) => {
  const fav:any = useAppSelector(state => state.favs.data)
- const { token, setNotification, setToken, setNickname, setVideoId } = useStateContext()
+ const { token, setNotification, setToken, setNickname } = useStateContext()
  const [filled, setFilled] = useState("none") // To fill "Hearth" icon
  const [innerMessage, setInnerMessage] = useState('Add to Favorites')
  const navigate = useNavigate()
@@ -70,7 +70,7 @@ const { postData }:any = useFetchPost()
 
   // Obtain the state of "Favorite" videos for current user
   useEffect(()=>{
-    setVideoId(id)
+    
     if(token){
     const payload = {token: token, videoId: id}
     dispatch(getFavsSource({payload}))
@@ -82,7 +82,7 @@ const { postData }:any = useFetchPost()
        setInnerMessage("Add to Favorites")
     }
   }
-  },[payload, setVideoId])
+  },[payload])
 
   return (
     <>
