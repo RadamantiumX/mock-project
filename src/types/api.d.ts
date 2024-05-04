@@ -32,11 +32,17 @@ export type ContextType = {
     notification: string | null,
     setNotification: Dispatch<SetStateAction<string | null>>,
     videoId: string | undefined,
-    setVideoId: Dispatch<SetStateAction<string | undefined>> 
+    setVideoId: Dispatch<SetStateAction<string | undefined>>,
+    postId: number | undefined,
+    setPostId: Dispatch<SetStateAction<number| undefined>> 
 }
-export type APIVanillaLeakResponse = {
+export type APIVanillaLeakPost = {
     count: number,
     posts: Post[]
+}
+
+export type APIVanillaLeakReplys = { 
+    responses: Reply[]
 }
 export type Post = {
     id: number | null,
@@ -45,4 +51,19 @@ export type Post = {
     authorId: number | null,
     createdAt: string | null,
     videoId: string | null
+    
 }
+
+export type Reply = {
+    id: number | null,
+    content: string | null,
+    nickname: string | null,
+    authorId: number | null,
+    createdAt: string | null,
+    postId: number | null | undefined,
+    responseId: number | null | undefined
+
+}
+
+
+
