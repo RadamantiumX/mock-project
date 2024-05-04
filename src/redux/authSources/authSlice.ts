@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import {  createSlice } from "@reduxjs/toolkit"
 // import { PayloadAction } from "@reduxjs/toolkit"
 import { User } from "../../types/api"
-import { UserPayload } from "../../types/api"
+// import { UserPayload } from "../../types/api"
 
 
 const DEFAULT_STATE = {
@@ -24,9 +24,6 @@ const initialState = (()=> {
 
 
 
-export const getAuthSource = createAsyncThunk ("auth", async (payload: UserPayload) => {
-     
-}) 
 
 export const authSlice = createSlice({
     name: 'auth',

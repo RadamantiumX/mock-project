@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import  { type APIVanillaLeakResponse } from '../../types/api'
+import  { type APIVanillaLeakPost } from '../../types/api'
 import { latestPosts } from '../../services/api'
 
 export interface PostsState{
-    data: APIVanillaLeakResponse | null | any,
+    data: APIVanillaLeakPost| null | any,
     loading: boolean,
     error: string | null
 }
