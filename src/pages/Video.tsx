@@ -27,7 +27,7 @@ export default function Video() {
       <div className="gap-20">
         <VideoSelected id={id} title={title} views={views} />
         <SideBarVideos keywords={keywords} />
-        {token ? <PostCommentForm />: <SingInButton/>}
+        {token ? <PostCommentForm title={'Comment'}/>: <SingInButton/>}
         <Comments />
       </div>
     </main>
