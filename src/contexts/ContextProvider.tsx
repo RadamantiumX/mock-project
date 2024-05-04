@@ -12,6 +12,7 @@ const StateContext = createContext<ContextType>({
     age: null,
     notification: null,
     videoId: undefined,
+    postId: undefined,
 
     setNickname: () => {},
     setEmail: () => {},
@@ -20,7 +21,8 @@ const StateContext = createContext<ContextType>({
     setPath: () => {},
     setAge: () => {},
     setNotification: ()=>{},
-    setVideoId: ()=>{}
+    setVideoId: ()=>{},
+    setPostId: () =>{}
 })
 
 export const ContextProvider = ({ children }:PropsWithChildren) => {
@@ -32,6 +34,7 @@ export const ContextProvider = ({ children }:PropsWithChildren) => {
     const [age, _setAge] = useState(localStorage.getItem('rta'))
     const [notification, _setNotification] = useState("")
     const [videoId, setVideoId] = useState<any>("")
+    const [postId, setPostId] = useState<any>(null)
     
     const setToken = (token:any) => {
         _setToken(token)
@@ -88,7 +91,7 @@ export const ContextProvider = ({ children }:PropsWithChildren) => {
     }
 
     return (
-        <StateContext.Provider value={{ nickname, setNickname, path, setPath, age, setAge, token, setToken, email, setEmail, id, setId, notification, setNotification, videoId, setVideoId }}>
+        <StateContext.Provider value={{ nickname, setNickname, path, setPath, age, setAge, token, setToken, email, setEmail, id, setId, notification, setNotification, videoId, setVideoId, postId, setPostId }}>
             {children}
         </StateContext.Provider>
     )
