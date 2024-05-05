@@ -3,6 +3,7 @@ import './videoSelected.scss'
 import { Eye } from '../icons/Eye';
 import { Hearth } from '../icons/Hearth';
 import { Share } from '../icons/Share';
+import { LikeVideo } from './LikeVideo';
 import { useStateContext } from '../../contexts/ContextProvider';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -101,6 +102,7 @@ const { postData }:any = useFetchPost()
             <button onClick={handleFavs} className="border rounded-md flex flex-row p-2 gap-1"><Hearth filled={filled}/>{innerMessage}</button>
           
             <button className="border rounded-md flex flex-row p-2 gap-1"><Share/>Share video</button>
+            <LikeVideo videoId={id}/>
           </div>
   </div>
 </section>
