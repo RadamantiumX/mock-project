@@ -28,7 +28,7 @@ export const latestPosts = async (payload:string) => {
 
 // Recovery Responses Posts from current video
 export const latestReplys = async () => {
-    const response = await fetch(`http://localhost:4000/post/allresponses`)
+    const response = await fetch(`http://localhost:4000/post/allresponse`)
      const {responses:data} = await response.json() as APIVanillaLeakReplys
      return data
 }
