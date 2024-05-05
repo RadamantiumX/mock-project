@@ -4,7 +4,6 @@ import { Trash } from "../icons/Trash";
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { ReponsePostForm } from "./ReponsePostForm";
-// import { ReplyResponseArticle } from "./ReplyResponseArticle";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 interface Props{
@@ -54,7 +53,7 @@ export const ResponseArticle:React.FC<Props> = ({ user, id, created, _nickname, 
       </div>
       {showForm && <ReponsePostForm id={id}/>}
     </div>
-    {/*<div className="ms-40"><ReplyResponseArticle/></div>*/} 
+   
   </div>
   
 </article>

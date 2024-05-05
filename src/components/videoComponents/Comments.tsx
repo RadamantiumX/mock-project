@@ -9,12 +9,17 @@ import { useStateContext } from "../../contexts/ContextProvider"
 
 export const Comments = () => {
   const { videoId }:any = useStateContext()
-  const data:any = useAppSelector( state => state.posts.data )
+  const data:any = useAppSelector(state => state.posts.data )
+  
   const dispatch = useAppDispatch()
 
 useEffect(()=>{ 
-  dispatch(getPostsSource(videoId))
   dispatch(getReplysSource())
+
+  if(videoId){
+    dispatch(getPostsSource(videoId))
+  }
+
 },[videoId])
   return (
     <section className="flex flex-col  mt-5 mb-5">

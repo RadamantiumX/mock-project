@@ -23,9 +23,11 @@ export const CommentArticle: React.FC<Props>=  ({id, created, nick_name, content
   const [showForm, setShowForm] = useState(false)
   const [showArticle, setShowArticle] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [responses, setResponses] = useState<any>([])
   const { setPostId, token, nickname } = useStateContext()
   const navigate = useNavigate()
-  const data:any = useAppSelector( state => state.replys.data )
+  const data = useAppSelector( state => state.replys.data )
 
  
  
@@ -41,7 +43,12 @@ export const CommentArticle: React.FC<Props>=  ({id, created, nick_name, content
 
   useEffect(() =>{
    setPostId(id)
-   console.log(data)
+   data.forEach((item:any, index:any)=>{
+      if (item.postId === id){
+        responses.push(data[index])
+      }
+   })
+   
    if (nickname === nick_name)setCurrentUser(true)  
    
   },[id])
@@ -73,14 +80,14 @@ export const CommentArticle: React.FC<Props>=  ({id, created, nick_name, content
             <Trash/>
           </button>}
           <button onClick={()=>{ !showArticle ? setShowArticle(true) : setShowArticle(false) }} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like">
-            {/*data.count > 0 &&<div className="flex flex-row"><ResponsePost/> {data.count}</div>*/}
+            <div className="flex flex-row"><ResponsePost/>{responses.length}</div>
           </button>
           
         </div>
       </div>
     </div>
     {showForm && <div className="ms-20"><ReponsePostForm id={id}/></div>}
-    {/*showArticle && data.reply?.length > 0 ? data.reply.map((item : { id: number; nickname: string; content: string; createdAt: string }) => (<div className="ms-20" key={item.id}><ResponseArticle user={currentUser} id={item.id} created={item.createdAt} _nickname={item.nickname} content={item.content}/></div>)) : <div></div> */}
+    {showArticle && responses.length > 0 ? responses.map((item : { id: number; nickname: string; content: string; createdAt: string }) => (<div className="ms-20" key={item.id}><ResponseArticle user={currentUser} id={item.id} created={item.createdAt} _nickname={item.nickname} content={item.content}/></div>)) : <div></div>}
   </div>
   
 </article>

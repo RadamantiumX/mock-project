@@ -25,7 +25,7 @@ export const ReponsePostForm:React.FC<Props> = ({id}) => {
      .then(({data})=>{
        setNotification(data.message)
        setContent('')// <--- reset form
-      dispatch(getReplysSource())
+       dispatch(getReplysSource)
      })
      .catch( err => {
        const res = err.response
