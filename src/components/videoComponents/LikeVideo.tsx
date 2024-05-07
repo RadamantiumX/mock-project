@@ -3,52 +3,97 @@ import { ThumbDown } from "../icons/ThumbDown"
 import { useState, useEffect } from "react"
 import { useStateContext } from "../../contexts/ContextProvider"
 import axiosClientAuth from "../../services/axios-client-auth"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { getLikesSource } from "../../redux/likeSources/likesSlice"
 
 interface Props {
     videoId?: string | undefined
 }
 
 export const LikeVideo:React.FC<Props> = ({videoId}) => {
+    const data = useAppSelector(state => state.likes.data)
+    
     const [fillLike, setFillLike] = useState<string>('none')
     const [fillDislike, setFillDislike] = useState<string>('none')
-    const [like, setLike] = useState<number>(0)
-    const { token } = useStateContext()
-     
-    const handleLike = ():void => {
+    const like = true
+    const dislike = false
+    const { token, setNotification } = useStateContext()
+    
+    const dispatch = useAppDispatch() 
+    
+    const handleLike = async () => {
         if (fillLike === 'none'){
             setFillLike('green')
             setFillDislike('none')
-            setLike(1)
-            const payload = {
-                token: token,
-                videoId: videoId,
-                like: like
-            }
-            axiosClientAuth.post('/like/add',payload)
+            
+            await axiosClientAuth.post('/like/add',{token, videoId, like})
              .then(({data})=>{
-            console.log(data)
+               setNotification(data.message)
              })
              .catch(err=>{
             const res = err.response
             console.log(res)
             })
-        }else{
+            }else{
             setFillLike('none')
-        }
-
-        
+            await axiosClientAuth.post('/like/del',{token, videoId})
+            .then(({data})=>{
+           console.log(data)
+            })
+            .catch(err=>{
+           const res = err.response
+           console.log(res)
+           })
+            }     
     } 
- const handleDislike = ():void => {
+
+ const handleDislike = async () => {
       if (fillDislike === 'none'){
         setFillDislike('red')
         setFillLike('none')
+        const payload = {
+            token: token,
+            videoId: videoId,
+            like: dislike
+        }
+        await axiosClientAuth.post('/like/add',payload)
+        .then(({data})=>{
+          setNotification(data.message)
+        })
+        .catch(err=>{
+       const res = err.response
+       console.log(res)
+       })
       }else{
         setFillDislike('none')
+        await axiosClientAuth.post('/like/del',{token, videoId})
+        .then(({data})=>{
+       console.log(data)
+        })
+        .catch(err=>{
+       const res = err.response
+       console.log(res)
+       })
       }
  }
- useEffect(()=>{
-  console.log(token)
- },[token])
+ useEffect(()  =>{
+   if(token){
+      const payload = {token: token, videoId: videoId}
+      dispatch(getLikesSource({payload}))
+      switch(data){
+        case 200:
+          setFillLike('green')
+        break
+        case 204:
+          setFillDislike('red')
+        break  
+        default:
+          setFillLike('none')
+          setFillDislike('none')    
+      }
+   }
+   
+ },[token, videoId, fillLike, fillDislike ])
   
 
   return (
