@@ -65,5 +65,9 @@ export type Reply = {
 
 }
 
+export type Like = {
+    like: object | null
+}
+
 
 
