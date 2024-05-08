@@ -8,13 +8,13 @@ import { isLike } from '../../services/api'
 
 
 export interface LikesState {
-  data: any | null,
+  data: any | null ,
   loading: boolean,
   error: string | null
 }
 
 const initialState: LikesState = {
-  data: 0,
+  data: {},
   loading: false,
   error: ""
 }
@@ -45,7 +45,7 @@ export const likesSlice = createSlice({
        .addCase(getLikesSource.rejected, (state, action: PayloadAction<any>) => { // Rejected state
          state.loading = false
          state.error = action.payload
-         state.data = 0
+         state.data = {}
        })
      
   }
