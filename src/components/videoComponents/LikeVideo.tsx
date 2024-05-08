@@ -11,16 +11,19 @@ interface Props {
 }
 
 export const LikeVideo:React.FC<Props> = ({videoId}) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const data = useAppSelector(state => state.likes.data)
     
-    const [fillLike, setFillLike] = useState<string>('none')
-    const [fillDislike, setFillDislike] = useState<string>('none')
+    const [fillLike, setFillLike] = useState('none')
+    const [fillDislike, setFillDislike] = useState('none')
     const like = true
     const dislike = false
     const { token, setNotification } = useStateContext()
     
     const dispatch = useAppDispatch() 
     
+   
+
     const handleLike = async () => {
         if (fillLike === 'none'){
             setFillLike('green')
@@ -76,37 +79,41 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
        })
       }
  }
- useEffect(()  =>{
+ useEffect(()=>{
+  // When the state is Fullfilled, we set the like or dislike if the user choose one before
    if(token){
       const payload = {token: token, videoId: videoId}
       dispatch(getLikesSource({payload}))
-      switch(data){
-        case 200:
+      .unwrap()
+      .then((response)=>{
+        if(response.like){
           setFillLike('green')
-        break
-        case 204:
+        }else{
           setFillDislike('red')
-        break  
-        default:
-          setFillLike('none')
-          setFillDislike('none')    
-      }
+        }
+        
+      })
+      .catch(err=>{
+        const res = err.response
+        console.log(res)
+      })
+      
    }
    
- },[token, videoId, fillLike, fillDislike ])
+ },[token, videoId])
   
 
   return (
-      <>
+      <div>
         <div className="flex flex-row gap-2">
           <button onClick={handleLike}>
-               <ThumbUp fill={fillLike}/>
+               <ThumbUp fill={fillLike}/>  
             </button> 
             <button onClick={handleDislike}>
                 <ThumbDown fill={fillDislike}/>
             </button>
            
         </div>
-      </>
+      </div>
   )
 }
