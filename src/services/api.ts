@@ -38,7 +38,7 @@ export const isLike = async ({payload}:any) =>{
             headers: { 'Content-Type' : 'application/json' },
             body: JSON.stringify(payload)    
         })
-     return response.status
+     return response.json()
 }
 
 
