@@ -12,7 +12,7 @@ type Params = {
 export default function Search() {
   const [counter, setCounter] = useState<number>(7)
   const { query } = useParams<Params>()
-  const replaceSpace = query?.replace(/ /gi, "") // Replace white spaces for unify the string 
+  const replaceSpace = query?.replace(/ /gi, "") // Replace white spaces to unify the string 
   
   const dispatch = useAppDispatch()
   const eporner = useAppSelector(state => state.source.data)
