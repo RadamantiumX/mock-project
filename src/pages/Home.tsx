@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Videos } from "../components/homeComponents/Videos"
+import { Videos } from "../components/displayComponents/Videos"
 import { useAppDispatch, useAppSelector } from "../redux/hooks"
 import { getEpornerSource } from "../redux/epornerSources/sourceSlice"
 import { LoadButton } from "../components/commonComponents/LoadButton"
