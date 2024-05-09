@@ -6,7 +6,7 @@ import { QueryForm } from "./QueryForm";
 import "./navbar.scss";
 import SelectModels from "../modelsComponents/SelectModels";
 import SelectCategories from "../categoriesComponents/SelectCategories";
-import { Header } from "../homeComponents/Header";
+import { OrderVideosButton} from "../commonComponents/OrderVideosButton";
 import { useStateContext } from "../../contexts/ContextProvider";
 import axiosClientAuth from "../../services/axios-client-auth";
 import { UserButton } from "../commonComponents/UserButton";
@@ -90,7 +90,7 @@ export default function NavBar() {
                     <Selection />
                   </div>
                   <div className="mt-2">
-                    <Header />
+                    <OrderVideosButton/>
                   </div>
                 </div>
               </div>
@@ -106,7 +106,7 @@ export default function NavBar() {
               <SelectCategories />
               <SelectModels />
               <li><Link className="subnav" to="/photos">Photos</Link></li>
-              <Header />
+              <OrderVideosButton/>
             </ul>
           </nav>
         </div>

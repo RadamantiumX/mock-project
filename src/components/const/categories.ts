@@ -60,3 +60,23 @@ export const CATEGORIES = [
 , "Doctor"
 , "ASMR"
 ]
+
+export const ORDER = [
+    {
+        title: 'Top Rated',
+        link: '/videos/rated'
+    },
+    {
+        title: 'Popular',
+        link: '/videos/popular'
+    },
+    {
+        title: 'Top Weekly',
+        link: '/videos/weekly'
+    },
+    {
+        title: 'Top Monthly',
+        link: '/videos/monthly'
+    },
+    
+]

@@ -10,13 +10,20 @@ import Video from "./pages/Video"
 import Search from "./pages/Search";
 import Categories from "./pages/Categories";
 import Models from "./pages/Models";
-import Video4k from "./pages/Video4k";
+import OrderVideos from "./pages/OrderVideos";
 import Photos from "./pages/Photos";
 import Auth from "./pages/Auth";
 import Redirect from "./pages/Redirect";
 
-// Only for Auth InnerLayout //
-import { InnerLayout } from "./components/authComponents/InnerLayout";
+// Only for Videos Layout//
+import { TopRated } from "./components/orderVideosComponents/TopRated";
+import { TopMonthly } from "./components/orderVideosComponents/TopMonthly";
+import { TopWeekly } from "./components/orderVideosComponents/TopWeekly";
+import { Popular } from "./components/orderVideosComponents/Popular";
+//
+
+// Only for Auth Layout //
+import { InnerLayoutAuth } from "./components/authComponents/InnerLayoutAuth";
 import { ForgotPassword } from "./components/authComponents/ForgotPassword";
 import { SignIn } from "./components/authComponents/SignInForm";
 import { SignUp } from "./components/authComponents/SignUpForm";
@@ -53,8 +60,26 @@ const router = createBrowserRouter([
                 element: <Models/>
             },
             {
-                path: "/videos4k",
-                element: <Video4k/>
+                path: "/videos",
+                element: <OrderVideos/>,
+                children: [           
+                            {
+                               path: '/videos/popular',
+                               element: <Popular/>
+                            },
+                            {
+                                path: '/videos/weekly',
+                                element: <TopWeekly/>
+                             },
+                             {
+                                path: '/videos/monthly',
+                                element: <TopMonthly/>
+                             },
+                             {
+                                path: '/videos/rated',
+                                element: <TopRated/>
+                             },
+                        ]                               
             },
             {
                 path: "/photos",
@@ -90,7 +115,7 @@ const router = createBrowserRouter([
                  children: [
                     {
                        path: "/auth/portal",
-                       element: <InnerLayout/>,
+                       element: <InnerLayoutAuth/>,
                        children: [
                         {
                             path: "/auth/portal/signin",
