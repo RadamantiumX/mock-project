@@ -16,10 +16,7 @@ import Auth from "./pages/Auth";
 import Redirect from "./pages/Redirect";
 
 // Only for Videos Layout//
-import { TopRated } from "./components/orderVideosComponents/TopRated";
-import { TopMonthly } from "./components/orderVideosComponents/TopMonthly";
-import { TopWeekly } from "./components/orderVideosComponents/TopWeekly";
-import { Popular } from "./components/orderVideosComponents/Popular";
+import { Order } from "./components/orderVideosComponents/Order";
 //
 
 // Only for Auth Layout //
@@ -63,21 +60,10 @@ const router = createBrowserRouter([
                 path: "/videos",
                 element: <OrderVideos/>,
                 children: [           
-                            {
-                               path: '/videos/popular',
-                               element: <Popular/>
-                            },
-                            {
-                                path: '/videos/weekly',
-                                element: <TopWeekly/>
-                             },
+                           
                              {
-                                path: '/videos/monthly',
-                                element: <TopMonthly/>
-                             },
-                             {
-                                path: '/videos/rated',
-                                element: <TopRated/>
+                                path: '/videos/:param',
+                                element: <Order/>
                              },
                         ]                               
             },

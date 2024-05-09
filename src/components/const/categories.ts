@@ -64,19 +64,23 @@ export const CATEGORIES = [
 export const ORDER = [
     {
         title: 'Top Rated',
-        link: '/videos/rated'
+        link: 'videos',
+        param: 'top-rated'
     },
     {
         title: 'Popular',
-        link: '/videos/popular'
+        link: 'videos',
+        param: 'most-popular'
     },
     {
         title: 'Top Weekly',
-        link: '/videos/weekly'
+        link: 'videos',
+        param: 'top-weekly'
     },
     {
         title: 'Top Monthly',
-        link: '/videos/monthly'
+        link: 'videos',
+        param: 'top-monthly'
     },
     
 ]
