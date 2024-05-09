@@ -1,13 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {  type APIEpornerResponse } from "../types/eporner"
 
 // const configValue : string = (process.env.EPORNER_API_URL as string)
 
-type Payload = Args
-
-interface Args {
-  qty: number,
-  order: string
-}
 
 export const getLatestContent = async ( payload: number ) => {
     // Traer un numero de los parametros, si es menor o igual a 1, aumentamos "binary", sino, aumentamos "qty"
@@ -36,7 +31,8 @@ export const getRelatedVideos = async ( payload:string) => {
   
 }
 
-export const getOrderVideos = async ({ payload }:Payload) => {
+export const getOrderVideos = async ({ payload }:any) => {
+    
     const res = await fetch(`${import.meta.env.VITE_EPORNER_API_URL}api/v2/video/search/?query=4k&per_page=${payload.qty}&page=2&thumbsize=big&gay=1&lq=1&format=json&order=${payload.order}&gay=1&lq=1&format=json`)
     const {videos: data} = await res.json() as APIEpornerResponse
     return data
