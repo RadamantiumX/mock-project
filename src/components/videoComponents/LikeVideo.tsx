@@ -16,6 +16,8 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
     
     const [fillLike, setFillLike] = useState('none')
     const [fillDislike, setFillDislike] = useState('none')
+    const [count, setCount] = useState(0)
+    const [ average, setAverage ] = useState(0)
     const like = true
     const dislike = false
     const { token, setNotification } = useStateContext()
@@ -88,6 +90,10 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
       .then((response)=>{
         if(response.like){
           setFillLike('green')
+          setCount(response.count_likes)
+          if(response.count_likes> 0){
+            setAverage(response.count_likes / response.count_total * 100)
+          }    
         }else{
           setFillDislike('red')
         }
@@ -104,16 +110,19 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
   
 
   return (
-      <div>
+      <div className="flex flex-col">
         <div className="flex flex-row gap-2">
           <button onClick={handleLike}>
-               <ThumbUp fill={fillLike}/>  
+               <ThumbUp fill={fillLike}/> 
+               
             </button> 
             <button onClick={handleDislike}>
                 <ThumbDown fill={fillDislike}/>
             </button>
            
         </div>
+        {count > 0 &&<div>Total: {count}</div>} 
+        {average > 0 && <div>{average} %</div>}
       </div>
   )
 }
