@@ -1,8 +1,10 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import GuestLayout from "./layout/GuestLayout";
-import ProfileLayout from "./layout/ProfileLayout";
+import UserLayout from "./layout/UserLayout";
 import AuthLayout from "./layout/AuthLayout";
 import RTALayout from "./layout/RTALayout";
+
+// Only for Guest Layout
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
@@ -14,6 +16,8 @@ import OrderVideos from "./pages/OrderVideos";
 import Photos from "./pages/Photos";
 import Auth from "./pages/Auth";
 import Redirect from "./pages/Redirect";
+import Contact from "./pages/Contact";
+//
 
 // Only for Videos Layout//
 import { Order } from "./components/orderVideosComponents/Order";
@@ -74,15 +78,23 @@ const router = createBrowserRouter([
             {
                 path: "/redirect",
                 element: <Redirect/>
+            },
+            {
+                path: "/contact",
+                element: <Contact/>
             }
         ]
     },
     {
-        path: "/profile",
-        element: <ProfileLayout/>,
+        path: "/user",
+        element: <UserLayout/>,
         children: [
             {
-                path: "/profile",
+                path: "/user",
+                element: <Navigate to="/user/profile"/>
+            },
+            {
+                path: "/user/profile",
                 element: <Profile/>
             }
         ]
