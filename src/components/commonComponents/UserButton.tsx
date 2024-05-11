@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export const UserButton = (props: {onClick:()=>void, nickname: string | null}) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +26,7 @@ export const UserButton = (props: {onClick:()=>void, nickname: string | null}) =
     <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg">
       <div className="py-1">
         <button className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" onClick={handleLogout}>Logout</button>
+        <Link className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" to="/user/profile">Account Settings</Link>
       </div>
     </div>
   )}
