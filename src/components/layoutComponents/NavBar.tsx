@@ -13,6 +13,8 @@ import { UserButton } from "../commonComponents/UserButton";
 
 import { Selection } from "./Selection";
 
+
+
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { token, setToken, nickname, setNickname, setPath } = useStateContext()

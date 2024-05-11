@@ -38,9 +38,9 @@ export default function Footer() {
                   </li>
 
                   <li>
-                    <a className="text-white transition hover:text-white/75" href="/">
+                    <Link className="text-white transition hover:text-white/75" to="/contact">
                       Contact us
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
