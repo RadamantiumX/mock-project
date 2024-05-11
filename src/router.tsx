@@ -1,12 +1,14 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
+
+// Layouts //
 import GuestLayout from "./layout/GuestLayout";
 import UserLayout from "./layout/UserLayout";
 import AuthLayout from "./layout/AuthLayout";
 import RTALayout from "./layout/RTALayout";
+//
 
 // Only for Guest Layout
 import Home from "./pages/Home";
-import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Video from "./pages/Video"
 import Search from "./pages/Search";
@@ -14,9 +16,13 @@ import Categories from "./pages/Categories";
 import Models from "./pages/Models";
 import OrderVideos from "./pages/OrderVideos";
 import Photos from "./pages/Photos";
-import Auth from "./pages/Auth";
 import Redirect from "./pages/Redirect";
 import Contact from "./pages/Contact";
+//
+
+// Only for User Layout//
+import Profile from "./pages/Profile";
+import FavVideos from "./pages/FavVideos";
 //
 
 // Only for Videos Layout//
@@ -24,6 +30,7 @@ import { Order } from "./components/orderVideosComponents/Order";
 //
 
 // Only for Auth Layout //
+import Auth from "./pages/Auth";
 import { InnerLayoutAuth } from "./components/authComponents/InnerLayoutAuth";
 import { ForgotPassword } from "./components/authComponents/ForgotPassword";
 import { SignIn } from "./components/authComponents/SignInForm";
@@ -96,6 +103,10 @@ const router = createBrowserRouter([
             {
                 path: "/user/profile",
                 element: <Profile/>
+            },
+            {
+                path: "/user/fav",
+                element: <FavVideos/>
             }
         ]
     },

@@ -27,6 +27,7 @@ export const UserButton = (props: {onClick:()=>void, nickname: string | null}) =
       <div className="py-1">
         <button className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" onClick={handleLogout}>Logout</button>
         <Link className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" to="/user/profile">Account Settings</Link>
+        <Link className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" to="/user/fav">Favorites</Link>
       </div>
     </div>
   )}
