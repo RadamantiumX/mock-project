@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+// Icons
+import { Logout } from "../icons/Logout";
+import { Settings } from "../icons/Settings";
+import { Hearth } from "../icons/Hearth";
+
+
 export const UserButton = (props: {onClick:()=>void, nickname: string | null}) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,9 +31,9 @@ export const UserButton = (props: {onClick:()=>void, nickname: string | null}) =
   {isOpen && (
     <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg">
       <div className="py-1">
-        <button className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" onClick={handleLogout}>Logout</button>
-        <Link className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" to="/user/profile">Account Settings</Link>
-        <Link className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" to="/user/fav">Favorites</Link>
+        <button className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" onClick={handleLogout}><div className='flex flex-row gap-1'>Logout<Logout/></div></button>
+        <Link className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" to="/user/profile"><div className='flex flex-row gap-1'>Account Settings<Settings/></div></Link>
+        <Link className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" to="/user/fav"><div className='flex flex-row gap-1'>Favorites<Hearth/></div></Link>
       </div>
     </div>
   )}
