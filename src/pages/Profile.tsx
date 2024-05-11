@@ -1,7 +1,10 @@
+import { Header } from "../components/profileComponents/Header"
+import { UserInfo } from "../components/profileComponents/UserInfo"
 export default function Profile () {
     return(
         <main>
-          <h1>Profile</h1>
+          <Header/>
+          <UserInfo/>
         </main>
     )
 }
