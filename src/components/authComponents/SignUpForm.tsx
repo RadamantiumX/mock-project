@@ -2,13 +2,16 @@ import { Link } from "react-router-dom"
 import Logo from "../../assets/project/logo.png";
 import axiosClientAuth from "../../services/axios-client-auth";
 import { useState } from "react";
-// import { useStateContext } from "../../contexts/ContextProvider";
+import { useStateContext } from "../../contexts/ContextProvider";
+import { useNavigate } from "react-router-dom";
 
 export const SignUp = () => {
    const [nickname, setNickname] = useState("")
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const [confirmPassword, setConfirmPassword] = useState("")
+   const { setNotification } = useStateContext()
+   const navigate = useNavigate()
 
    const handleRegister = (e:React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
@@ -21,9 +24,14 @@ export const SignUp = () => {
       axiosClientAuth.post('/auth/signup', payload)
        .then(({data})=>{
           console.log(data)
+          setNotification(data.message)
+          setTimeout(()=>{
+            navigate("/auth/portal/signin")
+          },2000)
        })
        .catch(err=>{
         console.log(err.message)
+        setNotification(err.message)
        })
    }
 
