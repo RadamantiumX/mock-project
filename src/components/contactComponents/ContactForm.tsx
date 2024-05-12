@@ -5,7 +5,7 @@ export const ContactForm = () => {
     <section>
         <div className= "h-screen flex flex-auto justify-center">
 
-    <form className='flex flex-col gap-3 w-1/2 m-20'>
+    <form id="#contact" className='flex flex-col gap-3 w-1/2 m-20'>
        <label htmlFor="name">Name</label>
        <input className='rounded-md p-1' type="text" name='name' id='name'placeholder='Jhon Smith'/>
        <label htmlFor="email">Email</label>
