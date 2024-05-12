@@ -1,8 +1,9 @@
 import { Outlet, Navigate } from "react-router-dom"
 import { useStateContext } from "../contexts/ContextProvider"
+import { Notifications } from "../components/layoutComponents/Notifications"
 
 export default function AuthLayout() {
- const { token, age } = useStateContext()
+ const { token, age, notification } = useStateContext()
 
 
   if(token){
@@ -17,6 +18,7 @@ export default function AuthLayout() {
   return (
     <>
     <Outlet/>
+    {notification && <Notifications notification={notification}/>}
     </>
   )
 }
