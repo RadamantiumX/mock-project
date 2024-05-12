@@ -28,7 +28,7 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
  
   const dispatch = useAppDispatch()
   const eporner = useAppSelector(state => state.source.data) // resources videos EPORNER
-  const commentsCount = useAppSelector(state => state.posts.data) // posts quantity
+ 
   
   useEffect(() => {
   dispatch(getEpornerSource(selection[0].concat(" ", DEFAULT_NUM.toString())))
@@ -45,15 +45,8 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
 },[])
 
     return (
-        <section className="ml-10 mr-10 mb-10">
+        <section className="mr-3 ml-3 lg:mr-10 lg:ml-10 mb-10">
            <Tags limited={limited} />
-           
-            <a href="#commentsContainer" className="rounded-lg px-6 py-2 bg-gray-600 text-gray-100 hover:bg-gray-700 duration-300">
-                <i className="fa-regular fa-comment mr-2"></i>
-                Comment <span className="font-bold">{commentsCount.count}</span>
-            </a>
-            
-            
             <h3 style={{fontSize:"1.4rem", color:"#DBDBDB"}} className="text-lg font-semibold pb-2   mb-4 mt-6">Related Videos</h3>
         {loading ? (
             <div>Cargando</div>

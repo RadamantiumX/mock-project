@@ -110,7 +110,7 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
   
 
   return (
-      <div className="flex flex-col">
+      <div className="flex">
         <div className="flex flex-row gap-2">
           <button onClick={handleLike}>
                <ThumbUp fill={fillLike}/> 

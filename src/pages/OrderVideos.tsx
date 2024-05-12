@@ -7,8 +7,10 @@ export default function OrderVideos() {
   return (
     <>
     <main>
-      <Header/>
-      <ButtonsSelectOrder/>
+    <div className="flex flex-col items-center md:flex-row md:justify-evenly md:mt-8">
+      <Header />
+      <ButtonsSelectOrder />
+    </div>
       <Outlet/>
     </main> 
     </>

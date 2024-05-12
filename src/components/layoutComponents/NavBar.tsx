@@ -99,7 +99,7 @@ export default function NavBar() {
         </header>
       </nav>
       {!isMenuOpen && (
-        <div className="hidden md:flex mt-2 w-full justify-center md:justify-around">
+        <div className="hidden bg-indigo-300 bg-opacity-25 pt-2 md:flex mt-2 w-full justify-center md:justify-around">
           <nav>
             <ul className="flex flex-row gap-4 mobile-menu">
               <li><Link className="subnav" to="/">Home</Link></li>
