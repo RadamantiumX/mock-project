@@ -10,8 +10,10 @@ import { OrderVideosButton} from "../commonComponents/OrderVideosButton";
 import { useStateContext } from "../../contexts/ContextProvider";
 import axiosClientAuth from "../../services/axios-client-auth";
 import { UserButton } from "../commonComponents/UserButton";
-
+import { User } from "../icons/User";
 import { Selection } from "./Selection";
+
+
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,14 +50,14 @@ export default function NavBar() {
       <nav className="relative">
         <header className="md:flex md:items-center md:justify-around p-4 pb-0 md:pb-4">
           <div className="flex items-center justify-between mb-4 md:mb-0">
-            <Link className="-mt-3" style={{ width: "16rem" }} to="/">
+            <Link reloadDocument className="-mt-3" style={{ width: "16rem" }} to="/">
               <img src={Logo} alt="Logo DirtyHub" aria-labelledby="Vanilla Leak Logo" />
             </Link>
             <div className="md:hidden flex items-center">
               {token ?
                 <UserButton onClick={logout} nickname={nickname} /> :
-                <Link className="sm:flex text-center text-nav w-20" to="/auth/portal/signin">
-                  <i className="fa-regular fa-user" style={{ color: "#ffff" }}></i>
+                <Link reloadDocument className="sm:flex text-center text-nav w-20" to="/auth/portal/signin">
+                  <User/>
                 </Link>
               }
               <button className="mobile-menu-button ml-3" onClick={toggleMenu} aria-label="menu">
@@ -102,7 +104,7 @@ export default function NavBar() {
         <div className="hidden bg-indigo-300 bg-opacity-25 pt-2 md:flex mt-2 w-full justify-center md:justify-around">
           <nav>
             <ul className="flex flex-row gap-4 mobile-menu">
-              <li><Link className="subnav" to="/">Home</Link></li>
+              <li><Link reloadDocument className="subnav" to="/">Home</Link></li>
               <SelectCategories />
               <SelectModels />
               <li><Link className="subnav" to="/photos">Photos</Link></li>

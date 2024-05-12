@@ -52,6 +52,8 @@ export const SignIn = () => {
       <Link to="/auth/portal/forgotten-password" className="block mb-1 hover:text-pink-500">¿Forgot your password?</Link>
       <Link to="/auth/portal/signup" className="block">¿Not registered?<span className="hover:text-pink-500 ml-1">create an account</span> </Link>
     </div>
+    <Link className="text-blue-500 hover:text-blue-600" to="/legal/terms">Term & Conditions</Link>
+    <Link className="text-blue-500 hover:text-blue-600" to="/legal/privacy">Privacy Policy</Link>
   </form>
   
   )
