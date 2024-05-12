@@ -18,6 +18,12 @@ import OrderVideos from "./pages/OrderVideos";
 import Photos from "./pages/Photos";
 import Redirect from "./pages/Redirect";
 import Contact from "./pages/Contact";
+import Legal from "./pages/Legal";
+//
+
+// Page Components //
+import { Terms } from "./components/legalComponents/Terms";
+import { Privacy } from "./components/legalComponents/Privacy";
 //
 
 // Only for User Layout//
@@ -36,6 +42,7 @@ import { ForgotPassword } from "./components/authComponents/ForgotPassword";
 import { SignIn } from "./components/authComponents/SignInForm";
 import { SignUp } from "./components/authComponents/SignUpForm";
 import { PasswordRecovery } from "./components/authComponents/PasswordRecovery";
+
 // 
 
 const router = createBrowserRouter([
@@ -89,7 +96,26 @@ const router = createBrowserRouter([
             {
                 path: "/contact",
                 element: <Contact/>
-            }
+            },
+            {
+                path: "/legal",
+                element: <Legal/>,
+                children: [
+                    {
+                        path: "/legal",
+                        element: <Navigate to="/legal/terms"/>
+                    },
+                    {
+                        path: "/legal/terms",
+                        element: <Terms/>
+                    },
+                    {
+                        path: "/legal/privacy",
+                        element: <Privacy/>
+                    }
+                ]
+            },
+            
         ]
     },
     {
