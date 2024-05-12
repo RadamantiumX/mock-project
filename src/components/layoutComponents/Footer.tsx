@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import Logo from "../../assets/project/logo.png"
+import RTA from "../../assets/project/rta-2.gif"
 
 
 export default function Footer() {
@@ -12,7 +13,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <div className="flex justify-center text-teal-300 sm:justify-start">
-              <Link style={{ width: "16rem" }} to="/"><img src={Logo} alt="Logo DirtyHub" /></Link>
+              <Link style={{ width: "16rem" }} to="/"><img src={Logo} alt="Logo Vanilla Leak" title="Is the best porn site" /></Link>
             </div>
 
             <p
@@ -38,7 +39,7 @@ export default function Footer() {
                   </li>
 
                   <li>
-                    <Link className="text-white transition hover:text-white/75" to="/contact">
+                    <Link className="text-white transition hover:text-white/75" reloadDocument to="/contact">
                       Contact us
                     </Link>
                   </li>
@@ -64,15 +65,18 @@ export default function Footer() {
               <nav className="mt-8">
                 <ul className="space-y-4 text-sm">
                   <li>
-                    <a className="text-white transition hover:text-white/75" href="/">
+                    <Link reloadDocument className="text-white transition hover:text-white/75" to="/legal/terms">
                       Terms & Conditions
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
-                    <a className="text-white transition hover:text-white/75" href="/">
+                    <Link reloadDocument className="text-white transition hover:text-white/75" to="/legal/privacy">
                       Privacy Policy
-                    </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <a href="https://www.rtalabel.org/index.php?content=parents" target="blanck"><img src={RTA} alt="RTA logo" title="This is a mandatory logo for Adults pages"/></a>
                   </li>
                 </ul>
               </nav>
