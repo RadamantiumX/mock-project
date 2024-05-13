@@ -75,11 +75,13 @@ export default function Footer() {
                       Privacy Policy
                     </Link>
                   </li>
-                  <li>
-                    <a href="https://www.rtalabel.org/index.php?content=parents" target="blanck"><img src={RTA} alt="RTA logo" title="This is a mandatory logo for Adults pages"/></a>
-                  </li>
                 </ul>
               </nav>
+            </div>
+            <div className="text-center sm:text-left">
+              <li>
+                <a href="https://www.rtalabel.org/index.php?content=parents" target="blanck"><img src={RTA} alt="RTA logo" title="This is a mandatory logo for Adults pages" /></a>
+              </li>
             </div>
           </div>
         </div>
