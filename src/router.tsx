@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter, Navigate, generatePath } from "react-router-dom";
 
 // Layouts //
 import GuestLayout from "./layout/GuestLayout";
@@ -77,8 +77,11 @@ const router = createBrowserRouter([
             {
                 path: "/videos",
                 element: <OrderVideos/>,
-                children: [           
-                           
+                children: [  
+                             {
+                                path: '/videos',
+                                element: <Navigate to={generatePath("/videos/:param", {param: "top-rated"})}/> // Default path in this page
+                             },                   
                              {
                                 path: '/videos/:param',
                                 element: <Order/>
