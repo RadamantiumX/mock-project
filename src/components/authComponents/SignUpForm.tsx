@@ -30,8 +30,9 @@ export const SignUp = () => {
           },2000)
        })
        .catch(err=>{
-        console.log(err.message)
-        setNotification(err.message)
+        const res = err.response
+        console.log(res.data.message)
+        setNotification(res.data.message)
        })
    }
 
@@ -40,13 +41,13 @@ export const SignUp = () => {
       <h1 className="text-4xl text-center font-subtitle">Register a new account</h1>
       <img style={{width:"24rem"}} className="mb-2 text-center -mt-5 sm:max-w-xs lg:max-w-full" src={Logo} alt="logo" /> 
       <label className="block text-withe-700 text-sm">Nickname</label>
-      <input name="nickname" value={nickname} onChange={(e)=>setNickname(e.target.value)} className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="text" placeholder="johndoe"/>
+      <input name="nickname" value={nickname} onChange={(e)=>setNickname(e.target.value)} className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="text" placeholder="johndoe" required/>
       <label className="block text-withe-700 text-sm">Email</label>
-      <input name="email" value={email} onChange={(e)=>setEmail(e.target.value)} className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="email" placeholder="user@example.com"/>
+      <input name="email" value={email} onChange={(e)=>setEmail(e.target.value)} className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="email" placeholder="user@example.com" required/>
       <label className="block text-withe-700 text-sm">Password</label>
-      <input name="password" value={password} onChange={(e)=>setPassword(e.target.value)} className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="password"/>
+      <input name="password" value={password} onChange={(e)=>setPassword(e.target.value)} className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="password" required/>
       <label className="block text-withe-700 text-sm">Confirm password</label>
-      <input name="confirm-password" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="password" />
+      <input name="confirm-password" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} className="w-full px-3 py-2 rounded-lg bg-gray-200 mt-1 border focus:border-gray-500 focus:bg-white focus:outline-none text-lg" type="password" required/>
       <div className="text-center mt-3 sm:text-left">
       <button className="text-white bg-[#dd2471] hover:bg-[#dd2471]/80 focus:ring-4 focus:ring-[#FF9119]/50 font-medium rounded-lg text-base px-3 py-2 inline-flex items-center dark:hover:bg-[#dd2471]/80 dark:focus:ring-[#dd2471]/40 mb-2">Sign Up</button>
       </div>
