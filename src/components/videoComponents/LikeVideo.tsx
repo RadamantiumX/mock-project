@@ -16,12 +16,12 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
     
     const [fillLike, setFillLike] = useState('none')
     const [fillDislike, setFillDislike] = useState('none')
+    const [color, setColor] = useState('')
     const [count, setCount] = useState(0)
     const [ average, setAverage ] = useState(0)
     const like = true
     const dislike = false
     const { token, setNotification } = useStateContext()
-    
     const dispatch = useAppDispatch() 
     
    
@@ -82,6 +82,8 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
       }
  }
  useEffect(()=>{
+  
+
   // When the state is Fullfilled, we set the like or dislike if the user choose one before
    if(token){
       const payload = {token: token, videoId: videoId}
@@ -93,6 +95,7 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
           setCount(response.count_likes)
           if(response.count_likes> 0){
             setAverage(response.count_likes / response.count_total * 100)
+                
           }    
         }else{
           setFillDislike('red')
@@ -105,8 +108,19 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
       })
       
    }
-   
- },[token, videoId])
+
+   if(average < 49) 
+    {
+       setColor('green')
+       console.log(average)
+
+     }else{
+       setColor('red')
+      }
+          
+ },[token, videoId, average, color])
+
+
   
 
   return (
@@ -121,8 +135,11 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
             </button>
            
         </div>
-        {count > 0 &&<div>Total: {count}</div>} 
-        {average > 0 && <div>{average} %</div>}
+        <div className="flex flex-row gap-x-2 ml-2">
+        {count > 0 ?<div>Total: {count} Votes</div>: <div>Total: 0 Votes</div>} 
+        |
+        {average > 0 ? <div className={`text-${color}-500`}>{average} %</div> : <div className="text-yellow-500">0 %</div>}
+        </div>
       </div>
   )
 }
