@@ -4,7 +4,6 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import GuestLayout from "./layout/GuestLayout";
 import UserLayout from "./layout/UserLayout";
 import AuthLayout from "./layout/AuthLayout";
-import RTALayout from "./layout/RTALayout";
 //
 
 // Only for Guest Layout
@@ -176,10 +175,6 @@ const router = createBrowserRouter([
               }
               
         ]
-    },
-    {
-        path: "/rta",
-        element: <RTALayout/>  
     },
     {
         path: "*",
