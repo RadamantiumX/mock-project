@@ -9,7 +9,7 @@ export const InnerLayoutAuth = () => {
   <div className='flex flex-col lg:flex-row'>
     <div className='lg:w-1/2 hidden lg:block'> {/* Aquí agregamos la clase para ocultar en dispositivos móviles */}
       <div className='layout-auth-image-bg'>
-        <img style={{width:"19rem"}} className="w-full" src={Logo} alt="Logo Vanilla Leaks" title="Vanilla Leaks Porn Videos"/>
+        <img style={{width:"19rem"}} className="w-full" src={Logo} alt="Logo Vanilla Leaks" title="Vanilla Leaks free Porn Videos"/>
       </div>
     </div>
     <div className='flex flex-col items-center justify-center lg:w-1/2 gap-y-5'>
