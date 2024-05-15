@@ -81,7 +81,7 @@ export default function NavBar() {
           </div>
 
           {isMenuOpen && (
-            <div className="absolute top-full left-0 w-full bg-black z-50">
+           <div className="absolute top-full left-0 w-full bg-black z-50">
               <div className="max-w-6xl mx-auto px-4 pt-4 pb-4">
                 <div className="mobile-menu md:hidden">
                   <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/">Home</Link>
@@ -91,17 +91,17 @@ export default function NavBar() {
                   <div className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800">
                     <Selection />
                   </div>
-                  <div className="mt-2">
-                    <OrderVideosButton/>
-                  </div>
-                </div>
-              </div>
-            </div>
+                 <OrderVideosButton/>
+             </div>
+           </div>
+         </div>
+         
+         
           )}
         </header>
       </nav>
       {!isMenuOpen && (
-        <div className="hidden bg-indigo-300 bg-opacity-25 pt-2 md:flex mt-2 w-full justify-center md:justify-around">
+        <div className="hidden bg-indigo-300 bg-opacity-25 pt-2 pb-2 md:flex mt-2 w-full justify-center md:justify-around">
           <nav>
             <ul className="flex flex-row gap-4 mobile-menu">
               <li><Link reloadDocument className="subnav" to="/">Home</Link></li>
