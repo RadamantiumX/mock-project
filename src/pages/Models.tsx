@@ -1,16 +1,16 @@
 import '../components/init'
 import CardsModels from "../components/modelsComponents/CardsModels";
 import SearchModel from "../components/modelsComponents/SearchModel";
-import { phubApi } from "../services/pornhub-api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axiosClientAuth from '../services/axios-client-auth';
 
 
 
 export default function Models() {
-useEffect(()=>{
-	const response = phubApi()
+ const [models, setModels] = useState([])
 
-	console.log(response)
+useEffect(()=>{
+	
 },[])
 
   return (
