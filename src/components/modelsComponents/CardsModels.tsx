@@ -22,7 +22,7 @@ useEffect(()=>{
 },[setModels])	
   return (
      <>
-   {models?.map((item)=>(
+   {models?.map((item:any)=>(
 
     <article key={item.key} className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-2 mt-10 mb-5">
 
@@ -33,7 +33,7 @@ useEffect(()=>{
         </a>
     </div>
     <div className="px-4 py-3 w-72 ">
-        <span className="text-gray-400 mr-3 uppercase text-xs">{item.views}</span>
+        <span className="text-gray-400 mr-3 uppercase text-xs">{item.views} Views</span>
         <p className="text-lg font-bold text-white truncate block capitalize">{item.name}</p>
     </div>
 </div>
