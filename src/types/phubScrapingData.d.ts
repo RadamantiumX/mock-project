@@ -1,5 +1,6 @@
 export type PhubScrapingData = {
     models: Models;
+    count:  number;
 }
 
 export type Models = {
