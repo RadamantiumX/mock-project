@@ -1,9 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Link } from "react-router-dom"
+
 interface Props {
     postPerPage: number,
-    length: number
+    length: number,
+    handlePagination: any,
+    route: string
 }
 
-export const Paginator:React.FC<Props> = ({ postPerPage, length }) => {
+export const Paginator:React.FC<Props> = ({ postPerPage, length, handlePagination, route }) => {
     const paginationNumber = []
     for (let i = 1; i <= Math.ceil(length / postPerPage); i++){
         paginationNumber.push(i)
@@ -11,7 +16,7 @@ export const Paginator:React.FC<Props> = ({ postPerPage, length }) => {
   return (
     <div>
         {paginationNumber.map((pageNumber) => (
-            <button key={pageNumber}>{pageNumber}</button>
+           <> <Link to={`${route}?page=${pageNumber}`} onClick={() => handlePagination(pageNumber)} className="border rounded-sm mr-2 p-2" >{pageNumber}</Link> </>
         ))}
     </div>
   )

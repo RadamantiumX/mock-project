@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import axiosClientAuth from "../services/axios-client-auth"
 import { useCallback } from "react";
+import { useLocation } from "react-router-dom";
 
 
 const MAX_TITLE_WORDS = 10; 
@@ -38,6 +39,8 @@ export const useFetchPost = () => {
  
 return { postData }
 }
+
+export const useQuery = () => new URLSearchParams(useLocation().search)
 
   
 
