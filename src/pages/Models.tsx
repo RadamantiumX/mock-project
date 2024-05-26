@@ -4,61 +4,62 @@ import '../components/init'
 import {CardsModels} from "../components/modelsComponents/CardsModels";
 import SearchModel from "../components/modelsComponents/SearchModel";
 import { useEffect, useState } from "react";
-import { pornHubData } from '../services/scraping';
 import { type Datum } from '../types/phubScrapingData';
 import { Paginator } from '../components/commonComponents/Paginator';
 import { useQuery } from '../customsHooks/customsHooks';
 import { Next } from '../components/icons/Next';
 import { Prev } from '../components/icons/Prev';
+import { useAppDispatch } from '../redux/hooks';
+import { getModelsSource } from '../redux/modelSource/modelsSlice';
+import { Link } from 'react-router-dom';
 
 
 /*
 En este caso, deberiamos utilizar un manejo de estados para que se mantengan los cambios una vez que se actulice la ventana
+
+query === null DEFAULT
+
+Num max page = 379
 
 */
 export default function Models() {
  const [models, setModels] = useState<Datum[]>([])
  const [count, setCount] = useState<number>(0)
  const [page, setPage] = useState<number>(1)
+
+ const dispatch = useAppDispatch()
+
  const query:any = useQuery() // Get Query params
- console.log(query.get('page'))
- console.log(page)
- 
 
-
- const getData = async () => {
-		const response = await pornHubData(page) 
-		return response
-	}
 const handlePagination = (pageNumber:any) =>{
 	setPage(pageNumber)
 }
-
-
+console.log(page)
 
 useEffect(()=>{
-	getData()
-	.then((a)=>{
-		setModels(a.models.data)
-		setCount(a.count)
-	 })
+const changePage = query.get('page')
 
-async () =>	 {
-	if(await query !== null) {
-		const changePage = await query.get('page')
-		setPage(parseInt(changePage))
-		console.log(page)
-		getData()  
-	      .then((a)=>{
-		    setModels(a.models.data)
-		    setCount(a.count)
-	      })
-		  
-	}
-}
 
+// Mutate state conditional
+if(changePage !== null ){
+dispatch(getModelsSource(parseInt(changePage)))
+  .unwrap()
+  .then((response)=>{
+	setModels(response.models.data)
+	setCount(response.count)
+	setPage(parseInt(changePage))	
+  })
+}else{
+	dispatch(getModelsSource(1))
+    .unwrap()
+    .then((response)=>{
+	    setModels(response.models.data)
+	    setCount(response.count)
+	    setPage(parseInt(changePage))
 	
-},[pornHubData, setPage, page])
+  })
+}
+},[setPage, page])
 
 
 
@@ -66,7 +67,7 @@ async () =>	 {
 	<>
 	<SearchModel/>
     {models?.map((item, key)=>(<CardsModels key={key} name={item.name} photo={item.photo} views={item.views}/>))}
-	<nav className='flex flex-row'><button><Prev/></button><Paginator handlePagination={handlePagination} route={'/models'} length={count} postPerPage={models.length} /> <button><Next/></button></nav>
+	<nav className='flex flex-row'><Link className={ query.get('page') === '1' ? 'hidden': 'block' } to={`/models?page=${parseInt(query.get('page')) - 1}`} onClick={handlePagination}><Prev/></Link><Paginator current={parseInt(query.get('page'))} handlePagination={handlePagination} route={'/models'} length={count} postPerPage={models.length} /> <Link className={ query.get('page') === '379' ? 'hidden': 'block' }  to={query.get('page') !== null ? `/models?page=${parseInt(query.get('page')) + 1}`: `/models?page=2`} onClick={handlePagination}><Next/></Link></nav>
 	</>
   )
 }
