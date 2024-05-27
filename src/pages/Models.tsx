@@ -38,8 +38,6 @@ console.log(page)
 
 useEffect(()=>{
 const changePage = query.get('page')
-
-
 // Mutate state conditional
 if(changePage !== null ){
 dispatch(getModelsSource(parseInt(changePage)))
@@ -61,13 +59,11 @@ dispatch(getModelsSource(parseInt(changePage)))
 }
 },[setPage, page])
 
-
-
   return (
 	<>
 	<SearchModel/>
     {models?.map((item, key)=>(<CardsModels key={key} name={item.name} photo={item.photo} views={item.views}/>))}
-	<nav className='flex flex-row'><Link className={ query.get('page') === '1' ? 'hidden': 'block' } to={`/models?page=${parseInt(query.get('page')) - 1}`} onClick={handlePagination}><Prev/></Link><Paginator current={parseInt(query.get('page'))} handlePagination={handlePagination} route={'/models'} length={count} postPerPage={models.length} /> <Link className={ query.get('page') === '379' ? 'hidden': 'block' }  to={query.get('page') !== null ? `/models?page=${parseInt(query.get('page')) + 1}`: `/models?page=2`} onClick={handlePagination}><Next/></Link></nav>
+	<nav className='flex flex-row'><Link className={ query.get('page') === '1' ? 'hidden': 'block' } to={`/models?page=${parseInt(query.get('page')) - 1}`} onClick={handlePagination}><Prev/></Link><Paginator current={query.get('page') !== null ? parseInt(query.get('page')) : 1} handlePagination={handlePagination} route={'/models'} length={count} postPerPage={models.length} /> <Link className={ query.get('page') === '379' ? 'hidden': 'block' }  to={query.get('page') !== null ? `/models?page=${parseInt(query.get('page')) + 1}`: `/models?page=2`} onClick={handlePagination}><Next/></Link></nav>
 	</>
   )
 }

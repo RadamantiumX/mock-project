@@ -18,7 +18,7 @@ export default function SelectModels() {
         {/* /////////   DropDown Models ///////// */}
           {/* ////Las imagens se van a mostrar en filas de 4 (4 arriba y 4 abajo)//// */}
           <div className="dropdown inline-block relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-          <Link to="/models" className="subnav rounded inline-flex items-center">
+          <Link to="/models?page=1" className="subnav rounded inline-flex items-center">
             Models
             <svg className="fill-current h-4 w-4 mt-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
               <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
