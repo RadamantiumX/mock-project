@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { Dots } from "../icons/Dots"
 
 
+
 interface Props {
     postPerPage: number,
     length: number,
@@ -12,36 +13,38 @@ interface Props {
 }
 
 export const Paginator:React.FC<Props> = ({ postPerPage, length, handlePagination, route, current }) => {
-    let paginationNumber = []
+    let paginationNumberInitial = []
+    const paginationNumberEnding = []
     const start = 1
-if (current !== paginationNumber.length){
-  
-   for (let i = 1; i <= Math.ceil(length / postPerPage); i++){
-       console.log(paginationNumber.length)
-        paginationNumber.push(i)    
+if (current !== paginationNumberInitial.length){
+   for (let i = current; i <= Math.ceil(length / postPerPage) + current * 2; i++){
+        paginationNumberInitial.push(i)   
+        if (current > 8){
+        paginationNumberInitial = []
+        paginationNumberInitial.push(current) 
+        }        
     }
-    
-    }
-
-   
-      for (let i = current; i <= Math.ceil(current/ current) + current + 2 ; i++){
-        paginationNumber.push(i)
     }
    
-    console.log(paginationNumber[paginationNumber.length - 1])
+    for (let i = (length - 4); i < length; i++){
+      paginationNumberEnding.push(i)
+    }
       
   return (
     <div className="flex flex-row">
-       {paginationNumber[0] >= 2 &&<>
+       {paginationNumberInitial[0] >= 2 &&<>
         <Link to={`${route}?page=${start}`} onClick={() => handlePagination(start)} className={start === current ? `border rounded-sm mr-2 p-2 bg-yellow-600 pointer-events-none` : "border rounded-sm mr-2 p-2 pointer-events-auto"} >{start}</Link>
-        <Dots/>
+        {current < 375 && <Dots/>}
         </>}
-
-        {paginationNumber.map((pageNumber) => (
+         {current < 374 ? paginationNumberInitial.map((pageNumber) => (
            <> <Link to={`${route}?page=${pageNumber}`} onClick={() => handlePagination(pageNumber)} className={pageNumber === current ? `border rounded-sm mr-2 p-2 bg-yellow-600 pointer-events-none` : "border rounded-sm mr-2 p-2 pointer-events-auto"} >{pageNumber}</Link> </>
-        ))}
+        )): <></>}
         <Dots/>
-        <Link to={`${route}?page=${length}`} onClick={() => handlePagination(length)} className={length === current ? `border rounded-sm mr-2 p-2 bg-yellow-600 pointer-events-none` : "border rounded-sm mr-2 p-2 pointer-events-auto"} >{length}</Link>
+
+        {paginationNumberEnding.map((pageNumber)=>(
+          <Link to={`${route}?page=${pageNumber}`} onClick={() => handlePagination(pageNumber)} className={pageNumber === current ? `border rounded-sm mr-2 p-2 bg-yellow-600 pointer-events-none` : "border rounded-sm mr-2 p-2 pointer-events-auto"} >{pageNumber}</Link>
+        ))}
+        
     </div>
   )
 }
