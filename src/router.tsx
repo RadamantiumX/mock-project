@@ -18,6 +18,7 @@ import Photos from "./pages/Photos";
 import Redirect from "./pages/Redirect";
 import Contact from "./pages/Contact";
 import Legal from "./pages/Legal";
+import ModelIndex from "./pages/ModelIndex";
 //
 
 // Page Components //
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
             {
                 path: "/models",
                 element: <Models/>
+            },
+            {
+                path: "/model-index",
+                element: <ModelIndex/>
             },
             {
                 path: "/videos",
