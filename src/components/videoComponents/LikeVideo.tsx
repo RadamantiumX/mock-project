@@ -3,17 +3,14 @@ import { ThumbDown } from "../icons/ThumbDown"
 import { useState, useEffect } from "react"
 import { useStateContext } from "../../contexts/ContextProvider"
 import axiosClientAuth from "../../services/axios-client-auth"
-import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { useAppDispatch } from "../../redux/hooks"
 import { getLikesSource } from "../../redux/likeSources/likesSlice"
 
 interface Props {
     videoId?: string | undefined
 }
 
-export const LikeVideo:React.FC<Props> = ({videoId}) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const data = useAppSelector(state => state.likes.data)
-    
+export const LikeVideo:React.FC<Props> = ({videoId}) => { 
     const [fillLike, setFillLike] = useState('none')
     const [fillDislike, setFillDislike] = useState('none')
     const [color, setColor] = useState('')

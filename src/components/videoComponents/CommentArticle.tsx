@@ -23,8 +23,7 @@ export const CommentArticle: React.FC<Props>=  ({id, created, nick_name, content
   const [showForm, setShowForm] = useState(false)
   const [showArticle, setShowArticle] = useState(false)
   const [currentUser, setCurrentUser] = useState(false)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [responses, setResponses] = useState<any>([])
+  const [responses] = useState<any>([])
   const { setPostId, token, nickname } = useStateContext()
   const navigate = useNavigate()
   const data = useAppSelector( state => state.replys.data )
