@@ -75,7 +75,7 @@ const router = createBrowserRouter([
                 element: <Models/>
             },
             {
-                path: "/model-index",
+                path: "/model-index/:name",
                 element: <ModelIndex/>
             },
             {
