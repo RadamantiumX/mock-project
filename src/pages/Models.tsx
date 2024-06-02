@@ -61,9 +61,27 @@ dispatch(getModelsSource(parseInt(changePage)))
 
   return (
 	<>
-	<SearchModel/>
-    {models?.map((item, key)=>(<CardsModels key={key} name={item.name} photo={item.photo} views={item.views} url={item.url}/>))}
-	<nav className='flex flex-row'><Link className={ query.get('page') === '1' ? 'hidden': 'block' } to={`/models?page=${parseInt(query.get('page')) - 1}`} onClick={handlePagination}><Prev/></Link><Paginator current={query.get('page') !== null ? parseInt(query.get('page')) : 1} handlePagination={handlePagination} route={'/models'} length={count} postPerPage={models.length} /> <Link className={ query.get('page') === '379' ? 'hidden': 'block' }  to={query.get('page') !== null ? `/models?page=${parseInt(query.get('page')) + 1}`: `/models?page=2`} onClick={handlePagination}><Next/></Link></nav>
+	      <div className="container mx-auto mt-10 mb-5 px-8">
+    <SearchModel />
+    <section className="w-fit mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-items-center gap-y-10 gap-x-4 mt-10 mb-5">
+        {models?.map((item, key) => (
+            <CardsModels key={key} name={item.name} photo={item.photo} views={item.views} url={item.url} />
+        ))}
+    </section>
+    <nav className="flex justify-center mb-20 mt-20">
+    <div className="flex items-center">
+        <Link className={query.get('page') === '1' ? 'hidden' : 'block'} to={`/models?page=${parseInt(query.get('page')) - 1}`} onClick={handlePagination}>
+            <Prev />
+        </Link>
+        <Paginator current={query.get('page') !== null ? parseInt(query.get('page')) : 1} handlePagination={handlePagination} route={'/models'} length={count} postPerPage={models.length} />
+        <Link className={query.get('page') === '379' ? 'hidden' : 'block'} to={query.get('page') !== null ? `/models?page=${parseInt(query.get('page')) + 1}` : `/models?page=2`} onClick={handlePagination}>
+            <Next />
+        </Link>
+    </div>
+</nav>
+
+</div>
+
 	</>
   )
 }
