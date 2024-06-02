@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {  type APIEpornerResponse } from "../types/eporner"
+import { type RedTubeAPIData } from "../types/redtube"
 
 // const configValue : string = (process.env.EPORNER_API_URL as string)
 
+// Eporner
 
 export const getLatestContent = async ( payload: number ) => {
     // Traer un numero de los parametros, si es menor o igual a 1, aumentamos "binary", sino, aumentamos "qty"
@@ -40,3 +42,12 @@ export const getOrderVideos = async ({ payload }:any) => {
 
 
 // https://www.eporner.com/
+
+
+// Red Tube
+export const getModelVideos = async (payload:string) =>{
+    const parsedName = payload.replace(" ", "+").toLowerCase()
+    const res = await fetch(`https://api.redtube.com/?data=redtube.Videos.searchVideos&output=json&search=${parsedName}&ordering=newest`) 
+    const {videos: data} = await  res.json() as RedTubeAPIData
+    return data
+}
