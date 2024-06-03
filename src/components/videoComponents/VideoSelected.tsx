@@ -107,21 +107,21 @@ export const VideoSelected: React.FC<Props> = ({ id, title, views }) => {
                 </span>
               )}
             </a>
-            <div className="ml-10"></div>
+            <div className="ml-3"></div>
             <button onClick={handleFavs} className="rounded-md flex flex-row p-2 gap-1 font-bold text-white">
               <Hearth filled={filled} />
               <span className="hidden lg:inline">
                 {innerMessage}
               </span>
             </button>
-            <div className="border-l border-gray-300 h-6 mx-4"></div> {/* Divider vertical */}
+            <div className="border-l border-gray-300 h-6 mx-2"></div> {/* Divider vertical */}
             <button className="rounded-md flex flex-row p-2 gap-1 font-bold text-white">
               <Share />
               <span className="hidden lg:inline"> {/* Ocultar en dispositivos móviles y tabletas, mostrar en pantallas de escritorio */}
                 Share
               </span>
             </button>
-            <div className="border-l border-gray-300 h-6 mx-4"></div> {/* Divider vertical */}
+            <div className="border-l border-gray-300 h-6 mx-2"></div> {/* Divider vertical */}
             <LikeVideo videoId={id} />
           </div>
         </div>

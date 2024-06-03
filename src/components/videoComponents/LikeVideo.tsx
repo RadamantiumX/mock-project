@@ -25,7 +25,7 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
 
     const handleLike = async () => {
         if (fillLike === 'none'){
-            setFillLike('green')
+            setFillLike('white')
             setFillDislike('none')
             
             await axiosClientAuth.post('/like/add',{token, videoId, like})
@@ -51,7 +51,7 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
 
  const handleDislike = async () => {
       if (fillDislike === 'none'){
-        setFillDislike('red')
+        setFillDislike('white')
         setFillLike('none')
         const payload = {
             token: token,
@@ -88,14 +88,14 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
       .unwrap()
       .then((response)=>{
         if(response.like){
-          setFillLike('green')
+          setFillLike('white')
           setCount(response.count_likes)
           if(response.count_likes> 0){
             setAverage(response.count_likes / response.count_total * 100)
                 
           }    
         }else{
-          setFillDislike('red')
+          setFillDislike('white')
         }
         
       })
@@ -108,11 +108,11 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
 
    if(average < 49) 
     {
-       setColor('green')
+       setColor('white')
        console.log(average)
 
      }else{
-       setColor('red')
+       setColor('white')
       }
           
  },[token, videoId, average, color])
@@ -133,9 +133,9 @@ export const LikeVideo:React.FC<Props> = ({videoId}) => {
            
         </div>
         <div className="flex flex-row gap-x-2 ml-2">
-        {count > 0 ?<div>Total: {count} Votes</div>: <div>Total: 0 Votes</div>} 
-        |
-        {average > 0 ? <div className={`text-${color}-500`}>{average} %</div> : <div className="text-yellow-500">0 %</div>}
+        <div className="hidden sm:block">{count > 0 ? <div>{count} Votes</div> : <div>0 Votes</div>}</div>
+        <div className="border-l border-gray-300 h-6 mx-2"></div>
+        {average > 0 ? <div className={`text-${color}-500`}>{average} %</div> : <div className="text-pink-500">0 %</div>}
         </div>
       </div>
   )
