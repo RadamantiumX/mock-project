@@ -31,7 +31,7 @@ if (current !== paginationNumberInitial.length){
     }
       
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row ">
        {paginationNumberInitial[0] >= 2 &&<>
         <Link to={`${route}?page=${start}`} onClick={() => handlePagination(start)} className={start === current ? `border rounded-sm mr-2 p-2 bg-yellow-600 pointer-events-none` : "border rounded-sm mr-2 p-2 pointer-events-auto"} >{start}</Link>
         {current < 375 && <Dots/>}
