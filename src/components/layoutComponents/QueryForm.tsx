@@ -5,7 +5,6 @@ import { MagnifyingGlass } from "../icons/MagnifyingGlass"
 
 
 export const QueryForm = () => {
-    //const inputRef = useRef<HTMLInputElement>(null)
     const [message, setMessage] = useState("")
     const [show, setShow] = useState(false)
     const [query, setQuery] = useState("")

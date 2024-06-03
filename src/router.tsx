@@ -19,6 +19,7 @@ import Redirect from "./pages/Redirect";
 import Contact from "./pages/Contact";
 import Legal from "./pages/Legal";
 import ModelIndex from "./pages/ModelIndex";
+import ModelSearch from "./pages/ModelSearch";
 //
 
 // Page Components //
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
             {
                 path: "/models",
                 element: <Models/>
+            },
+            {
+                path: "/model-search/:query",
+                element: <ModelSearch/>
             },
             {
                 path: "/model-index/:name",

@@ -4,7 +4,7 @@ import Logo from "../../assets/project/logo.png";
 import { useState } from "react";
 import { QueryForm } from "./QueryForm";
 import "./navbar.scss";
-import SelectModels from "../modelsComponents/SelectModels";
+import { SelectModels } from "../modelsComponents/SelectModels";
 import SelectCategories from "../categoriesComponents/SelectCategories";
 import { OrderVideosButton} from "../commonComponents/OrderVideosButton";
 import { useStateContext } from "../../contexts/ContextProvider";
