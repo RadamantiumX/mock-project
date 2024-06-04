@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router-dom"
 import { Dots } from "../icons/Dots"
-
-
-
 interface Props {
     postPerPage: number,
     length: number,
@@ -18,10 +15,13 @@ export const Paginator:React.FC<Props> = ({ postPerPage, length, handlePaginatio
     const start = 1
 if (current !== paginationNumberInitial.length){
    for (let i = current; i <= Math.ceil(length / postPerPage) + current * 2; i++){
-        paginationNumberInitial.push(i)   
+        paginationNumberInitial.push(i)  
+       
         if (current > 8){
-        paginationNumberInitial = []
-        paginationNumberInitial.push(current) 
+         
+         paginationNumberInitial = []
+         paginationNumberInitial.push(current) 
+       
         }        
     }
     }
@@ -36,7 +36,7 @@ if (current !== paginationNumberInitial.length){
         <Link to={`${route}?page=${start}`} onClick={() => handlePagination(start)} className={start === current ? `border rounded-sm mr-2 p-2 bg-yellow-600 pointer-events-none` : "border rounded-sm mr-2 p-2 pointer-events-auto"} >{start}</Link>
         {current < 375 && <Dots/>}
         </>}
-         {current < 374 ? paginationNumberInitial.map((pageNumber) => (
+         {current < 374 ? paginationNumberInitial.map((pageNumber:any) => (
            <> <Link to={`${route}?page=${pageNumber}`} onClick={() => handlePagination(pageNumber)} className={pageNumber === current ? `border rounded-sm mr-2 p-2 bg-yellow-600 pointer-events-none` : "border rounded-sm mr-2 p-2 pointer-events-auto"} >{pageNumber}</Link> </>
         )): <></>}
         <Dots/>

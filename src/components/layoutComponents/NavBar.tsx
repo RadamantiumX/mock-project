@@ -4,7 +4,7 @@ import Logo from "../../assets/project/logo.png";
 import { useState } from "react";
 import { QueryForm } from "./QueryForm";
 import "./navbar.scss";
-import SelectModels from "../modelsComponents/SelectModels";
+import { SelectModels } from "../modelsComponents/SelectModels";
 import SelectCategories from "../categoriesComponents/SelectCategories";
 import { OrderVideosButton} from "../commonComponents/OrderVideosButton";
 import { useStateContext } from "../../contexts/ContextProvider";
@@ -66,7 +66,7 @@ export default function NavBar() {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row mb-4 w-full md:mb-0 md:w-1/4 gap-5">
-            <QueryForm />
+            <QueryForm path={"search"} placeholder={"something"}/>
           </div>
           <div className="flex flex-col sm:flex-row mb-4 w-full md:mb-0 md:w-1/4 gap-5">
             {token ?
