@@ -3,8 +3,12 @@ import {  useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { MagnifyingGlass } from "../icons/MagnifyingGlass"
 
+interface Props {
+  path: string
+  placeholder: string
+}
 
-export const QueryForm = () => {
+export const QueryForm:React.FC<Props> = ({path, placeholder}) => {
     const [message, setMessage] = useState("")
     const [show, setShow] = useState(false)
     const [query, setQuery] = useState("")
@@ -18,7 +22,7 @@ export const QueryForm = () => {
      const handleKeyDown = (e:React.KeyboardEvent<HTMLInputElement>) => {
          if (e.key === "Enter") {
             if(query.length > 0) {
-            navigate(`/search/${query}`)
+            navigate(`/${path}?query=${query}`)
             setShow(false)
             setBorder("")
             setMessage("")
@@ -37,7 +41,7 @@ export const QueryForm = () => {
          
          <search className={`relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden ${border}`}>
             <div className="grid place-items-center h-full w-12 text-gray-300">
-                <MagnifyingGlass/>
+                <MagnifyingGlass props={""}/>
               </div>
 
                 <input
@@ -46,7 +50,7 @@ export const QueryForm = () => {
                 className="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
                 type="text"
                 id="search"
-                placeholder="Search something.."
+                placeholder={`Search ${placeholder}...`}
                 value={query}          
                 />
 
