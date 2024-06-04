@@ -64,7 +64,7 @@ const router = createBrowserRouter([
                 element: <Video/>
             },
             {
-                path: "/search/:query",
+                path: "/search",
                 element: <Search/>
             },
             {
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
                 element: <Models/>
             },
             {
-                path: "/model-search/:query",
+                path: "/model-search",
                 element: <ModelSearch/>
             },
             {
