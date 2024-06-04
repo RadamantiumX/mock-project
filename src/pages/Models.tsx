@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import '../components/init'
 import {CardsModels} from "../components/modelsComponents/CardsModels";
-import { SearchModelQuery } from "../components/modelsComponents/SearchModelQuery";
+import { SearchModelQuery } from '../components/modelsComponents/SearchModelQuery';
 import { useEffect, useState } from "react";
 import { type Datum } from '../types/phubScrapingData';
 import { Paginator } from '../components/commonComponents/Paginator';
@@ -62,7 +62,7 @@ dispatch(getModelsSource(parseInt(changePage)))
   return (
 	<>
 	      <div className="container mx-auto mt-10 mb-5 px-8">
-    <SearchModelQuery />
+    <SearchModelQuery/>
     <section className="w-fit mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-items-center gap-y-10 gap-x-4 mt-10 mb-5">
         {models?.map((item, key) => (
             <CardsModels key={key} name={item.name} photo={item.photo} views={item.views} url={item.url} />
