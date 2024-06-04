@@ -66,7 +66,7 @@ export default function NavBar() {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row mb-4 w-full md:mb-0 md:w-1/4 gap-5">
-            <QueryForm />
+            <QueryForm path={"search"} placeholder={"something"}/>
           </div>
           <div className="flex flex-col sm:flex-row mb-4 w-full md:mb-0 md:w-1/4 gap-5">
             {token ?
