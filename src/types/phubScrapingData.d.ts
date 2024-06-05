@@ -24,3 +24,14 @@ export type Paging = {
     maxPage: number;
     isEnd:   boolean;
 }
+
+export type ModelInfoDetail = {
+    name:       string;
+    cover:      string;
+    about:      string;
+    avatar:     string;
+    gender:     string;
+    birthPlace: string;
+    height:     string;
+    weight:     string;
+}
