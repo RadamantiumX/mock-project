@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {  type APIEpornerResponse } from "../types/eporner"
-// import { type RedTubeAPIData } from "../types/redtube"
+import { type RedTubeAPIData } from "../types/redtube"
 
 // const configValue : string = (process.env.EPORNER_API_URL as string)
 
@@ -45,10 +45,9 @@ export const getOrderVideos = async ({ payload }:any) => {
 
 
 // Red Tube
-export const getModelVideos = async () =>{
-    //const parsedName = payload.replace("-", "+").toLowerCase()
-    const res = await fetch(`http://localhost:3000/rtube/model`) 
-    const data = await res.json() 
+export const getModelVideos = async (payload:string | undefined) =>{
+    const res = await fetch(`http://localhost:4000/rtube/model/${payload}`) 
+    const data = await res.json() as RedTubeAPIData 
     return data
     
 }
