@@ -14,7 +14,7 @@ export const ModelCardIndex:React.FC<Props> = ({name, cover, about, avatar, heig
     <article className="h-auto">
         {name !== undefined ? <div>
         <div>
-             <h1 className="text-2xl font-bold">{name}</h1> : <h1>No Info for this Model, we sorry 😢</h1>
+             <h1 className="text-2xl font-bold">{name}</h1>
              <img src={cover} alt={`${name} cover`} title={`${name} cover image from PORN-HUB`}/>  
 
             <div className="flex flex-row">
