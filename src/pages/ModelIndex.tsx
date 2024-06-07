@@ -1,11 +1,12 @@
-import { getModelVideos } from "../services/resources"
+import { getRedTubeSource } from "../redux/redtubeSources/modelVideosSlice"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axiosClientAuth from "../services/axios-client-auth"
 import { type ModelInfoDetail } from "../types/phubScrapingData"
 import { ModelCardIndex } from "../components/modelIndexComponents/ModelCardIndex"
 import { ModelVideosRelated } from "../components/modelIndexComponents/ModelVideosRelated"
-
+import { useAppDispatch } from "../redux/hooks"
+import { getModelVideos } from "../services/resources"
 
 
 export default function ModelIndex() {
@@ -13,7 +14,7 @@ export default function ModelIndex() {
   const [model, setModel] = useState<ModelInfoDetail>()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [modelData, setModelData] = useState<any>([])
-
+  const dispatch = useAppDispatch()
 
 useEffect(()=>{
   axiosClientAuth(`/phub/model-info/${name}`)
@@ -25,7 +26,13 @@ useEffect(()=>{
     console.log(err)
    })
 
-   getModelVideos(name)
+
+  /*dispatch(getRedTubeSource(name))
+    .unwrap()
+    .then((data)=>{
+      setModelData(data)
+    })*/
+  getModelVideos(name)
      .then((data)=>{
         console.log(data)
         setModelData(data)

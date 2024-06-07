@@ -34,7 +34,6 @@ export default function Models() {
 const handlePagination = (pageNumber:any) =>{
 	setPage(pageNumber)
 }
-console.log(page)
 
 useEffect(()=>{
 const changePage = query.get('page')

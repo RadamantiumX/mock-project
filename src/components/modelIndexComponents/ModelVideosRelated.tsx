@@ -16,7 +16,7 @@ export const ModelVideosRelated:React.FC<Props> = ({ source }) => {
     
       {source?.map((item) => (
         <div key={item.video.video_id}>
-          <MovieCard title={item.video.title} image={item.video.thumb} id={item.video.video_id+"redtube"} lengthMin={item.video.duration} views={item.video.views} keywords={JSON.stringify(item.video.tags)}/>
+          <MovieCard title={item.video.title} image={item.video.default_thumb} id={item.video.video_id+"redtube"} lengthMin={item.video.duration} views={item.video.views} keywords={JSON.stringify(item.video.tags)}/>
         </div>
       ))}
     </div>
