@@ -4,6 +4,7 @@ import { Ghost } from "../icons/Ghost"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getEpornerSource } from "../../redux/epornerSources/sourceSlice"
 import { Tags } from "./Tags"
+import { useParams } from "react-router-dom"
 
 
 interface Props {
@@ -17,6 +18,8 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
  const trimWord:string[] = []
  const [limited, setLimited] = useState<string[]>([]) // Tags State
  const lowerCase = keywords!.toLowerCase()
+ const params = useParams()
+ console.log(params.id)
 
   const stringSplit = lowerCase.split(" ")
   

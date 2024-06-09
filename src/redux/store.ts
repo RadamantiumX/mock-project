@@ -6,7 +6,7 @@ import replysReducer from './replySources/replysSlice'
 import likesReducer from './likeSources/likesSlice'
 import sourceOrderReducer from './epornerSources/orderSlice'
 import modelsReducer from './modelSource/modelsSlice'
-import redtubeReducer from  './redtubeSources/modelVideosSlice'
+
 
 
 export const store = configureStore({
@@ -18,7 +18,7 @@ export const store = configureStore({
     likes: likesReducer,
     order: sourceOrderReducer,
     model: modelsReducer,
-    redtube: redtubeReducer
+  
   },
  
 })
