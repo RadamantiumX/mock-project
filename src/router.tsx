@@ -20,6 +20,7 @@ import Contact from "./pages/Contact";
 import Legal from "./pages/Legal";
 import ModelIndex from "./pages/ModelIndex";
 import ModelSearch from "./pages/ModelSearch";
+import CategoriesList from "./pages/CategoriesList";
 //
 
 // Page Components //
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
             {
                 path: "/categories/:category",
                 element: <Categories/>
+            },
+            {
+                path: "/categories-list",
+                element: <CategoriesList/>
             },
             {
                 path: "/models",

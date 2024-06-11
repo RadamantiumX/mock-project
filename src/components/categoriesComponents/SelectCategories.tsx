@@ -18,7 +18,7 @@ export default function SelectCategories() {
     <>
  {/* /////////   DropDown Categories ///////// */}
 <div className="dropdown inline-block relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-  <Link to="/categories" className="subnav rounded inline-flex items-center">
+  <Link to="/categories-list" className="subnav rounded inline-flex items-center">
     Categories
     <svg className="fill-current h-4 w-4 mt-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
       <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
@@ -29,7 +29,7 @@ export default function SelectCategories() {
     <div className="grid grid-cols-6 gap-4">
   {/* Lista de palabras "lorem" */}
   {CATEGORIES.map((cat, index) => (
-    <Link to={`/categories/${cat}`} className=" text-categories cursor-pointer" key={index}>{cat.tag}</Link>
+    <Link to={`/categories/${cat.tag}`} className=" text-categories cursor-pointer" key={index}>{cat.tag}</Link>
   ))}
   {/* Fin de la lista de palabras "lorem" */}
 </div>

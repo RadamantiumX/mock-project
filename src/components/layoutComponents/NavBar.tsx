@@ -85,7 +85,7 @@ export default function NavBar() {
               <div className="max-w-6xl mx-auto px-4 pt-4 pb-4">
                 <div className="mobile-menu md:hidden">
                   <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/">Home</Link>
-                  <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/categories">Categories</Link>
+                  <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/categories-list">Categories</Link>
                   <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/models?page=1">Models</Link>
                   <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/photos">Photos</Link>
                   <div className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800">
