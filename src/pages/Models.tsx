@@ -60,14 +60,15 @@ dispatch(getModelsSource(parseInt(changePage)))
 
   return (
 	<>
-	      <div className="container mx-auto mt-10 mb-5 px-8">
+	      <div className="container px-8 mx-auto mt-10 mb-5">
     <SearchModelQuery/>
-    <section className="w-fit mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-items-center gap-y-10 gap-x-4 mt-10 mb-5">
-        {models?.map((item, key) => (
-            <CardsModels key={key} name={item.name} photo={item.photo} views={item.views} url={item.url} />
-        ))}
-    </section>
-    <nav className="flex justify-center mb-20 mt-20">
+    <section className="grid justify-center grid-cols-1 mx-auto mt-10 mb-5 w-fit lg:grid-cols-5 md:grid-cols-2 justify-items-center gap-y-20 gap-x-24"> {/* Aumentamos el valor de gap-x */}
+    {models?.map((item, key) => (
+        <CardsModels key={key} name={item.name} photo={item.photo} views={item.views} url={item.url} />
+    ))}
+</section>
+
+    <nav className="flex justify-center mt-20 mb-20">
     <div className="flex items-center">
         <Link className={query.get('page') === '1' ? 'hidden' : 'block'} to={`/models?page=${parseInt(query.get('page')) - 1}`} onClick={handlePagination}>
             <Prev />

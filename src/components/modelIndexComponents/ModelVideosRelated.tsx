@@ -24,18 +24,25 @@ export const ModelVideosRelated:React.FC<Props> = ({ source }) => {
   
 
   return (
-    <section>
-    <div className="mt-20">
+    <section className="mb-10 ml-3 mr-3 lg:mr-10 lg:ml-10">
+    <div className="">
      <h5 className="text-2xl font-bold">Most Recent Videos</h5>
     </div> 
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full m-1 justify-center mt-12 mb-12">
-    
-      {source?.map((item) => (
-        <div key={item.video_id}>
-          <MovieCard title={item.title} image={item.default_thumb} id={item.video_id+"redtube"} lengthMin={item.duration} views={item.views} keywords={item.title}/>
-        </div>
-      ))}
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+  {source?.map((item) => (
+    <div key={item.video_id}>
+      <MovieCard
+        title={item.title}
+        image={item.default_thumb}
+        id={item.video_id + "redtube"}
+        lengthMin={item.duration}
+        views={item.views}
+        keywords={item.title}
+      />
     </div>
+  ))}
+</div>
+
   </section>
   )
 }
