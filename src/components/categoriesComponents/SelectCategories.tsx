@@ -29,7 +29,7 @@ export default function SelectCategories() {
     <div className="grid grid-cols-6 gap-4">
   {/* Lista de palabras "lorem" */}
   {CATEGORIES.map((cat, index) => (
-    <Link to={`/categories/${cat}`} className=" text-categories cursor-pointer" key={index}>{cat}</Link>
+    <Link to={`/categories/${cat}`} className=" text-categories cursor-pointer" key={index}>{cat.tag}</Link>
   ))}
   {/* Fin de la lista de palabras "lorem" */}
 </div>

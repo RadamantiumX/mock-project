@@ -1,4 +1,4 @@
-import { ORDER } from '../const/categories'
+import { ORDER } from '../const/order';
 import { Star } from '../icons/Star'
 import { Link } from 'react-router-dom'
 import {  SetStateAction, useState } from 'react';
