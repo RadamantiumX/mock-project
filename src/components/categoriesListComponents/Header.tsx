@@ -1,5 +1,7 @@
 export const Header = () => {
   return (
-    <h1>Popular Categories</h1>
+    <div className="flex mt-8">
+        <h1 className="text-3xl font-bold textTitleVideo ">Popular Category</h1>
+    </div>
   )
 }
