@@ -1,5 +1,14 @@
+import { PageHeader } from "../components/commonComponents/PageHeader"
+import { PopularTags } from "../components/photosComponents/PopularTags"
+
+
 export default function Photos() {
+   
+
   return (
-    <div>Photos</div>
+    <main>
+      <PageHeader title="Most Popular Tags"/>
+      <PopularTags/>
+    </main>
   )
 }
