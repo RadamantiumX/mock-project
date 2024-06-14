@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import axiosClientAuth from "../services/axios-client-auth"
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 
@@ -41,6 +41,21 @@ return { postData }
 }
 
 export const useQuery = () => new URLSearchParams(useLocation().search)
+
+export const usePagination = (items, pageLimit) => {
+  const [pageNumber, setPageNumber] = useState(0)
+  const pageCount = Math.ceil(items.length / pageLimit)
+  
+    const changePage = (pN) => {
+      setPageNumber(pN)
+    }
+
+    const pageData = () => {
+      const s = pageNumber * pageLimit
+    }
+
+  return { pageNumber, pageCount, changePage }
+}
 
   
 
