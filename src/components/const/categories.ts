@@ -1,5 +1,5 @@
 export const CATEGORIES = [
-    {tag:"Anal", image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11047070/9_360.jpg"}
+    {tag:"Anal", image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/10/108/10803943/13_240.jpg"}
 , {tag:"Japanese", image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11039900/4_360.jpg"}
 , {tag:"Teen", image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11060077/14_360.jpg"}
 , {tag:"Asian", image: "https://www1.javhoho.com/wp-content/uploads/2021/06/Jenny-Curvy-Thailand-Chick-Takes-it-Doggystyle-520x293.jpg"}
@@ -8,7 +8,7 @@ export const CATEGORIES = [
 , {tag:"VR Porn",image: "https://cdni.vikiporn.com/contents/videos_screenshots/3729000/3729161/preview.mp4.jpg"}
 , {tag:"Ebony",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11055100/11_360.jpg"}
 , {tag:"Gay",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11060139/14_360.jpg"}
-, {tag:"Amateur",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11059688/15_360.jpg"}
+, {tag:"Amateur",image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb2UJYj-rGxB5zZqGlybixRDyuZ5Skhjx40A&s"}
 , {tag:"Lesbian",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11045468/4_360.jpg"}
 , {tag:"Shemale",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11057133/7_360.jpg"}
 , {tag:"Mature",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11058213/10_360.jpg"}
@@ -22,12 +22,12 @@ export const CATEGORIES = [
 , {tag:"Hardcore",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11059478/9_360.jpg"}
 , {tag:"Homemade",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11058603/2_360.jpg"}
 , {tag:"Latina",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11034673/12_360.jpg"}
-, {tag:"Blowjob",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11049434/10_360.jpg"}
+, {tag:"Blowjob",image: "https://static-ca-cdn.eporner.com/gallery/Bw/Sx/jV48jccSxBw/138239-great-blowjob-nude.jpg"}
 , {tag:"Indian",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11051180/6_360.jpg"}
 , {tag:"BDSM",image: "https://tn.bdsmx-porn.com/contents/videos_screenshots/412000/412267/480x270/1.jpg"}
 , {tag:"Orgy",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11035439/14_360.jpg"}
 , {tag:"Vintage",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11030798/13_360.jpg"}
-, {tag:"Big Dick",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/10/108/10843852/2_360.jpg"}
+, {tag:"Big Dick",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/10/103/10302639/14_240.jpg"}
 , {tag:"Blonde",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11058941/12_360.jpg"}
 , {tag:"Masturbation",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/11/110/11058116/11_360.jpg"}
 , {tag:"Group Sex",image: "https://static-ca-cdn.eporner.com/thumbs/static4/1/10/107/10712164/6_360.jpg"}
