@@ -26,7 +26,7 @@ export default function Models() {
  const [models, setModels] = useState<Datum[]>([])
  const [count, setCount] = useState<number>(0)
  const [page, setPage] = useState<number>(1)
-
+ 
  const dispatch = useAppDispatch()
 
  const query:any = useQuery() // Get Query params
@@ -35,7 +35,25 @@ const handlePagination = (pageNumber:any) =>{
 	setPage(pageNumber)
 }
 
+
+const range = (start, end, step = 1) => {
+  let output = [] 
+
+  if (typeof end === 'undefined'){
+    end = start
+    start = 0
+  }
+
+  for ( let i = start; i < end; i += step){
+    output.push(i)
+  }
+
+  return output
+}
+
 useEffect(()=>{
+
+console.log(range(1, 11))
 const changePage = query.get('page')
 // Mutate state conditional
 if(changePage !== null ){
@@ -44,6 +62,7 @@ dispatch(getModelsSource(parseInt(changePage)))
   .then((response)=>{
 	setModels(response.models.data)
 	setCount(response.count)
+  console.log(response.count)
 	setPage(parseInt(changePage))	
   })
 }else{
