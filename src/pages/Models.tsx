@@ -13,6 +13,8 @@ import { useAppDispatch } from '../redux/hooks';
 import { getModelsSource } from '../redux/modelSource/modelsSlice';
 import { Link } from 'react-router-dom';
 
+import { Pagination } from '../components/commonComponents/Pagination';
+
 
 /*
 En este caso, deberiamos utilizar un manejo de estados para que se mantengan los cambios una vez que se actulice la ventana
@@ -26,34 +28,34 @@ export default function Models() {
  const [models, setModels] = useState<Datum[]>([])
  const [count, setCount] = useState<number>(0)
  const [page, setPage] = useState<number>(1)
- 
+ const [rangePages, setRangePage] = useState<number[]>([])
+
  const dispatch = useAppDispatch()
 
  const query:any = useQuery() // Get Query params
-
+ const currentPage = query.get('page') 
 const handlePagination = (pageNumber:any) =>{
 	setPage(pageNumber)
 }
 
 
-const range = (start, end, step = 1) => {
-  let output = [] 
-
+const range = (start:number, end:number, step = 1) => {
   if (typeof end === 'undefined'){
     end = start
     start = 0
   }
 
   for ( let i = start; i < end; i += step){
-    output.push(i)
+    // rangePages.push(i)
+     rangePages.push(i)
   }
-
-  return output
 }
 
 useEffect(()=>{
 
-console.log(range(1, 11))
+range(1, count)
+console.log(rangePages)
+
 const changePage = query.get('page')
 // Mutate state conditional
 if(changePage !== null ){
@@ -62,7 +64,6 @@ dispatch(getModelsSource(parseInt(changePage)))
   .then((response)=>{
 	setModels(response.models.data)
 	setCount(response.count)
-  console.log(response.count)
 	setPage(parseInt(changePage))	
   })
 }else{
@@ -75,7 +76,7 @@ dispatch(getModelsSource(parseInt(changePage)))
 	
   })
 }
-},[setPage, page])
+},[setPage, page, count])
 
   return (
 	<>
@@ -87,15 +88,20 @@ dispatch(getModelsSource(parseInt(changePage)))
     ))}
 </section>
 
+<Pagination  itemsPage={rangePages} currentPage={parseInt(currentPage)} route/>
+
+
     <nav className="flex justify-center mt-20 mb-20">
     <div className="flex items-center">
-        <Link className={query.get('page') === '1' ? 'hidden' : 'block'} to={`/models?page=${parseInt(query.get('page')) - 1}`} onClick={handlePagination}>
+        {/*<Link className={query.get('page') === '1' ? 'hidden' : 'block'} to={`/models?page=${parseInt(query.get('page')) - 1}`} onClick={handlePagination}>
             <Prev />
-        </Link>
-        <Paginator current={query.get('page') !== null ? parseInt(query.get('page')) : 1} handlePagination={handlePagination} route={'/models'} length={count} postPerPage={models.length} />
-        <Link className={query.get('page') === '379' ? 'hidden' : 'block'} to={query.get('page') !== null ? `/models?page=${parseInt(query.get('page')) + 1}` : `/models?page=2`} onClick={handlePagination}>
+        </Link>*/}
+        {/*<Paginator current={query.get('page') !== null ? parseInt(query.get('page')) : 1} handlePagination={handlePagination} route={'/models'} length={count} postPerPage={models.length} />*/}
+        {/*<Link className={query.get('page') === '379' ? 'hidden' : 'block'} to={query.get('page') !== null ? `/models?page=${parseInt(query.get('page')) + 1}` : `/models?page=2`} onClick={handlePagination}>
             <Next />
-        </Link>
+        </Link>*/}
+
+        
     </div>
 </nav>
 

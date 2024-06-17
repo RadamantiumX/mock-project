@@ -44,25 +44,24 @@ export const useQuery = () => new URLSearchParams(useLocation().search)
 
 
 
-export const usePagination = (items:number[], pageLimit:number) => {
-  const [pageNumber, setPageNumber] = useState(0)
-  const pageCount = Math.ceil(items.length / pageLimit)
-  
-    const changePage = (pN:number) => {
-      setPageNumber(pN)
-    }
+export const useRange = (itemsPage:number[], start:number, end:number) =>{
+    
+    const rangePage = itemsPage.slice(start, end)
+    
+    
+    
+    return {rangePage}
+}
 
-    const pageData = () => {
-      const s = pageNumber * pageLimit // start
-      const e = s + pageLimit // end
-      return items.slice(s, e) // Move the limit
-    }
 
-    const nextPage = () => {
-      setPageNumber
-    }
 
-  return { pageNumber, pageCount, changePage, pageData }
+export const usePagination = (itemsPage:number[], currentPage:number, range:number) => {
+   const start = currentPage - 1
+   const end = currentPage + range
+
+   const rangePage = itemsPage.slice(start, end)
+
+   return {rangePage}
 }
 
   
