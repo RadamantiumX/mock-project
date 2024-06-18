@@ -6,12 +6,13 @@ import { PicPages } from "../components/photosComponents/PicPages"
 export default function Photos() {
   const query = useQuery()
   const tag = query.get('tag') 
+  const page = query.get('page')
 
   return (
     <main>
       <PageHeader title="Most Popular Tags"/>
       <PopularTags tag={tag}/>
-      <PicPages tag={tag}/>
+      <PicPages tag={tag} page={page}/>
     </main>
   )
 }
