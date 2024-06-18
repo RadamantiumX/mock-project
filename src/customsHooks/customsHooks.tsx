@@ -44,13 +44,20 @@ export const useQuery = () => new URLSearchParams(useLocation().search)
 
 
 
-export const useRange = (itemsPage:number[], start:number, end:number) =>{
+export const useRange = (start:number, end:number) =>{
+     const [rangePages] = useState<number[]>([])
+    const step = 1
+    if (typeof end === 'undefined'){
+      end = start
+      start = 0
+    }
+  
+    for ( let i = start; i < end; i += step){
+       rangePages.push(i)
+    }
+
+    return { rangePages }
     
-    const rangePage = itemsPage.slice(start, end)
-    
-    
-    
-    return {rangePage}
 }
 
 
