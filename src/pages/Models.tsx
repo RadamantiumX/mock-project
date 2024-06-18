@@ -5,15 +5,11 @@ import {CardsModels} from "../components/modelsComponents/CardsModels";
 import { SearchModelQuery } from '../components/modelsComponents/SearchModelQuery';
 import { useEffect, useState } from "react";
 import { type Datum } from '../types/phubScrapingData';
-import { Paginator } from '../components/commonComponents/Paginator';
 import { useQuery } from '../customsHooks/customsHooks';
-import { Next } from '../components/icons/Next';
-import { Prev } from '../components/icons/Prev';
 import { useAppDispatch } from '../redux/hooks';
 import { getModelsSource } from '../redux/modelSource/modelsSlice';
-import { Link } from 'react-router-dom';
-
 import { Pagination } from '../components/commonComponents/Pagination';
+import { useRange } from '../customsHooks/customsHooks';
 
 
 /*
@@ -28,33 +24,18 @@ export default function Models() {
  const [models, setModels] = useState<Datum[]>([])
  const [count, setCount] = useState<number>(0)
  const [page, setPage] = useState<number>(1)
- const [rangePages, setRangePage] = useState<number[]>([])
+// const [rangePages] = useState<number[]>([])
 
  const dispatch = useAppDispatch()
 
  const query:any = useQuery() // Get Query params
  const currentPage = query.get('page') 
-const handlePagination = (pageNumber:any) =>{
-	setPage(pageNumber)
-}
 
-
-const range = (start:number, end:number, step = 1) => {
-  if (typeof end === 'undefined'){
-    end = start
-    start = 0
-  }
-
-  for ( let i = start; i < end; i += step){
-    // rangePages.push(i)
-     rangePages.push(i)
-  }
-}
+const { rangePages } = useRange(1, count)
 
 useEffect(()=>{
 
-range(1, count)
-console.log(rangePages)
+//range(1, count)
 
 const changePage = query.get('page')
 // Mutate state conditional
@@ -88,19 +69,10 @@ dispatch(getModelsSource(parseInt(changePage)))
     ))}
 </section>
 
-<Pagination  itemsPage={rangePages} currentPage={parseInt(currentPage)} route/>
-
-
     <nav className="flex justify-center mt-20 mb-20">
     <div className="flex items-center">
-        {/*<Link className={query.get('page') === '1' ? 'hidden' : 'block'} to={`/models?page=${parseInt(query.get('page')) - 1}`} onClick={handlePagination}>
-            <Prev />
-        </Link>*/}
-        {/*<Paginator current={query.get('page') !== null ? parseInt(query.get('page')) : 1} handlePagination={handlePagination} route={'/models'} length={count} postPerPage={models.length} />*/}
-        {/*<Link className={query.get('page') === '379' ? 'hidden' : 'block'} to={query.get('page') !== null ? `/models?page=${parseInt(query.get('page')) + 1}` : `/models?page=2`} onClick={handlePagination}>
-            <Next />
-        </Link>*/}
-
+      
+      <Pagination  itemsPage={rangePages} currentPage={parseInt(currentPage)}/>
         
     </div>
 </nav>
