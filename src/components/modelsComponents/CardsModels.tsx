@@ -17,7 +17,7 @@ export const CardsModels: React.FC<Props> = ({ name, photo, views, url }) => {
         <div className="flex flex-col items-center">
             <div className="w-64 h-auto mb-2 overflow-hidden duration-200 bg-white shadow-md rounded-xl hover:shadow-xl">
                 <Link to={`/model-index/${modelNameSlice}`}>
-                    <img src={photo} alt="Product" className="object-cover w-full rounded-t-xl h-96" />
+                    <img src={photo} alt="Vanilla Leak Model Photo" className="object-cover w-full rounded-t-xl h-96" title={`${name} profile photo`}/>
                 </Link>
             </div>
             <div className="px-4 py-3 w-72">
