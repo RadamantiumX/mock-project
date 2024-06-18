@@ -87,7 +87,7 @@ export default function NavBar() {
                   <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/">Home</Link>
                   <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/categories-list">Categories</Link>
                   <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/models?page=1">Models</Link>
-                  <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/photos?tag=all">Photos</Link>
+                  <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/photos?tag=all&page=1">Photos</Link>
                   <div className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800">
                     <Selection />
                   </div>
@@ -107,7 +107,7 @@ export default function NavBar() {
               <li><Link reloadDocument className="subnav" to="/">Home</Link></li>
               <SelectCategories />
               <SelectModels />
-              <li><Link className="subnav" to="/photos?tag=all">Photos</Link></li>
+              <li><Link className="subnav" to="/photos?tag=all&page=1">Photos</Link></li>
               <OrderVideosButton/>
             </ul>
           </nav>
