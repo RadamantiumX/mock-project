@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { pornHubData } from '../../services/scraping'
+import { pornHubDataModels } from '../../services/scraping'
 import type { PhubScrapingData } from '../../types/phubScrapingData'
 
 
@@ -21,7 +21,7 @@ const initialState: ModelsState = {
 
 
 export const getModelsSource = createAsyncThunk("models", async (payload:number) => {
-  return await pornHubData(payload)
+  return await pornHubDataModels(payload)
 })
 
 
