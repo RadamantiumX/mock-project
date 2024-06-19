@@ -45,7 +45,7 @@ export const useQuery = () => new URLSearchParams(useLocation().search)
 
 
 export const useRange = (start:number, end:number) =>{
-     const [rangePages] = useState<number[]>([])
+    const [rangePages] = useState<number[]>([])
     const step = 1
     if (typeof end === 'undefined'){
       end = start

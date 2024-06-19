@@ -104,7 +104,13 @@ const router = createBrowserRouter([
             },
             {
                 path: "/photos",
-                element: <Photos/>
+                element: <Photos/>,
+                children: [
+                    {
+                        path: '/photos',
+                        element: <Navigate to={generatePath("/photos?tag=all&page=1")}/>
+                    }
+                ]
             },
             {
                 path: "/redirect",

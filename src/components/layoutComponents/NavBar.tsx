@@ -51,7 +51,7 @@ export default function NavBar() {
         <header className="md:flex md:items-center md:justify-around p-4 pb-0 md:pb-4">
           <div className="flex items-center justify-between mb-4 md:mb-0">
             <Link reloadDocument className="-mt-3" style={{ width: "16rem" }} to="/">
-              <img src={Logo} alt="Logo DirtyHub" aria-labelledby="Vanilla Leak Logo" />
+              <img src={Logo} alt="Logo Vanilla Leak" aria-labelledby="Vanilla Leak Logo" title="This is our Logo, Vanilla Leak"/>
             </Link>
             <div className="md:hidden flex items-center">
               {token ?

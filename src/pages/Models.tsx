@@ -24,7 +24,6 @@ export default function Models() {
  const [models, setModels] = useState<Datum[]>([])
  const [count, setCount] = useState<number>(0)
  const [page, setPage] = useState<number>(1)
-// const [rangePages] = useState<number[]>([])
 
  const dispatch = useAppDispatch()
 
@@ -72,7 +71,7 @@ dispatch(getModelsSource(parseInt(changePage)))
     <nav className="flex justify-center mt-20 mb-20">
     <div className="flex items-center">
       
-      <Pagination  itemsPage={rangePages} currentPage={parseInt(currentPage)}/>
+      <Pagination  itemsPage={rangePages} currentPage={parseInt(currentPage)} optParam={null}/>
         
     </div>
 </nav>

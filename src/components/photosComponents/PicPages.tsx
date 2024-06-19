@@ -16,10 +16,10 @@ export const PicPages:React.FC<Props> = ({tag, page}) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [pages, setPages] = useState<any>()
   
-  const { rangePages } = useRange(1, pages)
+  const { rangePages } = useRange(1, parseInt(pages))
 
   useEffect(()=>{
-    console.log(rangePages)
+    console.log(rangePages.length)
     axiosClientAuth(`/phub/pics/${page}/${tag}`)
       .then((data)=>{
         console.log(data.data.pages)
@@ -29,14 +29,14 @@ export const PicPages:React.FC<Props> = ({tag, page}) => {
       .catch(err => {
         console.log(err)
       })
-  },[tag, pages])
+  },[tag])
   return (
     <>
     <section className="mt-20">
      <div className="grid grid-flow-row grid-cols-4">
         {pics.map((item)=>(<AlbumCard  title={item.title} preview={item.preview}/>))}
      </div>
-     <Pagination itemsPage={rangePages} currentPage={parseInt(page)}/>
+     <Pagination itemsPage={rangePages} currentPage={parseInt(page)} optParam={tag}/>
     </section>
     </>
   )

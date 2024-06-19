@@ -7,7 +7,7 @@ interface Props{
 
 export const TagCard:React.FC<Props> = ({tag, fill}) => {
   return (
-    <Link to={`/photos?tag=${tag.toLowerCase()}&page=1`} className={`border rounded-md px-2 bg-${fill}`}>
+    <Link to={`/photos?tag=${tag.toLowerCase()}&page=1`} className={`border rounded-md px-2 bg-${fill}`} reloadDocument>
       
       {tag}
     </Link>
