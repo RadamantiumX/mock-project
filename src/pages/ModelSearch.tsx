@@ -1,25 +1,14 @@
-// import { CardsModels } from "../components/modelsComponents/CardsModels"
 import { SearchModelQuery } from "../components/modelsComponents/SearchModelQuery"
 import { useQuery } from "../customsHooks/customsHooks"
-import { useEffect, useState } from "react"
-import axiosClientAuth from "../services/axios-client-auth"
-import { type Datum } from "../types/phubScrapingData"
 import { CardsModels } from "../components/modelsComponents/CardsModels"
+import { useModelSearch } from "../customsHooks/customsHooks"
 
 export default function ModelSearch() {
-  const [models, setModels] = useState<Datum[]>([])
   const query = useQuery()
   const searchModel = query.get("query")
-  useEffect(()=>{
-  axiosClientAuth(`phub/models-filter/${searchModel}`)
-   .then(({data})=>{
-    console.log(data.models)
-    setModels(data.models)
-   })
-   .catch(err =>{
-    console.log(err)
-   })
-  },[searchModel])
+
+  const {models} = useModelSearch(searchModel)
+  
   return (
     <div className="container mx-auto mt-10 mb-5 px-8">
         <SearchModelQuery/>

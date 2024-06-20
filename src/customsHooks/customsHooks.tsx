@@ -1,9 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import axiosClientAuth from "../services/axios-client-auth"
 import { useCallback, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { pornHubDataModels } from "../services/scraping";
+import { pornHubInfoModel } from "../services/scraping";
+import { getModelVideos } from "../services/resources";
+import { pornHubSearchModel } from "../services/scraping";
 import { type Datum } from "../types/phubScrapingData";
+import { type ModelInfoDetail } from "../types/phubScrapingData";
+import { type Response } from "../types/redtube";
+import { useAppDispatch, useAppSelector } from "../redux/hooks"
+import { getEpornerSource } from "../redux/epornerSources/sourceSlice"
 
 
 const MAX_TITLE_WORDS = 10; 
@@ -18,10 +24,11 @@ export const useTruncateTitle = (title:string | undefined) => {
   return title;
 }
 
+
+
 export const useFetchModels = (page:number) =>{
  const [models, setModels] = useState<Datum[]>([])
  const [count, setCount] = useState<number>(0)
- 
 
   useEffect(()=>{
 
@@ -48,6 +55,55 @@ export const useFetchModels = (page:number) =>{
    return {models, count} 
 }
 
+export const useFetchModelInfo = (name:string | undefined) => {
+    const [model, setModel] = useState<ModelInfoDetail>()
+
+    useEffect(()=>{
+      pornHubInfoModel(name)
+        .then((data)=>{
+           setModel(data)
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+    },[name])
+  
+    return {model}
+}
+
+export const useFetchModelVideos = (name:string | undefined) => {
+   const [modelVideos, setModelVideos] = useState<Response[]>([])
+
+   useEffect(()=>{
+     getModelVideos(name)
+       .then((data)=>{
+         setModelVideos(data.response)
+       })
+       .catch(err=>{
+        console.log(err)
+       })
+   },[name])
+  console.log(modelVideos)
+   return {modelVideos}
+}
+
+
+export const useModelSearch = (searchModel:string | null) => {
+  const [models, setModels] = useState<Datum[]>([])
+  useEffect(()=>{
+       pornHubSearchModel(searchModel)
+        .then((data)=>{
+          setModels(data)
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+  },[searchModel])
+return {models}
+}
+
+
+
 export const useFetchPost = () => {
  const postData =
  useCallback(async (url:string, payload:any)=>{
@@ -70,6 +126,7 @@ export const useFetchPost = () => {
  
 return { postData }
 }
+
 
 export const useQuery = () => new URLSearchParams(useLocation().search)
 
@@ -102,6 +159,50 @@ export const usePagination = (itemsPage:number[], currentPage:number, range:numb
    return {rangePage}
 }
 
+export const useVideosForCategory = (category:string | undefined) => {
+  const replaceSpace = category?.replace(/ /gi, "") // Replace white spaces for unify the string 
+  const [counter, setCounter] = useState<number>(7)
+
+  const dispatch = useAppDispatch()
+  const eporner = useAppSelector(state => state.source.data)
+
+  const handleResults = () =>{
+    setCounter(counter + 7)
+  }
+  useEffect(()=>{ 
+    const payload = replaceSpace?.concat(" ", counter.toString())
+    // Prevent EXTRA typing ♻
+    if (category !== undefined ) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        dispatch(getEpornerSource(payload as any))
+    
+  }
+
+  },[category, counter]) // ✅Component data is refreshed when "category" is updated
+
+  return {eporner, handleResults, counter}
+} 
+
+
+export const useHomeVideos = () => {
+  const [counter, setCounter] = useState<number>(12);
+  const [isLoading, setIsLoading] = useState<boolean>(false); 
+  const dispatch = useAppDispatch();
+  const eporner = useAppSelector((state) => state.source.data);
+
+  const handleResults = () => {
+    setIsLoading(true); 
+    setCounter(counter + 10);
+  };
+
+  useEffect(() => {
+    dispatch(getEpornerSource(counter)).then(() => {
+      setIsLoading(false); 
+    });
+  }, [counter]);
+
+  return {isLoading, eporner, handleResults}
+}
   
 
 
