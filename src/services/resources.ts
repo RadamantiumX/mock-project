@@ -44,3 +44,9 @@ export const getOrderVideos = async ({ payload }:any) => {
 // https://www.eporner.com/
 
 
+// RedTube Videos
+export const getModelVideos = async (name:string | undefined) => {
+    const res = await fetch(`https://scraping-server.vercel.app/rtube/model/${name}`)
+    const data = await res.json()
+    return data
+}
