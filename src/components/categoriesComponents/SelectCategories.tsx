@@ -1,19 +1,11 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./selectCategories.scss"
 import { CATEGORIES } from "../const/categories";
+import { useDropDownCategories } from "../../customsHooks/customsHooks";
 
 export default function SelectCategories() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsOpen(false);
-  };
-
+  const { isOpen, handleMouseEnter, handleMouseLeave } = useDropDownCategories()
+ 
   return (
     <>
  {/* /////////   DropDown Categories ///////// */}

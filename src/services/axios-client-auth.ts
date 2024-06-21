@@ -3,7 +3,7 @@ import axios from 'axios'
 // Vercel URL: `https://scraping-server.vercel.app`
 
 const axiosClientAuth = axios.create({
-    baseURL: 'http://localhost:4000'
+    baseURL: 'http://localhost:3000'
 })
 
 axiosClientAuth.interceptors.request.use((config)=>{

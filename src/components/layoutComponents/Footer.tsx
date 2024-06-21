@@ -33,7 +33,12 @@ export default function Footer() {
                 <ul className="space-y-4 text-sm">
                   <li>
                     <a className="text-white transition hover:text-white/75" target="blank" href="https://www.eporner.com/">
-                      Source
+                      Source #1
+                    </a>
+                  </li>
+                  <li>
+                    <a className="text-white transition hover:text-white/75" target="blank" href="https://es.redtube.com/">
+                      Source #2
                     </a>
                   </li>
 

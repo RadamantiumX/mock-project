@@ -1,50 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/project/logo.png";
-import { useState } from "react";
 import { QueryForm } from "./QueryForm";
 import "./navbar.scss";
 import { SelectModels } from "../modelsComponents/SelectModels";
 import SelectCategories from "../categoriesComponents/SelectCategories";
 import { OrderVideosButton} from "../commonComponents/OrderVideosButton";
-import { useStateContext } from "../../contexts/ContextProvider";
-import axiosClientAuth from "../../services/axios-client-auth";
 import { UserButton } from "../commonComponents/UserButton";
 import { User } from "../icons/User";
+import { Hamburguer } from "../icons/Hamburguer";
 import { Selection } from "./Selection";
-
+import { useToogleButton, useLogout } from "../../customsHooks/customsHooks";
 
 
 export default function NavBar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { token, setToken, nickname, setNickname, setPath } = useStateContext()
-
-  const navigate = useNavigate()
-
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // If user LOGOUT --> GO TO --> AUTH PAGE
-  const logout = () => {
-    axiosClientAuth.post('/auth/logout')
-      .then(() => {
-        localStorage.clear() // Clear full storage
-        setToken(null) // Token too
-        setNickname(null)
-        setPath('home')
-        navigate('/redirect')
-      })
-      .catch(err => {
-        const response = err.response
-        console.log(response)
-      })
-
-  }
-
-
-
+  const { isOpen, toggleDropdown } = useToogleButton(()=>{})
+  const { token, nickname, logout } = useLogout()
+ 
   return (
     <>
       <nav className="relative">
@@ -60,8 +32,8 @@ export default function NavBar() {
                   <User/>
                 </Link>
               }
-              <button className="mobile-menu-button ml-3" onClick={toggleMenu} aria-label="menu">
-                <i className="fa fa-2x fa-bars"></i>
+              <button className="mobile-menu-button ml-3" onClick={toggleDropdown}  aria-label="menu">
+                <Hamburguer/>
               </button>
             </div>
           </div>
@@ -80,7 +52,7 @@ export default function NavBar() {
             </div>
           </div>
 
-          {isMenuOpen && (
+          {isOpen && (
            <div className="absolute top-full left-0 w-full bg-black z-50">
               <div className="max-w-6xl mx-auto px-4 pt-4 pb-4">
                 <div className="mobile-menu md:hidden">
@@ -100,7 +72,7 @@ export default function NavBar() {
           )}
         </header>
       </nav>
-      {!isMenuOpen && (
+      {!isOpen && (
         <div className="hidden bg-indigo-300 bg-opacity-25 pt-2 pb-2 md:flex mt-2 w-full justify-center md:justify-around">
           <nav>
             <ul className="flex flex-row gap-4 mobile-menu">

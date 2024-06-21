@@ -10,7 +10,9 @@ import { type ModelInfoDetail } from "../types/phubScrapingData";
 import { type Response } from "../types/redtube";
 import { useAppDispatch, useAppSelector } from "../redux/hooks"
 import { getEpornerSource } from "../redux/epornerSources/sourceSlice"
-
+import { useNavigate } from "react-router-dom";
+import axiosClientAuth from "../services/axios-client-auth";
+import { useStateContext } from "../contexts/ContextProvider";
 
 const MAX_TITLE_WORDS = 10; 
 
@@ -202,6 +204,93 @@ export const useHomeVideos = () => {
   }, [counter]);
 
   return {isLoading, eporner, handleResults}
+}
+
+export const useSearchVideos = (search:string | null) => {
+  const [counter, setCounter] = useState<number>(7)
+
+  const replaceSpace = search?.replace(/ /gi, "") // Replace white spaces to unify the string 
+  
+  const dispatch = useAppDispatch()
+  const eporner = useAppSelector(state => state.source.data)
+
+  const handleResults = () =>{
+    setCounter(counter + 7)
+  }
+  
+  useEffect(()=>{ 
+    const payload = replaceSpace?.concat(" ", counter.toString())
+    // Prevent EXTRA typing ♻
+    if (search !== undefined ) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        dispatch(getEpornerSource(payload as any))
+    
+  }
+
+  },[search, counter]) // ✅Component data is refreshed when "query" is updated
+
+  return {counter, eporner, handleResults}
+}
+
+export const useDropDownCategories = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsOpen(false);
+  };
+ return {isOpen, handleMouseEnter, handleMouseLeave}
+}
+
+export const useToogleButton = (onClick:()=>void | null) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+  
+    onClick();
+    setIsOpen(false);
+  };
+
+  return {isOpen, toggleDropdown, handleLogout}
+}
+
+export const useLogout = () => {
+  const { token, setToken, nickname, setNickname, setPath } = useStateContext()
+  const navigate = useNavigate()
+
+  // If user LOGOUT --> GO TO --> AUTH PAGE
+  const logout = () => {
+    axiosClientAuth.post('/auth/logout')
+      .then(() => {
+        localStorage.clear() // Clear full storage
+        setToken(null) // Token too
+        setNickname(null)
+        setPath('home')
+        navigate('/redirect')
+      })
+      .catch(err => {
+        const response = err.response
+        console.log(response)
+      })
+}
+return {token, nickname, logout}
+
+}
+
+
+export const useInputSearch = () => {
+  const [query, setQuery] = useState("")
+  const handleInput = (e:React.KeyboardEvent<HTMLInputElement>) =>{
+    setQuery(e.target.value)
+  }
+return {query, setQuery, handleInput}
 }
   
 
