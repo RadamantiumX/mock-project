@@ -285,12 +285,33 @@ return {token, nickname, logout}
 }
 
 
-export const useInputSearch = () => {
+export const useInputSearch = (path:string) => {
+  const [message, setMessage] = useState("")
+  const [show, setShow] = useState(false)
+ // const [query, setQuery] = useState("")
+  const [border, setBorder] = useState("")
   const [query, setQuery] = useState("")
-  const handleInput = (e:React.KeyboardEvent<HTMLInputElement>) =>{
+  const handleInput = (e:any) =>{
     setQuery(e.target.value)
   }
-return {query, setQuery, handleInput}
+
+  const navigate = useNavigate()
+  const handleKeyDown = (e:React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+       if(query.length > 0) {
+       navigate(`/${path}?query=${query}`)
+       setShow(false)
+       setBorder("")
+       setMessage("")
+       setQuery("")
+       }else{
+           setShow(true)
+           setBorder("border-2 border-red-900")
+           setMessage("Please enter a query")
+       }
+    }
+  }
+return {query, border,message,show, handleInput, handleKeyDown}
 }
   
 

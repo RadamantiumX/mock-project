@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import {  useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { MagnifyingGlass } from "../icons/MagnifyingGlass"
 import { useInputSearch } from "../../customsHooks/customsHooks"
 
@@ -10,34 +7,7 @@ interface Props {
 }
 
 export const QueryForm:React.FC<Props> = ({path, placeholder}) => {
-    const [message, setMessage] = useState("")
-    const [show, setShow] = useState(false)
-   // const [query, setQuery] = useState("")
-    const [border, setBorder] = useState("")
-
-    const { query, setQuery, handleInput } = useInputSearch()
-    
-    const navigate = useNavigate()
-    /*const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-       setQuery(e.target.value)
-    }*/
-    
-     const handleKeyDown = (e:React.KeyboardEvent<HTMLInputElement>) => {
-         if (e.key === "Enter") {
-            if(query.length > 0) {
-            navigate(`/${path}?query=${query}`)
-            setShow(false)
-            setBorder("")
-            setMessage("")
-            setQuery("")
-            }else{
-                setShow(true)
-                setBorder("border-2 border-red-900")
-                setMessage("Please enter a query")
-            }
-         }
-       }
-   
+    const { query, border,message,show, handleInput, handleKeyDown } = useInputSearch(path)
     
   return (
       <>
