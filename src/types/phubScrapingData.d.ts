@@ -1,14 +1,10 @@
 export type PhubScrapingData = {
-    models: Models;
-    count:  number;
-}
-
-export type Models = {
     data:   Datum[];
     paging: Paging;
 }
 
 export type Datum = {
+    _id:      string;
     name:     string;
     url:      string;
     views:    string;
@@ -20,10 +16,11 @@ export type Datum = {
 }
 
 export type Paging = {
-    current: number;
-    maxPage: number;
-    isEnd:   boolean;
+    currentPage:  number;
+    totalResults: number;
+    totalPages:   number;
 }
+
 
 export type ModelInfoDetail = {
     name:       string;

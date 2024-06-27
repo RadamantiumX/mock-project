@@ -37,8 +37,8 @@ export const useFetchModels = (page:number) =>{
    if(page !== null){
     pornHubDataModels(page)
       .then((response)=>{
-        setModels(response.models.data)
-        setCount(response.count)
+        setModels(response.data)
+        setCount(response.paging.totalPages)
       })
       .catch(err=>{
         console.log(err)
@@ -46,8 +46,8 @@ export const useFetchModels = (page:number) =>{
     }else{
       pornHubDataModels(1)
       .then((response)=>{
-        setModels(response.models.data)
-        setCount(response.count)
+        setModels(response.data)
+        setCount(response.paging.totalPages)
       })
       .catch(err=>{
         console.log(err)
@@ -94,8 +94,8 @@ export const useModelSearch = (searchModel:string | null) => {
   const [models, setModels] = useState<Datum[]>([])
   useEffect(()=>{
        pornHubSearchModel(searchModel)
-        .then((data)=>{
-          setModels(data)
+        .then((response)=>{
+          setModels(response)
         })
         .catch(err=>{
           console.log(err)
