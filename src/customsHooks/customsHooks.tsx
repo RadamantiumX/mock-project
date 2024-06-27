@@ -85,7 +85,6 @@ export const useFetchModelVideos = (name:string | undefined) => {
         console.log(err)
        })
    },[name])
-  console.log(modelVideos)
    return {modelVideos}
 }
 
