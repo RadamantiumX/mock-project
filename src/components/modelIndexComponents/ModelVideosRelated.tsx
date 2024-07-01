@@ -9,19 +9,6 @@ interface Props{
 
 export const ModelVideosRelated:React.FC<Props> = ({ source }) => {
 
-  // to refactor
- 
-  
-   /* const toFlat = (arr) =>{
-      const [arrayFlat, setArrayFlat] = useState([])
-       arr.map((item:any | never)=>{
-       arrayFlat.push(item.tag_name)
-    })
-  
-    return JSON.stringify(arrayFlat)
-    }*/
-   
-  
 
   return (
     <section className="mb-10 ml-3 mr-3 lg:mr-10 lg:ml-10">

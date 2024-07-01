@@ -1,7 +1,7 @@
 import { MovieCard } from "../commonComponents/MovieCard"
 import { type Video } from "../../types/eporner"
 interface Props {
-  source: Video[] | null
+  source: Video[] | undefined
 }
 
 export const Videos: React.FC<Props> =  ({ source }) => {

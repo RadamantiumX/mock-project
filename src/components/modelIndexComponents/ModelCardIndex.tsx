@@ -13,9 +13,6 @@ interface Props{
 export const ModelCardIndex:React.FC<Props> = ({name, cover, about, avatar, height, weight, gender}) => {
   return (
     <>
-   
-
-
     {name !== undefined ? (
     <section className="relative pt-40 pb-24">
         <>
