@@ -6,20 +6,20 @@ import {  type APIEpornerResponse } from "../types/eporner"
 
 // Eporner
 
-export const getLatestContent = async ( payload: number ) => {
+export const getLatestContent = async ( payload: number) => {
     // Traer un numero de los parametros, si es menor o igual a 1, aumentamos "binary", sino, aumentamos "qty"
-    let qty = 12
+    /*let qty = 12
     let binary = 0
     if (payload <= 1){
         binary = payload
     }else{
         qty = qty + payload
-    }
-    const res = await fetch(`${import.meta.env.VITE_EPORNER_API_URL}api/v2/video/search/?per_page=${qty.toString()}&page=1&thumbsize=big&order=latest&gay=${binary.toString()}&lq=1&format=json`)
-    const {videos: data} = await res.json() as APIEpornerResponse
+    }*/
+    const res = await fetch(`${import.meta.env.VITE_EPORNER_API_URL}api/v2/video/search/?page=${payload}&order=latest`)
+    const data = await res.json() as APIEpornerResponse
    
     return data
-
+   // Deleted: per_page=${qty.toString()}
 }
 
 // This function needs separate two values to modify the API response
