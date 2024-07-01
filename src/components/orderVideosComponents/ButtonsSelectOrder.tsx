@@ -1,18 +1,12 @@
 import { ORDER } from '../const/order';
 import { Star } from '../icons/Star'
 import { Link } from 'react-router-dom'
-import {  SetStateAction, useState } from 'react';
+import { useActiveTab } from '../../customsHooks/customsHooks';
 
 import "./buttonsSelectOrder.scss"
 
 export const ButtonsSelectOrder = () => {
-
-    const [activeTab, setActiveTab] = useState(0);
-
-    const handleTabClick = (index: SetStateAction<number>) => {
-       setActiveTab(index);
-    };
- 
+const { activeTab, handleTabClick } = useActiveTab()
    
   return (
       <div className="lg:flex lg:flex-col mt-3 -mb-5">

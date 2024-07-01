@@ -5,18 +5,16 @@ interface Props {
     name: string;
     photo: string;
     views: string;
-    url: string;
+    
 }
 
-export const CardsModels: React.FC<Props> = ({ name, photo, views, url }) => {
-    // Get the slice of URL name
-    const lastSlashOfURL = url.lastIndexOf('/');
-    const modelNameSlice = url.slice(lastSlashOfURL + 1);
+export const CardsModels: React.FC<Props> = ({ name, photo, views }) => {
+  
 
     return (
         <div className="flex flex-col items-center">
             <div className="w-64 h-auto mb-2 overflow-hidden duration-200 bg-white shadow-md rounded-xl hover:shadow-xl">
-                <Link to={`/model-index/${modelNameSlice}`}>
+                <Link to={`/model-index/${name}`} reloadDocument>
                     <img src={photo} alt="Vanilla Leak Model Photo" className="object-cover w-full rounded-t-xl h-96" title={`${name} profile photo`}/>
                 </Link>
             </div>
