@@ -8,7 +8,6 @@ export default function ModelIndex() {
  const { name } = useParams<string>() 
  const {model} = useFetchModelInfo(name)
  const {modelVideos} = useFetchModelVideos(name)
- 
   return (
     <main>
       <section>
