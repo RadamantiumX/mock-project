@@ -3,10 +3,8 @@
 import '../components/init'
 import {CardsModels} from "../components/modelsComponents/CardsModels";
 import { SearchModelQuery } from '../components/modelsComponents/SearchModelQuery';
-import { useQuery } from '../customsHooks/customsHooks';
 import { Pagination } from '../components/commonComponents/Pagination';
-import { useRange } from '../customsHooks/customsHooks';
-import { useFetchModels } from '../customsHooks/customsHooks';
+import { useFetchModels, useRange, useQuery } from '../customsHooks/customsHooks';
 
 
 /*
@@ -30,7 +28,7 @@ export default function Models() {
     <SearchModelQuery/>
     <section className="grid justify-center grid-cols-1 mx-auto mt-10 mb-5 w-fit lg:grid-cols-5 md:grid-cols-2 justify-items-center gap-y-20 gap-x-24"> {/* Aumentamos el valor de gap-x */}
     {models?.map((item, key) => (
-        <CardsModels key={key} name={item.name} photo={item.photo} views={item.views} url={item.url} />
+        <CardsModels key={key} name={item.name} photo={item.photo} views={item.views}  />
     ))}
 </section>
 
