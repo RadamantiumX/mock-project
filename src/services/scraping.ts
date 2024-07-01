@@ -10,7 +10,7 @@ export const pornHubDataModels = async (page:number) => {
 }
 
 export const pornHubInfoModel = async (name:string | undefined) => {
-    const res = await fetch(`https://scraping-server.vercel.app/phub/model-info/${name}`)
+    const res = await fetch(`https://scraping-server.vercel.app/phmongo/model/${name}`)
     const data = await res.json()
     return data
 }
@@ -19,4 +19,10 @@ export const pornHubSearchModel = async (searchModel:string | null) => {
     const res = await fetch(`https://scraping-server.vercel.app/phmongo/search-models/${searchModel}`)
     const data = await res.json()
     return data
+}
+
+export const pornHubPicsAlbums = async (page:number, tag:string | null)=>{
+  const res = await fetch(`https://scraping-server.vercel.app/phub/pics/${page}/${tag}`)
+  const data = await res.json()
+  return data
 }
