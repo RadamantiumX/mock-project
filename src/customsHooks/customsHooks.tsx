@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, SetStateAction } from "react";
 import { useLocation } from "react-router-dom";
 import { pornHubDataModels } from "../services/scraping";
 import { pornHubInfoModel } from "../services/scraping";
+import { pornHubPicsAlbums } from "../services/scraping";
 import { getModelVideos } from "../services/resources";
 import { pornHubSearchModel } from "../services/scraping";
 import { type Datum } from "../types/phubScrapingData";
@@ -10,6 +11,7 @@ import { type ModelInfoDetail } from "../types/phubScrapingData";
 import { type Response } from "../types/redtube";
 import { useAppDispatch, useAppSelector } from "../redux/hooks"
 import { getEpornerSource } from "../redux/epornerSources/sourceSlice"
+import { getEpornerOrderSource } from "../redux/epornerSources/orderSlice";
 import { useNavigate } from "react-router-dom";
 import axiosClientAuth from "../services/axios-client-auth";
 import { useStateContext } from "../contexts/ContextProvider";
@@ -38,6 +40,7 @@ export const useFetchModels = (page:number) =>{
     pornHubDataModels(page)
       .then((response)=>{
         setModels(response.data)
+        console.log(response.data)
         setCount(response.paging.totalPages)
       })
       .catch(err=>{
@@ -151,7 +154,7 @@ export const useRange = (start:number, end:number) =>{
 
 
 
-export const usePagination = (itemsPage:number[], currentPage:number, range:number) => {
+export const usePagination = (itemsPage:number[], currentPage:number, range:number | any) => {
    const start = currentPage - 1
    const end = currentPage + range
 
@@ -184,8 +187,8 @@ export const useVideosForCategory = (category:string | undefined) => {
   return {eporner, handleResults, counter}
 } 
 
-
-export const useHomeVideos = () => {
+// Hay q pasarle la pagina
+export const useHomeVideos = (page:any) => {
   const [counter, setCounter] = useState<number>(12);
   const [isLoading, setIsLoading] = useState<boolean>(false); 
   const dispatch = useAppDispatch();
@@ -197,7 +200,7 @@ export const useHomeVideos = () => {
   };
 
   useEffect(() => {
-    dispatch(getEpornerSource(counter)).then(() => {
+    dispatch(getEpornerSource(page)).then(() => {
       setIsLoading(false); 
     });
   }, [counter]);
@@ -312,7 +315,71 @@ export const useInputSearch = (path:string) => {
   }
 return {query, border,message,show, handleInput, handleKeyDown}
 }
+
+export const useToggleFlag = (flagEsp:any, flagUk:any) => {
+  const [selectedFlag, setSelectedFlag] = useState(flagEsp);
+
+  const toggleFlag = () => {
+    setSelectedFlag(selectedFlag === flagEsp ? flagUk : flagEsp);
+  };
+
+  return {selectedFlag, toggleFlag}
+}
+
+export const useActiveTab = () => {
+  const [activeTab, setActiveTab] = useState(0);
+
+    const handleTabClick = (index: SetStateAction<number>) => {
+       setActiveTab(index);
+    };
+
+    return { activeTab, handleTabClick }
+}
   
+export const useOrderVideos = (param:string | undefined) => {
+  const [counter, setCounter] = useState<number>(12)
+  const dispatch = useAppDispatch()
+  const eporner: any = useAppSelector(state => state.order.data)
+
+  // Per page
+  const handleResults = () => {
+    setCounter(counter + 10)
+  }
+
+  // Args
+  const payload = {
+    qty: counter,
+    order: param
+  }
+
+  useEffect(() => {
+
+    dispatch(getEpornerOrderSource({ payload }))
+
+  }, [counter, param])
+
+  return { eporner, handleResults, counter }
+}
+
+export const usePicsAlbums = (page: number, tag:string | null) => {
+  const [pics, setPics] = useState<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [pages, setPages] = useState<any>()
+
+  useEffect(()=>{
+    pornHubPicsAlbums(page, tag)
+      .then((data)=>{  
+        setPages(data.pages)
+        setPics(data.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },[tag])
+
+  return { pics, pages }
+}
+
 
 
 
