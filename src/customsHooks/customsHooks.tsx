@@ -18,6 +18,8 @@ import { useNavigate } from "react-router-dom";
 import axiosClientAuth from "../services/axios-client-auth";
 import { useStateContext } from "../contexts/ContextProvider";
 import { Video } from "../types/eporner";
+import { getPostsSource } from "../redux/postSources/postsSlice";
+import { getReplysSource } from "../redux/replySources/replysSlice";
 
 const MAX_TITLE_WORDS = 10; 
 
@@ -394,6 +396,59 @@ export const usePicsAlbums = (page: number, tag:string | null) => {
   return { pics, pages }
 }
 
+export const useShowForm = () => {
+  const { token } = useStateContext()
+  const [showForm, setShowForm] = useState(false)
+  const navigate = useNavigate()
+
+  const handleFormResponse = () => {
+    if (token){
+       !showForm ? setShowForm(true) : setShowForm(false)
+    }else{
+      navigate('/auth/portal/signin')
+    }
+  }
+
+  return { showForm, handleFormResponse }
+
+}
+
+export const useShowArticle = (id:any, nick_name:any) => {
+  const { setPostId, nickname } = useStateContext()
+  const [currentUser, setCurrentUser] = useState(false)
+  const [showArticle, setShowArticle] = useState(false)
+  const data = useAppSelector( state => state.replys.data )
+  const [responses] = useState<any>([])
+
+  useEffect(() =>{
+    setPostId(id)
+    data.forEach((item:any, index:any)=>{
+       if (item.postId === id){
+         responses.push(data[index])
+       }
+    })
+    
+    if (nickname === nick_name)setCurrentUser(true)  
+    
+   },[id])
+return { currentUser, responses, showArticle, setShowArticle }
+}
+
+export const usePosts = () => {
+  const { videoId, token }: any = useStateContext()
+  const data: any = useAppSelector(state => state.posts.data)
+  
+  const dispatch = useAppDispatch()
+
+  useEffect(() => { 
+    dispatch(getReplysSource())
+
+    if (videoId) {
+      dispatch(getPostsSource(videoId))
+    }
+  }, [videoId])
+ return { token, data }
+}
 
 
 

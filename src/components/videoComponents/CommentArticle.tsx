@@ -3,13 +3,10 @@ import { Like } from "../icons/Like";
 import { Response } from "../icons/Response";
 import { ResponsePost } from "../icons/ResponsePost";
 import { Trash } from "../icons/Trash";
-import { useEffect, useState } from "react";
 import moment from "moment";
-import { useStateContext } from "../../contexts/ContextProvider";
-import { useNavigate } from "react-router-dom";
 import { ReponsePostForm } from "./ReponsePostForm";
 import { ResponseArticle } from "./ResponseArticle";
-import {  useAppSelector } from "../../redux/hooks";
+import { useShowForm, useShowArticle } from "../../customsHooks/customsHooks";
 
 
 interface Props {
@@ -20,37 +17,9 @@ interface Props {
 }
 
 export const CommentArticle: React.FC<Props>=  ({id, created, nick_name, content}) => {
-  const [showForm, setShowForm] = useState(false)
-  const [showArticle, setShowArticle] = useState(false)
-  const [currentUser, setCurrentUser] = useState(false)
-  const [responses] = useState<any>([])
-  const { setPostId, token, nickname } = useStateContext()
-  const navigate = useNavigate()
-  const data = useAppSelector( state => state.replys.data )
+  const { showForm, handleFormResponse } = useShowForm()
+  const { currentUser, responses, showArticle, setShowArticle } = useShowArticle(id, nick_name)
 
- 
- 
-  const handleFormResponse = () => {
-    if (token){
-       !showForm ? setShowForm(true) : setShowForm(false)
-    }else{
-      navigate('/auth/portal/signin')
-    }
-  }
-
-
-
-  useEffect(() =>{
-   setPostId(id)
-   data.forEach((item:any, index:any)=>{
-      if (item.postId === id){
-        responses.push(data[index])
-      }
-   })
-   
-   if (nickname === nick_name)setCurrentUser(true)  
-   
-  },[id])
   return (
 <>
 <article className="relative flex antialiased" key={id} id="article">

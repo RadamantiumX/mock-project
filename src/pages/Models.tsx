@@ -5,6 +5,7 @@ import {CardsModels} from "../components/modelsComponents/CardsModels";
 import { SearchModelQuery } from '../components/modelsComponents/SearchModelQuery';
 import { Pagination } from '../components/commonComponents/Pagination';
 import { useFetchModels, useRange, useQuery } from '../customsHooks/customsHooks';
+import { Loading } from '../components/redirectComponents/Loading';
 
 
 /*
@@ -24,7 +25,7 @@ export default function Models() {
 
   return (
 	<>
-	      <div className="container px-8 mx-auto mt-10 mb-5">
+	      {models.length!==0 ? <div className="container px-8 mx-auto mt-10 mb-5">
     <SearchModelQuery/>
     <section className="grid justify-center grid-cols-1 mx-auto mt-10 mb-5 w-fit lg:grid-cols-5 md:grid-cols-2 justify-items-center gap-y-20 gap-x-24"> {/* Aumentamos el valor de gap-x */}
     {models?.map((item, key) => (
@@ -40,7 +41,10 @@ export default function Models() {
     </div>
 </nav>
 
-</div>
+</div> : 
+
+<Loading/>
+}
 
 	</>
   )

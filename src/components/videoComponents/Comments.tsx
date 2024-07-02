@@ -1,26 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CommentArticle } from "./CommentArticle"
-import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getPostsSource } from "../../redux/postSources/postsSlice"
-import { getReplysSource } from "../../redux/replySources/replysSlice"
-import { useEffect } from "react"
-import { useStateContext } from "../../contexts/ContextProvider"
 import { SingInButton } from "./SingInButton"
 import { PostCommentForm } from "./PostCommentForm"
+import { usePosts } from "../../customsHooks/customsHooks"
 
 export const Comments = () => {
-  const { videoId, token }: any = useStateContext()
-  const data: any = useAppSelector(state => state.posts.data)
-  
-  const dispatch = useAppDispatch()
-
-  useEffect(() => { 
-    dispatch(getReplysSource())
-
-    if (videoId) {
-      dispatch(getPostsSource(videoId))
-    }
-  }, [videoId])
+ const { token, data } = usePosts()
 
   return (
     <section className="flex flex-col mt-5 mb-20">
