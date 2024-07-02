@@ -2,7 +2,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { getLatestContent } from '../../services/resources'
-import { getRelatedVideos } from '../../services/resources'
+
 // import  { type Video } from '../../types/eporner'
 // import type { APIEpornerResponse } from '../../types/eporner'
 export interface EpornerState {
@@ -12,21 +12,16 @@ export interface EpornerState {
 }
 
 const initialState: EpornerState = {
-  data: {},
+  data: [],
   loading: false,
   error: ""
 }
 
 
 
-export const getEpornerSource = createAsyncThunk("eporner", async (payload:string | number) => {
-  if (typeof payload === "string"){
-    
-    return await getRelatedVideos(payload)
-  }else{
+export const getEpornerSource = createAsyncThunk("eporner", async (payload:number) => {
  
   return await getLatestContent(payload)
-}
 
 })
 
@@ -50,7 +45,7 @@ export const epornerSlice = createSlice({
        .addCase(getEpornerSource.rejected, (state, action: PayloadAction<any>) => { // Rejected state
          state.loading = false
          state.error = action.payload
-         state.data = {}
+         state.data = []
        })
      
   }
