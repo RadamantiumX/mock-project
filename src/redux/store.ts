@@ -4,7 +4,7 @@ import favsReducer from './favSources/favsSlice'
 import postsReducer from './postSources/postsSlice'
 import replysReducer from './replySources/replysSlice'
 import likesReducer from './likeSources/likesSlice'
-import sourceOrderReducer from './epornerSources/orderSlice'
+
 
 
 
@@ -16,7 +16,7 @@ export const store = configureStore({
     posts: postsReducer,
     replys: replysReducer,
     likes: likesReducer,
-    order: sourceOrderReducer,
+    
     
   },
  
