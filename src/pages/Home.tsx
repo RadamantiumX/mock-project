@@ -1,6 +1,5 @@
 import { Videos } from "../components/displayComponents/Videos";
-// import { LoadButton } from "../components/commonComponents/LoadButton";
-import SkeletonLoader from "../components/commonComponents/SkeletonLoader"; 
+import {SkeletonLoader} from "../components/commonComponents/SkeletonLoader"; 
 import { useHomeVideos } from "../customsHooks/customsHooks";
 import { useRange, useQuery } from "../customsHooks/customsHooks";
 import { Pagination } from "../components/commonComponents/Pagination";
@@ -14,7 +13,6 @@ export default function Home() {
     <main>
       <Videos source={eporner?.videos} />
       {isLoading ? <SkeletonLoader /> : null} 
-      {/*<LoadButton onClick={handleResults} title={"Load more Videos.."} />*/}
       <Pagination itemsPage={rangePages} currentPage={currentPage === null ? 1: parseInt(currentPage)} optParam={null}/>
     </main>
   );

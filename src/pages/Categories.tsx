@@ -2,7 +2,6 @@
 import { VideosResults } from "../components/searchComponents/VideosResults"
 import { useParams } from "react-router-dom"
 import { NotResults } from "../components/commonComponents/NotResults"
-// import { LoadButton } from "../components/commonComponents/LoadButton"
 import {  useSearchVideos, useRange, useQuery } from "../customsHooks/customsHooks"
 
 import { Pagination } from "../components/commonComponents/Pagination"
@@ -25,7 +24,6 @@ export default function Categories() {
         videosResults.length !== 0 ? 
         <div className="mt-8">
           <VideosResults source={videosResults} />
-          {/*<LoadButton onClick={handleResults} title={'Load more videos...'} />*/}
           <Pagination itemsPage={rangePages} currentPage={currentPage === null ? 1: parseInt(currentPage)} optParam={null}/>
         </div>
         : <NotResults />

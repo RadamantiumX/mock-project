@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Videos } from "../displayComponents/Videos"
-
 import { useParams } from "react-router-dom"
-// import { LoadButton } from "../commonComponents/LoadButton"
 import { useOrderVideos, useQuery, useRange } from "../../customsHooks/customsHooks"
 import { Pagination } from "../commonComponents/Pagination"
 
@@ -22,7 +20,6 @@ export const Order = () => {
       {orderVideos?.length > 0 ?
         <div className="mt-8" id="order-videos">
           <Videos source={orderVideos} />
-          {/*<LoadButton onClick={handleResults} title={'Load more videos...'} />*/}
           <Pagination itemsPage={rangePages} currentPage={currentPage === null ? 1: parseInt(currentPage)} optParam={null}/>
         </div>
         : <div className="flex flex-col items-center mt-10 mb-10">	<div className="w-12 h-12 rounded-full animate-spin

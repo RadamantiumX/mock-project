@@ -1,4 +1,4 @@
-const SkeletonLoader = () => {
+export const SkeletonLoader = () => {
     return (
       <div className="grid justify-center w-full grid-cols-1 gap-4 m-1 mt-12 mb-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         
@@ -44,5 +44,5 @@ const SkeletonLoader = () => {
     );
   };
   
-  export default SkeletonLoader;
+
   
