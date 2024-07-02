@@ -1,52 +1,17 @@
-import { useEffect, useState } from "react"
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router-dom"
 import { Ghost } from "../icons/Ghost"
-import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getEpornerSource } from "../../redux/epornerSources/sourceSlice"
 import { Tags } from "./Tags"
-import { useParams } from "react-router-dom"
-
-
+import { useRelatedVideos, useKeywords, useTrimmedTags } from "../../customsHooks/customsHooks"
 interface Props {
     keywords?: string
 }
 
 export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
- const [loading, setLoading] = useState(true)
- // eslint-disable-next-line @typescript-eslint/no-unused-vars
- // const [trimWord, setTrimWord] = useState<string[]>([])
- const trimWord:string[] = []
- const [limited, setLimited] = useState<string[]>([]) // Tags State
- const lowerCase = keywords!.toLowerCase()
- const params = useParams()
- console.log(params.id)
-
-  const stringSplit = lowerCase.split(" ")
-  
-  // Defult number to set more related results
-  const DEFAULT_NUM = 3 
-   
-  // Filter data to avoid empty results
-  const selection = stringSplit.filter((str) => str.length > 4 && str.length < 10)
+const { selection } = useKeywords(keywords) 
+const { videos, loading } = useRelatedVideos(selection[0])
+const { limited } = useTrimmedTags(selection)
  
-  const dispatch = useAppDispatch()
-  const eporner = useAppSelector(state => state.source.data) // resources videos EPORNER
- 
-  
-  useEffect(() => {
-  dispatch(getEpornerSource(selection[0].concat(" ", DEFAULT_NUM.toString())))
-  if (eporner !== null) setLoading(false)
-
-  // Remove words with coma ","  
-  selection.forEach(sel =>{
-    if (sel.includes(",")) {
-       const trimmed:string = sel.substring(0,sel.length -1)
-       trimWord.push(trimmed)
-    }
-  })
- setLimited(trimWord.slice(0,10)) // Set the tag state
-},[])
-
     return (
         <section className="mr-3 ml-3 lg:mr-10 lg:ml-10 mb-10">
            <Tags limited={limited} />
@@ -55,8 +20,8 @@ export const SideBarVideos:React.FC<Props> = ({ keywords }) => {
             <div>Cargando</div>
         ) : (
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                {eporner?.length !== 0 ? (
-                    eporner?.map((video, index) => (
+                {videos.length !== 0 ? (
+                    videos.map((video:any, index:any) => (
                         <article key={index} className="col-span-1">
                             <Link to={`/video/${video.id}/${video.keywords}/${video.title}/${video.views}`} target="_blank">
                                 <img className="w-full rounded-md mb-2" src={video.default_thumb.src} alt={video.title} />
