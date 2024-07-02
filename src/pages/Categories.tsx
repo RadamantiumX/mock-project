@@ -1,26 +1,32 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { VideosResults } from "../components/searchComponents/VideosResults"
 import { useParams } from "react-router-dom"
 import { NotResults } from "../components/commonComponents/NotResults"
-import { LoadButton } from "../components/commonComponents/LoadButton"
-import { useVideosForCategory } from "../customsHooks/customsHooks"
+// import { LoadButton } from "../components/commonComponents/LoadButton"
+import {  useSearchVideos, useRange, useQuery } from "../customsHooks/customsHooks"
+
+import { Pagination } from "../components/commonComponents/Pagination"
 
 type Params = {
   category: string
 }
 
 export default function Categories() {
-  const { category } = useParams<Params>()
+  const { category }:any = useParams<Params>()
+  const query = useQuery()
+  const currentPage:any = query.get('page')
+  const {videosResults, totalPages} = useSearchVideos(category, currentPage)
+  const { rangePages } = useRange(1, Math.round(totalPages))
 
-  const {eporner, handleResults} = useVideosForCategory(category)
-  
   return (
     <main>
      <h1 className="text-2xl sm:text-3xl md:text-2xl lg:text-3xl xl:text-3xl text-center sm:text-left ml-5 mt-9"><span className="font-bold text-pink-600">{category}</span> Videos</h1>
       {
-        eporner?.length !== 0 ? 
+        videosResults.length !== 0 ? 
         <div className="mt-8">
-          <VideosResults source={eporner} />
-          <LoadButton onClick={handleResults} title={'Load more videos...'} />
+          <VideosResults source={videosResults} />
+          {/*<LoadButton onClick={handleResults} title={'Load more videos...'} />*/}
+          <Pagination itemsPage={rangePages} currentPage={currentPage === null ? 1: parseInt(currentPage)} optParam={null}/>
         </div>
         : <NotResults />
       }

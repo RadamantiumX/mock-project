@@ -11,10 +11,13 @@ import { type ModelInfoDetail } from "../types/phubScrapingData";
 import { type Response } from "../types/redtube";
 import { useAppDispatch, useAppSelector } from "../redux/hooks"
 import { getEpornerSource } from "../redux/epornerSources/sourceSlice"
-import { getEpornerOrderSource } from "../redux/epornerSources/orderSlice";
+import { getOrderVideos } from "../services/resources";
+import { getRelatedVideos } from "../services/resources";
+import { getSearchContent } from "../services/resources";
 import { useNavigate } from "react-router-dom";
 import axiosClientAuth from "../services/axios-client-auth";
 import { useStateContext } from "../contexts/ContextProvider";
+import { Video } from "../types/eporner";
 
 const MAX_TITLE_WORDS = 10; 
 
@@ -163,29 +166,23 @@ export const usePagination = (itemsPage:number[], currentPage:number, range:numb
    return {rangePage}
 }
 
-export const useVideosForCategory = (category:string | undefined) => {
-  const replaceSpace = category?.replace(/ /gi, "") // Replace white spaces for unify the string 
-  const [counter, setCounter] = useState<number>(7)
+export const useOrderVideos = (param:string | undefined, page:number | null) => {
+   const [orderVideos, setOrderVideos] = useState<Video[]>([])
+   const [totalPages, setTotalPages] = useState<any>()
+  useEffect(() => {
+    getOrderVideos(page, param)
+     .then((data)=>{
+       setOrderVideos(data.videos)
+       setTotalPages(data.total_pages)
+     })
+     .catch(error=>{
+      console.error('Something was wrong')
+      console.error(error.message)
+     })
+  }, [param, page])
 
-  const dispatch = useAppDispatch()
-  const eporner = useAppSelector(state => state.source.data)
-
-  const handleResults = () =>{
-    setCounter(counter + 7)
-  }
-  useEffect(()=>{ 
-    const payload = replaceSpace?.concat(" ", counter.toString())
-    // Prevent EXTRA typing ♻
-    if (category !== undefined ) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        dispatch(getEpornerSource(payload as any))
-    
-  }
-
-  },[category, counter]) // ✅Component data is refreshed when "category" is updated
-
-  return {eporner, handleResults, counter}
-} 
+  return { orderVideos, totalPages }
+}
 
 // Hay q pasarle la pagina
 export const useHomeVideos = (page:any) => {
@@ -208,30 +205,70 @@ export const useHomeVideos = (page:any) => {
   return {isLoading, eporner, handleResults}
 }
 
-export const useSearchVideos = (search:string | null) => {
-  const [counter, setCounter] = useState<number>(7)
-
-  const replaceSpace = search?.replace(/ /gi, "") // Replace white spaces to unify the string 
-  
-  const dispatch = useAppDispatch()
-  const eporner = useAppSelector(state => state.source.data)
-
-  const handleResults = () =>{
-    setCounter(counter + 7)
-  }
-  
+export const useSearchVideos = (search:string | null, page: number | null) => {
+  const [videosResults, setVideosResults] = useState<Video[]>([])
+  const [totalPages, setTotalPages] = useState<any>()
+  const replaceSpace:any = search?.replace(/ /gi, "") // Replace white spaces to unify the string 
   useEffect(()=>{ 
-    const payload = replaceSpace?.concat(" ", counter.toString())
+   
     // Prevent EXTRA typing ♻
     if (search !== undefined ) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        dispatch(getEpornerSource(payload as any))
-    
+      getSearchContent(replaceSpace, page)
+        .then((data)=>{
+            setVideosResults(data.videos)
+            setTotalPages(data.total_pages)
+        })
+        .catch(error=>{
+          console.error('Something was wrong')
+          console.error(error.message)
+        })  
   }
 
-  },[search, counter]) // ✅Component data is refreshed when "query" is updated
+  },[search]) // ✅Component data is refreshed when "query" is updated
 
-  return {counter, eporner, handleResults}
+  return {videosResults, totalPages}
+}
+
+export const useRelatedVideos = (query:any) => {
+  const [videos, setVideos] = useState<Video[]>([])
+  const [loading, setLoading] = useState(true)
+  useEffect(()=>{
+     getRelatedVideos(query)
+     .then((data)=>{
+      setVideos(data.videos)
+      setLoading(false)
+     })
+     .catch(error=>{
+      console.error('Something was wrong')
+      console.error(error.message)
+     })
+  },[])
+   
+
+     return {videos, loading}
+}
+export const useKeywords = (keywords:any) => {
+  const lowerCase = keywords!.toLowerCase()
+  const stringSplit = lowerCase.split(" ")
+  const selection = stringSplit.filter((str:any) => str.length > 4 && str.length < 10)
+  return {selection}
+}
+
+export const useTrimmedTags = (selection:string[]) => {
+  const [limited, setLimited] = useState<string[]>([])
+  const trimWord:string[] = []
+  useEffect(()=>{
+      // Remove words with coma ","  
+  selection.forEach(sel =>{
+    if (sel.includes(",")) {
+       const trimmed:string = sel.substring(0,sel.length -1)
+       trimWord.push(trimmed)
+    }
+  })
+  setLimited(trimWord.slice(0,10)) // Set the tag state
+  },[])
+
+  return {limited}
 }
 
 export const useDropDownCategories = () => {
@@ -336,30 +373,7 @@ export const useActiveTab = () => {
     return { activeTab, handleTabClick }
 }
   
-export const useOrderVideos = (param:string | undefined) => {
-  const [counter, setCounter] = useState<number>(12)
-  const dispatch = useAppDispatch()
-  const eporner: any = useAppSelector(state => state.order.data)
 
-  // Per page
-  const handleResults = () => {
-    setCounter(counter + 10)
-  }
-
-  // Args
-  const payload = {
-    qty: counter,
-    order: param
-  }
-
-  useEffect(() => {
-
-    dispatch(getEpornerOrderSource({ payload }))
-
-  }, [counter, param])
-
-  return { eporner, handleResults, counter }
-}
 
 export const usePicsAlbums = (page: number, tag:string | null) => {
   const [pics, setPics] = useState<any[]>([])
