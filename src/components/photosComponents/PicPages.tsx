@@ -21,7 +21,7 @@ export const PicPages:React.FC<Props> = ({tag, page}) => {
      <div className="grid grid-flow-row grid-cols-4">
         {pics?.map((item)=>(<AlbumCard  title={item.title} preview={item.preview}/>))}
      </div>
-     <Pagination itemsPage={rangePages} currentPage={parseInt(page)} optParam={tag}/>
+     <Pagination itemsPage={rangePages} currentPage={parseInt(page)} optParam={`tag=${tag}`}/>
     </section>
     </>
   )
