@@ -4,13 +4,16 @@ import { useState, useEffect } from "react"
 import { useStateContext } from "../../contexts/ContextProvider"
 import { useAppDispatch } from "../../redux/hooks"
 import { getPostsSource } from "../../redux/postSources/postsSlice"
+import { useParams } from "react-router-dom"
+
 
 interface Props{
    title: string
 }
 
 export const PostCommentForm:React.FC<Props> = ({title}) => {
-  const { token, videoId, setNotification } = useStateContext()
+  const {id} = useParams()
+  const { token, setNotification } = useStateContext()
   const [content, setContent] = useState('')
   const dispatch = useAppDispatch()
    
@@ -20,24 +23,28 @@ export const PostCommentForm:React.FC<Props> = ({title}) => {
     const payload = {
         token: token,
         content: content,
-        videoId: videoId
+        videoId: id
     }
-      await axiosClientAuth.post('/post/newpost',payload)
+      await axiosClientAuth.post('/post/new-post',payload)
        .then(({data})=>{
          setNotification(data.message)
          setContent('')// <--- reset form
-         dispatch(getPostsSource(videoId)) // <--- Change the state
+         dispatch(getPostsSource(id)) // <--- Change the state
+          .catch(error => {
+            console.error(error.message)
+          })
        })
-       .catch( err => {
-         const res = err.response
-         console.log(res)
+       .catch( error => {
+         console.error('Something was wrong')
+         console.error(error.message)
        })
 
   }
-
-  useEffect(()=>{
-   // console.log(videoId)
-  },[videoId, token])
+ useEffect(()=>{
+  console.log(token)
+  console.log(id)
+ },[])
+  
   return (
     
   <form onSubmit={handleSubmit}>

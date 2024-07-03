@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEmbed } from "../../customsHooks/customsHooks"
 interface Props {
-    id?: string 
+    id?: any 
 }
 
 export const Frame:React.FC<Props> = ({ id }) => {
-  const [redtubeId, setRedtubeId] = useState("")
-
-  useEffect(()=>{
-    if(id?.includes("redtube")){
-        const arrayId = id.split("redtube")
-        setRedtubeId(arrayId[0])
-    }
-  },[redtubeId])
+ const { redtubeId } = useEmbed(id) 
+ 
   return (
     <div className="relative overflow-hidden" style={{ maxWidth: "1150px", width: "100%" }}>
             <div style={{ paddingBottom: "54.25%", position: "relative" }}>
