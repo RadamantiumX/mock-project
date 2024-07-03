@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useCallback, useState, useEffect, SetStateAction } from "react";
+import { useCallback, useState, useEffect, SetStateAction, Dispatch } from "react";
 import { useLocation } from "react-router-dom";
 import { pornHubDataModels } from "../services/scraping";
 import { pornHubInfoModel } from "../services/scraping";
@@ -20,6 +20,7 @@ import { useStateContext } from "../contexts/ContextProvider";
 import { Video } from "../types/eporner";
 import { getPostsSource } from "../redux/postSources/postsSlice";
 import { getReplysSource } from "../redux/replySources/replysSlice";
+import { getLikesSource } from "../redux/likeSources/likesSlice";
 
 const MAX_TITLE_WORDS = 10; 
 
@@ -116,7 +117,7 @@ return {models}
 export const useFetchPost = () => {
  const postData =
  useCallback(async (url:string, payload:any)=>{
- const response = await fetch(`http://localhost:4000${url}`, {
+ const response = await fetch(`http://localhost:3000${url}`, {
      method: "POST",
      headers: {
       "Content-Type": "application/json"
@@ -434,8 +435,8 @@ export const useShowArticle = (id:any, nick_name:any) => {
 return { currentUser, responses, showArticle, setShowArticle }
 }
 
-export const usePosts = () => {
-  const { videoId, token }: any = useStateContext()
+export const usePosts = (id:string) => {
+  const { token }: any = useStateContext()
   const data: any = useAppSelector(state => state.posts.data)
   
   const dispatch = useAppDispatch()
@@ -443,12 +444,149 @@ export const usePosts = () => {
   useEffect(() => { 
     dispatch(getReplysSource())
 
-    if (videoId) {
-      dispatch(getPostsSource(videoId))
+    if (id) {
+      dispatch(getPostsSource(id))
     }
-  }, [videoId])
+  }, [id, token])
  return { token, data }
 }
+
+export const useEmbed = (id:string) => {
+  const [redtubeId, setRedtubeId] = useState("")
+
+  useEffect(()=>{
+    if(id?.includes("redtube")){
+        const arrayId = id.split("redtube")
+        setRedtubeId(arrayId[0])
+    }
+  },[redtubeId])
+
+  return {redtubeId}
+}
+
+export const useAddPost = () =>{
+
+}
+
+export const useSocialLike = (videoId:string | undefined, setFillLike:Dispatch<SetStateAction<string>>, setFillDislike:Dispatch<SetStateAction<string>>) => {
+  const [color, setColor] = useState('')
+  const [count, setCount] = useState(0)
+  const [ average, setAverage ] = useState(0)
+  const { token } = useStateContext()
+  const dispatch = useAppDispatch() 
+
+  useEffect(()=>{
+  
+
+    // When the state is Fullfilled, we set the like or dislike if the user choose one before
+     if(token){
+        const payload = {token: token, videoId: videoId}
+        dispatch(getLikesSource({payload}))
+        .unwrap()
+        .then((response)=>{
+          if(response.like){
+            setFillLike('white')
+            setCount(response.count_likes)
+            if(response.count_likes> 0){
+              setAverage(response.count_likes / response.count_total * 100)
+                  
+            }    
+          }else{
+            setFillDislike('white')
+          }
+          
+        })
+        .catch(err=>{
+          const res = err.response
+          console.log(res)
+        })
+        
+     }
+  
+     if(average < 49) 
+      {
+         setColor('white')
+         console.log(average)
+  
+       }else{
+         setColor('white')
+        }
+            
+   },[token, videoId, average, color])
+
+   return { count, color, average }
+}
+
+
+
+export const useSocialLikeEvent = (videoId:string | undefined) => {
+  const like = true
+  const dislike = false
+  const { token, setNotification } = useStateContext()
+  const [fillLike, setFillLike] = useState('none')
+  const [fillDislike, setFillDislike] = useState('none')
+  
+  const handleLike = async () => {
+    if (fillLike === 'none'){
+        setFillLike('white')
+        setFillDislike('none')
+        
+        await axiosClientAuth.post('/like/add',{token, videoId, like})
+         .then(({data})=>{
+           setNotification(data.message)
+         })
+         .catch(error=>{
+        console.error('Something was wrong')
+        console.error(error.message)
+        })
+        }else{
+        setFillLike('none')
+        await axiosClientAuth.post('/like/del',{token, videoId})
+        .then(({data})=>{
+       console.log(data)
+        })
+        .catch(err=>{
+       const res = err.response
+       console.log(res)
+       })
+        }     
+} 
+
+const handleDislike = async () => {
+  if (fillDislike === 'none'){
+    setFillDislike('white')
+    setFillLike('none')
+    const payload = {
+        token: token,
+        videoId: videoId,
+        like: dislike
+    }
+    await axiosClientAuth.post('/like/add',payload)
+    .then(({data})=>{
+      setNotification(data.message)
+    })
+    .catch(err=>{
+   const res = err.response
+   console.log(res)
+   })
+  }else{
+    setFillDislike('none')
+    await axiosClientAuth.post('/like/del',{token, videoId})
+    .then(({data})=>{
+   console.log(data)
+    })
+    .catch(err=>{
+   const res = err.response
+   console.log(res)
+   })
+  }
+}
+
+return { handleLike, handleDislike, fillLike, fillDislike, setFillLike, setFillDislike }
+
+}
+
+ 
 
 
 
