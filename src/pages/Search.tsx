@@ -20,7 +20,7 @@ export default function Search() {
         videosResults?.length !== 0 ? 
         <div className="mt-8">
           <VideosResults source={videosResults} />
-          <Pagination itemsPage={rangePages} currentPage={currentPage === null ? 1: parseInt(currentPage)} optParam={`query=${search}`}/>
+          {totalPages > 1 &&<Pagination itemsPage={rangePages} currentPage={currentPage === null ? 1: parseInt(currentPage)} optParam={`query=${search}`}/>}
         </div>
         : <NotResults />
       }
