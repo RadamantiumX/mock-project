@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { MovieCard } from "../commonComponents/MovieCard"
 import { type Response } from "../../types/redtube"
-// import { useState } from "react"
 
 interface Props{
-    source: Response[]
+    source?: Response[]
 
 }
 

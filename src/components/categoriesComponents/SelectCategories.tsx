@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./selectCategories.scss"
 import { CATEGORIES } from "../const/categories";
-import { useDropDownCategories } from "../../customsHooks/customsHooks";
+import { useDropDownCategories } from "../../customsHooks/categoriesHooks";
 
 export default function SelectCategories() {
   const { isOpen, handleMouseEnter, handleMouseLeave } = useDropDownCategories()

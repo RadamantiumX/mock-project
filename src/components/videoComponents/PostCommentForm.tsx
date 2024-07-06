@@ -20,6 +20,10 @@ export const PostCommentForm:React.FC<Props> = ({title}) => {
 
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if(content.length === 0)  {
+     setNotification('Empty content...')
+     return
+    }
     const payload = {
         token: token,
         content: content,
@@ -41,8 +45,7 @@ export const PostCommentForm:React.FC<Props> = ({title}) => {
 
   }
  useEffect(()=>{
-  console.log(token)
-  console.log(id)
+  
  },[])
   
   return (

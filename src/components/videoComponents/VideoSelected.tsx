@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getFavsSource } from '../../redux/favSources/favsSlice';
 import { Frame } from './Frame';
-import { useTruncateTitle, useFetchPost } from '../../customsHooks/customsHooks';
+import { useTruncateTitle, useFetchPost } from '../../customsHooks/videoHooks';
 
 interface Props {
   id?: string;

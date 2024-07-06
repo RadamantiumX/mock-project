@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom"
 import { ModelCardIndex } from "../components/modelIndexComponents/ModelCardIndex"
 import { ModelVideosRelated } from "../components/modelIndexComponents/ModelVideosRelated"
-import { useFetchModelInfo } from "../customsHooks/customsHooks"
-import { useFetchModelVideos } from "../customsHooks/customsHooks"
+
+import { useFetchModelVideos, useFetchModelInfo } from "../customsHooks/modelIndexHooks"
 
 export default function ModelIndex() {
  const { name } = useParams<string>() 

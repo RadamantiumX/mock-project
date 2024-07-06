@@ -6,7 +6,7 @@ import { Trash } from "../icons/Trash";
 import moment from "moment";
 import { ReponsePostForm } from "./ReponsePostForm";
 import { ResponseArticle } from "./ResponseArticle";
-import { useShowForm, useShowArticle } from "../../customsHooks/customsHooks";
+import { useShowForm, useShowArticle, useResponses } from '../../customsHooks/videoHooks'
 
 
 interface Props {
@@ -18,7 +18,8 @@ interface Props {
 
 export const CommentArticle: React.FC<Props>=  ({id, created, nick_name, content}) => {
   const { showForm, handleFormResponse } = useShowForm()
-  const { currentUser, responses, showArticle, setShowArticle } = useShowArticle(id, nick_name)
+  const { currentUser, showArticle, setShowArticle } = useShowArticle(nick_name, id)
+  const { responses } = useResponses(id)
 
   return (
 <>
@@ -47,9 +48,9 @@ export const CommentArticle: React.FC<Props>=  ({id, created, nick_name, content
           {currentUser &&<button className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button trash">
             <Trash/>
           </button>}
-          <button onClick={()=>{ !showArticle ? setShowArticle(true) : setShowArticle(false) }} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like">
+          {responses.length !==0 &&<button onClick={()=>{ !showArticle ? setShowArticle(true) : setShowArticle(false);  }} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like">
             <div className="flex flex-row"><ResponsePost/>{responses.length}</div>
-          </button>
+          </button>}
           
         </div>
       </div>

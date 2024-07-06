@@ -2,7 +2,7 @@
 import { VideosResults } from "../components/searchComponents/VideosResults"
 import { useParams } from "react-router-dom"
 import { NotResults } from "../components/commonComponents/NotResults"
-import {  useSearchVideos, useRange, useQuery } from "../customsHooks/customsHooks"
+import {  useRange, useQuery, useSearchVideos } from "../customsHooks/customsHooks"
 
 import { Pagination } from "../components/commonComponents/Pagination"
 

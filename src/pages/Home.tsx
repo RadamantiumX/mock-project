@@ -1,6 +1,6 @@
 import { Videos } from "../components/displayComponents/Videos";
 import {SkeletonLoader} from "../components/commonComponents/SkeletonLoader"; 
-import { useHomeVideos } from "../customsHooks/customsHooks";
+import { useHomeVideos } from "../customsHooks/homeHooks";
 import { useRange, useQuery } from "../customsHooks/customsHooks";
 import { Pagination } from "../components/commonComponents/Pagination";
 

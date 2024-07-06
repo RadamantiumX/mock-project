@@ -1,40 +1,44 @@
 import axiosClientAuth from "../../services/axios-client-auth"
 import { useStateContext } from "../../contexts/ContextProvider"
 import { useState, useEffect } from "react"
-import { useAppDispatch } from "../../redux/hooks"
-import { getReplysSource } from "../../redux/replySources/replysSlice"
+
 
 interface Props {
    id: number
 }
 
 export const ReponsePostForm:React.FC<Props> = ({id}) => {
+  
   const { token, setNotification } = useStateContext()
   const [content, setContent] = useState('')
-  const dispatch = useAppDispatch()
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  // const dispatch = useAppDispatch()
+  const handleSubmit = async () => {
+    if(content.length === 0)  {
+      setNotification('Empty content...')
+      return
+     }
+  
      const payload = {
         token: token,
         content: content,
         postId: id,
-        response: true
      }
 
-     await axiosClientAuth.post('/post/newpost',payload)
+     await axiosClientAuth.post('/post/new-response',payload)
      .then(({data})=>{
+       
        setNotification(data.message)
        setContent('')// <--- reset form
-       dispatch(getReplysSource)
      })
-     .catch( err => {
-       const res = err.response
-       console.log(res)
+     .catch( error => {
+       console.error('Something was wrong')
+       console.error(error.message)
+     
      })
   }
   useEffect(()=>{
-    
-  },[token])
+  
+  },[token, id])
   return (
     <>
     <form className="w-1/2" onSubmit={handleSubmit}>

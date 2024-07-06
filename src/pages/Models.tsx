@@ -4,8 +4,9 @@ import '../components/init'
 import {CardsModels} from "../components/modelsComponents/CardsModels";
 import { SearchModelQuery } from '../components/modelsComponents/SearchModelQuery';
 import { Pagination } from '../components/commonComponents/Pagination';
-import { useFetchModels, useRange, useQuery } from '../customsHooks/customsHooks';
+import { useRange, useQuery } from '../customsHooks/customsHooks';
 import { Loading } from '../components/redirectComponents/Loading';
+import { useFetchModels } from '../customsHooks/modelsHooks';
 
 
 /*

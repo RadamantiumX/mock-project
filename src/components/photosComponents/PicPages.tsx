@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { usePicsAlbums } from "../../customsHooks/customsHooks"
+import { usePicsAlbums } from "../../customsHooks/photosHooks"
 import { AlbumCard } from "./AlbumCard"
 import { Pagination } from "../commonComponents/Pagination"
 import { useRange } from "../../customsHooks/customsHooks"

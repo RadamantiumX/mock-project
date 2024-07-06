@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Videos } from "../displayComponents/Videos"
 import { useParams } from "react-router-dom"
-import { useOrderVideos, useQuery, useRange } from "../../customsHooks/customsHooks"
+import { useQuery, useRange } from "../../customsHooks/customsHooks"
+import { useOrderVideos } from "../../customsHooks/orderVideosHooks"
 import { Pagination } from "../commonComponents/Pagination"
 
 type Params = {

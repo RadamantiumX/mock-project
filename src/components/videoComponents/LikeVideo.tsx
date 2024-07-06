@@ -1,6 +1,6 @@
 import { ThumbUp } from "../icons/ThumbUp"
 import { ThumbDown } from "../icons/ThumbDown"
-import { useSocialLikeEvent, useSocialLike } from "../../customsHooks/customsHooks"
+import { useSocialLikeEvent, useSocialLike } from "../../customsHooks/videoHooks"
 
 interface Props {
     videoId: string | undefined

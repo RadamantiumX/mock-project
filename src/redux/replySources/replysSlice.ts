@@ -16,8 +16,8 @@ const initialState: ReplysState= {
     error: ""
   }
 
-export const getReplysSource = createAsyncThunk("replys", async()=>{
-     return await latestReplys()
+export const getReplysSource = createAsyncThunk("replys", async(payload:number)=>{
+     return await latestReplys(payload)
 })
 
 export const replysSlice = createSlice({

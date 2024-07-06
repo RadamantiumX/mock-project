@@ -2,7 +2,7 @@
 import { CommentArticle } from "./CommentArticle"
 import { SingInButton } from "./SingInButton"
 import { PostCommentForm } from "./PostCommentForm"
-import { usePosts } from "../../customsHooks/customsHooks"
+import { usePosts } from "../../customsHooks/videoHooks"
 import { useParams } from "react-router-dom"
 
 export const Comments = () => {
