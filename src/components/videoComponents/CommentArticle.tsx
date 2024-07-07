@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Like } from "../icons/Like";
-import { Response } from "../icons/Response";
-import { ResponsePost } from "../icons/ResponsePost";
-import { Trash } from "../icons/Trash";
+import { ActionsButtons } from "./ActionsButtons";
 import moment from "moment";
 import { ReponsePostForm } from "./ReponsePostForm";
 import { ResponseArticle } from "./ResponseArticle";
 import { useShowForm, useShowArticle, useResponses } from '../../customsHooks/videoHooks'
-
 
 interface Props {
    id: number;
@@ -39,19 +35,7 @@ export const CommentArticle: React.FC<Props>=  ({id, created, nick_name, content
               </div>
             </div>
           </div>
-          <button onClick={handleFormResponse} className="inline-flex items-center px-1 pt-2 ml-1 flex-column" aria-label="button response">
-           <Response />
-          </button>
-          <button className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like">
-            <Like/>
-          </button>
-          {currentUser &&<button className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button trash">
-            <Trash/>
-          </button>}
-          {responses.length !==0 &&<button onClick={()=>{ !showArticle ? setShowArticle(true) : setShowArticle(false);  }} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like">
-            <div className="flex flex-row"><ResponsePost/>{responses.length}</div>
-          </button>}
-          
+         <ActionsButtons id={id}  handleFormResponse={handleFormResponse} currentUser={currentUser} responses={responses} showArticle={showArticle} setShowArticle={setShowArticle}/>
         </div>
       </div>
     </div>

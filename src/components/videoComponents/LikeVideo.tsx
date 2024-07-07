@@ -8,7 +8,7 @@ interface Props {
 
 export const LikeVideo:React.FC<Props> = ({videoId}) => { 
 
-    const { handleLike, handleDislike, fillLike, fillDislike, setFillLike, setFillDislike } = useSocialLikeEvent(videoId)
+    const { handleLike, handleDislike, fillLike, fillDislike, setFillLike, setFillDislike } = useSocialLikeEvent(videoId,undefined,'video','')
     const { count, color, average } = useSocialLike(videoId, setFillLike, setFillDislike)
    
   return (

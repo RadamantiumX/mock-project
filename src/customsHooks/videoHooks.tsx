@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import { latestReplys } from "../services/api";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { getPostsSource } from "../redux/postSources/postsSlice";
 import axiosClientAuth from "../services/axios-client-auth";
 import { getLikesSource } from "../redux/likeSources/likesSlice";
-
+import { useNavigate } from "react-router-dom";
 
 
 const MAX_TITLE_WORDS = 10; 
@@ -142,7 +141,7 @@ export const useFetchPost = () => {
   
   }
 
-  export const useSocialLikeEvent = (videoId:string | undefined) => {
+  export const useSocialLikeEvent = (videoId:string | undefined, id:number | undefined, path:string, table:string) => {
     const like = true
     const dislike = false
     const { token, setNotification } = useStateContext()
@@ -154,7 +153,7 @@ export const useFetchPost = () => {
           setFillLike('white')
           setFillDislike('none')
           
-          await axiosClientAuth.post('/like/add',{token, videoId, like})
+          await axiosClientAuth.post(`/like/add-${path}`, videoId !== undefined ? {token, videoId, like}: {token, id, table })
            .then(({data})=>{
              setNotification(data.message)
            })
@@ -164,8 +163,9 @@ export const useFetchPost = () => {
           })
           }else{
           setFillLike('none')
-          await axiosClientAuth.post('/like/del',{token, videoId})
+          await axiosClientAuth.post(`/like/del-${path}`,videoId !== undefined ? {token, videoId}:{token, id, table})
           .then(({data})=>{
+            setNotification(data.message)
          console.log(data)
           })
           .catch(err=>{
@@ -175,6 +175,7 @@ export const useFetchPost = () => {
           }     
   } 
   
+
   const handleDislike = async () => {
     if (fillDislike === 'none'){
       setFillDislike('white')
@@ -184,7 +185,7 @@ export const useFetchPost = () => {
           videoId: videoId,
           like: dislike
       }
-      await axiosClientAuth.post('/like/add',payload)
+      await axiosClientAuth.post('/like/add-video',payload)
       .then(({data})=>{
         setNotification(data.message)
       })
@@ -208,6 +209,7 @@ export const useFetchPost = () => {
   return { handleLike, handleDislike, fillLike, fillDislike, setFillLike, setFillDislike }
   
   }
+  
 
   export const useSocialLike = (videoId:string | undefined, setFillLike:Dispatch<SetStateAction<string>>, setFillDislike:Dispatch<SetStateAction<string>>) => {
     const [color, setColor] = useState('')
@@ -257,3 +259,43 @@ export const useFetchPost = () => {
   
      return { count, color, average }
   }
+
+  
+  export const useCurrentLikePost = (setFillLike:Dispatch<SetStateAction<string>>) => {
+     const handleCurrentLike = async () =>{
+        await axiosClientAuth.post(`/current-post`)
+         .then(({data})=>{
+            setFillLike(data.message)
+         })
+         .catch(error=>{
+           console.error('Something was wrong')
+           console.error(error.message)
+         })
+     }
+  }
+
+
+  export const useDeletePost = (id:any, table:string) => {
+     const navigate = useNavigate()
+     const { setNotification, token } = useStateContext()
+
+
+    const handlePostDelete = ():void => {
+      const payload = {
+        id: id,
+        token: token,
+        table: table
+      }
+      axiosClientAuth.post('/post/del', payload)
+        .then(({data})=>{
+          setNotification(data.message)
+          setTimeout(()=>{
+            navigate(0)
+          },2000)
+        })
+        .catch(error=>{
+          console.log(error)
+        })    
+ }
+return {handlePostDelete} 
+}

@@ -33,12 +33,22 @@ export const latestReplys = async (payload:number) => {
 }
 
 export const isLike = async ({payload}:any) =>{
-    const response = await fetch('http://localhost:3000/like/current',{
+    const response = await fetch('http://localhost:3000/like/current-video',{
             method: 'POST',
             headers: { 'Content-Type' : 'application/json' },
             body: JSON.stringify(payload)    
         })
      return response.json()
+}
+
+export const deletePost = async ({payload}:any) => {
+    const response = await fetch(`http://localhost:3000/post/del`,{
+            method: 'POST',
+            headers: { 'Content-Type' : 'application/json' },
+            body: payload
+    })
+    const data = await response.json()
+    return data
 }
 
 

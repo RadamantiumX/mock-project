@@ -1,10 +1,11 @@
 import { Like } from "../icons/Like";
-import { Response } from "../icons/Response";
+// import { Response } from "../icons/Response";
 import { Trash } from "../icons/Trash";
 import moment from "moment";
 import { useState, useEffect } from "react";
-import { ReponsePostForm } from "./ReponsePostForm";
+// import { ReponsePostForm } from "./ReponsePostForm";
 import { useStateContext } from "../../contexts/ContextProvider";
+import { useDeletePost, useSocialLikeEvent } from "../../customsHooks/videoHooks";
 
 interface Props{
    user: boolean,
@@ -14,12 +15,15 @@ interface Props{
    content: string | null
 }
 
-export const ResponseArticle:React.FC<Props> = ({ user, id, created, _nickname, content}) => {
-   const [showForm, setShowForm] = useState(false)
-   const [currentUser, setCurrentUser] = useState(false)
-   const { nickname } = useStateContext()
+export const ResponseArticle:React.FC<Props> = ({ id, created, _nickname, content}) => {
+  const table = 'response'
+  const { handlePostDelete } = useDeletePost(id, table)
+  const { handleLike,fillLike, setFillLike } = useSocialLikeEvent(undefined,id,'/like/add-post',table)
+   //const [showForm] = useState(false)
+  const [currentUser, setCurrentUser] = useState(false)
+  const { nickname } = useStateContext()
 
-   useEffect(()=>{
+  useEffect(()=>{
       if(nickname === _nickname) setCurrentUser(true)
    },[nickname])
   return (
@@ -40,18 +44,18 @@ export const ResponseArticle:React.FC<Props> = ({ user, id, created, _nickname, 
               </div>
             </div>
           </div>
-          <button className="inline-flex items-center px-1 pt-2 ml-1 flex-column" aria-label="button response">
+         {/* <button className="inline-flex items-center px-1 pt-2 ml-1 flex-column" aria-label="button response">
            {user && <a href="#article" onClick={()=>!showForm ? setShowForm(true) : setShowForm(false)}><Response /></a>}
+          </button>*/}
+          <button onClick={handleLike} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like">
+            <Like fill={fillLike}/>
           </button>
-          <button className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like">
-            <Like/>
-          </button>
-          {currentUser && <button className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button trash">
+          {currentUser && <button onClick={handlePostDelete} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button trash" title="Delete this post">
             <Trash/>
           </button>}
         </div>
       </div>
-      {showForm && <ReponsePostForm id={id}/>}
+      {/*showForm && <ReponsePostForm id={id}/>*/}
     </div>
    
   </div>
