@@ -3,7 +3,7 @@ import { Like } from "../icons/Like";
 import { Response } from "../icons/Response";
 import { Trash } from "../icons/Trash";
 import { ResponsePost } from "../icons/ResponsePost";
-import { useDeletePost, useSocialLikeEvent } from "../../customsHooks/videoHooks";
+import { useDeletePost, useSocialLikeEvent, useCurrentLikePost } from "../../customsHooks/videoHooks";
 
 
 interface Props {
@@ -19,16 +19,17 @@ export const ActionsButtons:React.FC<Props> = ({ id ,handleFormResponse, current
    const table = 'post'
    const { handlePostDelete } = useDeletePost(id, table)
    const { handleLike,fillLike, setFillLike } = useSocialLikeEvent(undefined,id,'post',table)
-   
+   const { total } = useCurrentLikePost(setFillLike, id)
    
   return (
     <>
        <button onClick={handleFormResponse} className="inline-flex items-center px-1 pt-2 ml-1 flex-column" aria-label="button response" title="Response"> 
            <Response/>
           </button>
-          <button onClick={handleLike} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like" title="Like this comment">
+          <button onClick={handleLike} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like" title={fillLike==='white'?`You Liked this post`: 'Like this post'}>
             <Like fill={fillLike}/>
-          </button>
+          </button> 
+          {total}
           {currentUser &&
              <button onClick={handlePostDelete} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button trash" title="Delete this post">
             <Trash/>

@@ -260,18 +260,26 @@ export const useFetchPost = () => {
      return { count, color, average }
   }
 
-  
-  export const useCurrentLikePost = (setFillLike:Dispatch<SetStateAction<string>>) => {
-     const handleCurrentLike = async () =>{
-        await axiosClientAuth.post(`/current-post`)
+
+  export const useCurrentLikePost = (setFillLike:Dispatch<SetStateAction<string>>, id:any) => {
+    const {token} = useStateContext()
+    const [total, setTotal] = useState<number>(0)
+     
+
+     useEffect(() =>{
+      axiosClientAuth.post(`/like/current-post`, {token, id})
          .then(({data})=>{
+            console.log(data.message)
             setFillLike(data.message)
+            setTotal(data.total)
          })
          .catch(error=>{
            console.error('Something was wrong')
            console.error(error.message)
          })
-     }
+     },[id])
+
+     return {total}
   }
 
 
