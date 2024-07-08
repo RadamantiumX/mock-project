@@ -141,7 +141,7 @@ export const useFetchPost = () => {
   
   }
 
-  export const useSocialLikeEvent = (videoId:string | undefined, id:number | undefined, path:string, table:string) => {
+  export const useSocialLikeEvent = (videoId:string | undefined, id:number | undefined, path:string) => {
     const like = true
     const dislike = false
     const { token, setNotification } = useStateContext()
@@ -153,7 +153,7 @@ export const useFetchPost = () => {
           setFillLike('white')
           setFillDislike('none')
           
-          await axiosClientAuth.post(`/like/add-${path}`, videoId !== undefined ? {token, videoId, like}: {token, id, table })
+          await axiosClientAuth.post(`/like/add-${path === 'response' ? 'post': path}`, videoId !== undefined ? {token, videoId, like}: {token, id, path})
            .then(({data})=>{
              setNotification(data.message)
            })
@@ -163,7 +163,7 @@ export const useFetchPost = () => {
           })
           }else{
           setFillLike('none')
-          await axiosClientAuth.post(`/like/del-${path}`,videoId !== undefined ? {token, videoId}:{token, id, table})
+          await axiosClientAuth.post(`/like/del-${path === 'response' ? 'post': path}`,videoId !== undefined ? {token, videoId}:{token, id, path})
           .then(({data})=>{
             setNotification(data.message)
          console.log(data)
@@ -195,7 +195,7 @@ export const useFetchPost = () => {
      })
     }else{
       setFillDislike('none')
-      await axiosClientAuth.post('/like/del',{token, videoId})
+      await axiosClientAuth.post('/like/del-video',{token, videoId})
       .then(({data})=>{
      console.log(data)
       })
@@ -240,8 +240,8 @@ export const useFetchPost = () => {
             
           })
           .catch(err=>{
-            const res = err.response
-            console.log(res)
+            console.error('Something was wrong')
+            console.error(err.message)
           })
           
        }
@@ -261,13 +261,13 @@ export const useFetchPost = () => {
   }
 
 
-  export const useCurrentLikePost = (setFillLike:Dispatch<SetStateAction<string>>, id:any) => {
+  export const useCurrentLikePost = (setFillLike:Dispatch<SetStateAction<string>>, id:any, path:string) => {
     const {token} = useStateContext()
     const [total, setTotal] = useState<number>(0)
      
 
      useEffect(() =>{
-      axiosClientAuth.post(`/like/current-post`, {token, id})
+      axiosClientAuth.post(`/like/current-${path}`, {token, id})
          .then(({data})=>{
             console.log(data.message)
             setFillLike(data.message)
@@ -283,7 +283,7 @@ export const useFetchPost = () => {
   }
 
 
-  export const useDeletePost = (id:any, table:string) => {
+  export const useDeletePost = (id:any, path:string) => {
      const navigate = useNavigate()
      const { setNotification, token } = useStateContext()
 
@@ -292,7 +292,7 @@ export const useFetchPost = () => {
       const payload = {
         id: id,
         token: token,
-        table: table
+        path: path
       }
       axiosClientAuth.post('/post/del', payload)
         .then(({data})=>{
@@ -306,4 +306,15 @@ export const useFetchPost = () => {
         })    
  }
 return {handlePostDelete} 
+}
+
+export const useCurrentUser = (_nickname:string | null) => {
+  const [currentUser, setCurrentUser] = useState(false)
+  const { nickname } = useStateContext()
+
+  useEffect(()=>{
+      if(nickname === _nickname) setCurrentUser(true)
+   },[nickname])
+
+  return { currentUser }
 }
