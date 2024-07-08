@@ -7,6 +7,7 @@ import { useDeletePost, useSocialLikeEvent, useCurrentLikePost } from "../../cus
 
 
 interface Props {
+    path: string
     id: any
     handleFormResponse: any
     currentUser: any
@@ -15,17 +16,16 @@ interface Props {
     setShowArticle: any 
 }
 
-export const ActionsButtons:React.FC<Props> = ({ id ,handleFormResponse, currentUser,responses, showArticle, setShowArticle}) => {
-   const table = 'post'
-   const { handlePostDelete } = useDeletePost(id, table)
-   const { handleLike,fillLike, setFillLike } = useSocialLikeEvent(undefined,id,'post',table)
-   const { total } = useCurrentLikePost(setFillLike, id)
+export const ActionsButtons:React.FC<Props> = ({ path,id ,handleFormResponse, currentUser,responses, showArticle, setShowArticle}) => {
+   const { handlePostDelete } = useDeletePost(id, path)
+   const { handleLike,fillLike, setFillLike } = useSocialLikeEvent(undefined,id,path)
+   const { total } = useCurrentLikePost(setFillLike, id, path)
    
   return (
     <>
-       <button onClick={handleFormResponse} className="inline-flex items-center px-1 pt-2 ml-1 flex-column" aria-label="button response" title="Response"> 
+       {path === 'post' && <button onClick={handleFormResponse} className="inline-flex items-center px-1 pt-2 ml-1 flex-column" aria-label="button response" title="Response"> 
            <Response/>
-          </button>
+          </button>}
           <button onClick={handleLike} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like" title={fillLike==='white'?`You Liked this post`: 'Like this post'}>
             <Like fill={fillLike}/>
           </button> 

@@ -35,7 +35,7 @@ export const CommentArticle: React.FC<Props>=  ({id, created, nick_name, content
               </div>
             </div>
           </div>
-         <ActionsButtons id={id}  handleFormResponse={handleFormResponse} currentUser={currentUser} responses={responses} showArticle={showArticle} setShowArticle={setShowArticle}/>
+         <ActionsButtons path={'post'} id={id}  handleFormResponse={handleFormResponse} currentUser={currentUser} responses={responses} showArticle={showArticle} setShowArticle={setShowArticle}/>
         </div>
       </div>
     </div>
