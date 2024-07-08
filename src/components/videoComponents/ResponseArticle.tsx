@@ -1,11 +1,6 @@
-import { Like } from "../icons/Like";
-// import { Response } from "../icons/Response";
-import { Trash } from "../icons/Trash";
 import moment from "moment";
-import { useState, useEffect } from "react";
-// import { ReponsePostForm } from "./ReponsePostForm";
-import { useStateContext } from "../../contexts/ContextProvider";
-import { useDeletePost, useSocialLikeEvent } from "../../customsHooks/videoHooks";
+import { ActionsButtons } from "./ActionsButtons";
+import { useCurrentUser } from "../../customsHooks/videoHooks";
 
 interface Props{
    user: boolean,
@@ -16,16 +11,8 @@ interface Props{
 }
 
 export const ResponseArticle:React.FC<Props> = ({ id, created, _nickname, content}) => {
-  const table = 'response'
-  const { handlePostDelete } = useDeletePost(id, table)
-  const { handleLike,fillLike, setFillLike } = useSocialLikeEvent(undefined,id,'/like/add-post',table)
-   //const [showForm] = useState(false)
-  const [currentUser, setCurrentUser] = useState(false)
-  const { nickname } = useStateContext()
-
-  useEffect(()=>{
-      if(nickname === _nickname) setCurrentUser(true)
-   },[nickname])
+  const { currentUser } = useCurrentUser(_nickname)
+ 
   return (
 <>
 <article className="relative flex antialiased" key={id} id="article-response">
@@ -44,18 +31,10 @@ export const ResponseArticle:React.FC<Props> = ({ id, created, _nickname, conten
               </div>
             </div>
           </div>
-         {/* <button className="inline-flex items-center px-1 pt-2 ml-1 flex-column" aria-label="button response">
-           {user && <a href="#article" onClick={()=>!showForm ? setShowForm(true) : setShowForm(false)}><Response /></a>}
-          </button>*/}
-          <button onClick={handleLike} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like">
-            <Like fill={fillLike}/>
-          </button>
-          {currentUser && <button onClick={handlePostDelete} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button trash" title="Delete this post">
-            <Trash/>
-          </button>}
+          <ActionsButtons path={'response'} id={id}  handleFormResponse={null} currentUser={currentUser} responses={[]} showArticle={null} setShowArticle={null}/>        
         </div>
       </div>
-      {/*showForm && <ReponsePostForm id={id}/>*/}
+     
     </div>
    
   </div>
