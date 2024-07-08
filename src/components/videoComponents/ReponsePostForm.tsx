@@ -1,7 +1,7 @@
 import axiosClientAuth from "../../services/axios-client-auth"
 import { useStateContext } from "../../contexts/ContextProvider"
 import { useState, useEffect } from "react"
-
+import { useNavigate } from "react-router-dom"
 
 interface Props {
    id: number
@@ -11,8 +11,10 @@ export const ReponsePostForm:React.FC<Props> = ({id}) => {
   
   const { token, setNotification } = useStateContext()
   const [content, setContent] = useState('')
-  // const dispatch = useAppDispatch()
-  const handleSubmit = async () => {
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     if(content.length === 0)  {
       setNotification('Empty content...')
       return
@@ -28,7 +30,11 @@ export const ReponsePostForm:React.FC<Props> = ({id}) => {
      .then(({data})=>{
        
        setNotification(data.message)
-       setContent('')// <--- reset form
+       setTimeout(()=>{
+        setContent('')// <--- reset form
+        navigate(0)
+       },2000)
+       
      })
      .catch( error => {
        console.error('Something was wrong')
