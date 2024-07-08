@@ -66,23 +66,9 @@ export const useFetchPost = () => {
   export const useShowArticle = (nick_name:any, id:any) => {
     const { setPostId, nickname } = useStateContext()
     const [currentUser, setCurrentUser] = useState(false)
-    const [showArticle, setShowArticle] = useState(false)
-   // const [responses, setResponses] = useState<any>([])
-    //const responses = useAppSelector((state)=> state.replys.data)
-    // const dispatch = useAppDispatch()
-  
+    const [showArticle, setShowArticle] = useState(false)  
     useEffect(() =>{
      setPostId(id)
-      /* // dispatch(getReplysSource(id))
-      latestReplys(id)
-        .then((data)=>{
-          setResponses(data)
-        })
-        .catch(error=>{
-          console.log(error.message)
-        })*/
-  
-  
       if (nickname === nick_name)setCurrentUser(true)  
       
      },[id])
@@ -317,4 +303,78 @@ export const useCurrentUser = (_nickname:string | null) => {
    },[nickname])
 
   return { currentUser }
+}
+
+export const useNewPost = (id:string | undefined) => {
+  const { token, setNotification } = useStateContext()
+  const [content, setContent] = useState('')
+  const dispatch = useAppDispatch()
+   
+
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if(content.length === 0)  {
+     setNotification('Empty content...')
+     return
+    }
+    const payload = {
+        token: token,
+        content: content,
+        videoId: id
+    }
+      await axiosClientAuth.post('/post/new-post',payload)
+       .then(({data})=>{
+         setNotification(data.message)
+         setContent('')// <--- reset form
+         dispatch(getPostsSource(id)) // <--- Change the state
+          .catch(error => {
+            console.error(error.message)
+          })
+       })
+       .catch( error => {
+         console.error('Something was wrong')
+         console.error(error.message)
+       })
+
+  }
+
+  return { handleSubmit, content, setContent }
+}
+
+export const useNewResponse = (id:number) => {
+  const { token, setNotification } = useStateContext()
+  const [content, setContent] = useState('')
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if(content.length === 0)  {
+      setNotification('Empty content...')
+      return
+     }
+  
+     const payload = {
+        token: token,
+        content: content,
+        postId: id,
+     }
+
+     await axiosClientAuth.post('/post/new-response',payload)
+     .then(({data})=>{
+       
+       setNotification(data.message)
+       setTimeout(()=>{
+        setContent('')// <--- reset form
+        navigate(0)
+       },2000)
+       
+     })
+     .catch( error => {
+       console.error('Something was wrong')
+       console.error(error.message)
+     
+     })
+  }
+
+  return { handleSubmit, content, setContent }
 }

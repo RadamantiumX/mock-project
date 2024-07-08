@@ -1,41 +1,10 @@
 import { Link } from "react-router-dom"
 import Logo from "../../assets/project/logo.png";
-import axiosClientAuth from "../../services/axios-client-auth";
-import { useState } from "react";
-import { useStateContext } from "../../contexts/ContextProvider";
-import { useNavigate } from "react-router-dom";
+import { useRegister } from "../../customsHooks/authHooks";
 
 export const SignUp = () => {
-   const [nickname, setNickname] = useState("")
-   const [email, setEmail] = useState("")
-   const [password, setPassword] = useState("")
-   const [confirmPassword, setConfirmPassword] = useState("")
-   const { setNotification } = useStateContext()
-   const navigate = useNavigate()
-
-   const handleRegister = (e:React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
-      const payload = {
-        nickname: nickname,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword
-      }
-      axiosClientAuth.post('/auth/signup', payload)
-       .then(({data})=>{
-          console.log(data)
-          setNotification(data.message)
-          setTimeout(()=>{
-            navigate("/auth/portal/signin")
-          },2000)
-       })
-       .catch(err=>{
-        const res = err.response
-        console.log(res.data.message)
-        setNotification(res.data.message)
-       })
-   }
-
+  const { nickname, setNickname, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, handleRegister } = useRegister()
+   
   return (
     <form className="flex flex-col gap-2 lg:w-1/2 lg:mx-auto sm:mx-auto mt-10" onSubmit={handleRegister}>
       <h1 className="text-4xl text-center font-subtitle">Register a new account</h1>

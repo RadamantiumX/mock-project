@@ -1,50 +1,12 @@
-import axiosClientAuth from "../../services/axios-client-auth"
-import { useStateContext } from "../../contexts/ContextProvider"
-import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNewResponse } from "../../customsHooks/videoHooks"
 
 interface Props {
    id: number
 }
 
 export const ReponsePostForm:React.FC<Props> = ({id}) => {
-  
-  const { token, setNotification } = useStateContext()
-  const [content, setContent] = useState('')
-  const navigate = useNavigate()
-
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if(content.length === 0)  {
-      setNotification('Empty content...')
-      return
-     }
-  
-     const payload = {
-        token: token,
-        content: content,
-        postId: id,
-     }
-
-     await axiosClientAuth.post('/post/new-response',payload)
-     .then(({data})=>{
-       
-       setNotification(data.message)
-       setTimeout(()=>{
-        setContent('')// <--- reset form
-        navigate(0)
-       },2000)
-       
-     })
-     .catch( error => {
-       console.error('Something was wrong')
-       console.error(error.message)
-     
-     })
-  }
-  useEffect(()=>{
-  
-  },[token, id])
+  const { handleSubmit, content, setContent } = useNewResponse(id)
+ 
   return (
     <>
     <form className="w-1/2" onSubmit={handleSubmit}>

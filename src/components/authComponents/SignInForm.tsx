@@ -1,42 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router-dom"
-import { useState } from "react"
-import { useStateContext } from "../../contexts/ContextProvider"
-import axiosClientAuth from "../../services/axios-client-auth"
 import Logo from "../../assets/project/logo.png";
-
+import { useLogin } from "../../customsHooks/authHooks";
 
 export const SignIn = () => {
-   const [email, _setEmail] = useState("")
-   const [password, setPassword] = useState("") 
-
-  const { setToken, setPath, setNickname, setEmail, setId } = useStateContext()
-  
-   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
-      const payload = {
-        email: email,
-        password: password
-      }
-
-        axiosClientAuth.post('/auth/signin', payload)
-          .then(({data}):any => {
-            // Set the local Storage
-            setToken(data.response.token)
-            setPath('home')
-            setNickname(data.response.nickname)
-            setEmail(data.response.email)
-            setId(data.response.id)
-            // Set the local Storage
-          })
-          .catch(err => {
-            const response = err.response
-            console.log(response)
-         })
-          
-    
-   }
-  
+  const { email, _setEmail, password, setPassword, handleSubmit } = useLogin()
   return (
     <form className="flex flex-col gap-2 lg:w-1/2 lg:mx-auto sm:mx-auto mt-10" onSubmit={handleSubmit}>
     <h1 className="text-4xl text-center font-subtitle">Login in to </h1>
