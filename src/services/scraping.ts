@@ -28,7 +28,7 @@ export const pornHubPicsAlbums = async (page:number, tag:string | null)=>{
 }
 
 export const pornHubAlbumContent = async (tag:string | undefined, id:string | undefined)=> {
-  const res = await fetch(`http://localhost:4000/phub/pics/${tag}/${id}`)
+  const res = await fetch(`https://scraping-server.vercel.app/phub/pics/${tag}/${id}`)
   const data = await res.json()
   return data
 }
