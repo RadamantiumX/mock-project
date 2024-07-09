@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom"
 import Logo from "../../assets/project/logo.png";
 import { useLogin } from "../../customsHooks/authHooks";
+import { AlertSignal } from "../commonComponents/AlertSignal";
+
 
 export const SignIn = () => {
-  const { email, _setEmail, password, setPassword, handleSubmit } = useLogin()
+  const { email, _setEmail, password, setPassword, handleSubmit, error, setError } = useLogin()
   return (
     <form className="flex flex-col gap-2 lg:w-1/2 lg:mx-auto sm:mx-auto mt-10" onSubmit={handleSubmit}>
+    {error.length > 0 && <AlertSignal setError={setError} message={error}/>}
     <h1 className="text-4xl text-center font-subtitle">Login in to </h1>
     <img style={{width:"24rem"}} className="text-center mb-2 -mt-5 sm:max-w-xs lg:max-w-full" src={Logo} alt="logo" /> 
     <label className="block text-withe-700 text-sm">Email Address</label>

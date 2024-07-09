@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom"
 import Logo from "../../assets/project/logo.png";
 import { useRegister } from "../../customsHooks/authHooks";
+import { AlertSignal } from "../commonComponents/AlertSignal";
+
 
 export const SignUp = () => {
-  const { nickname, setNickname, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, handleRegister } = useRegister()
-   
+  const { nickname, setNickname, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, handleRegister, error, setError } = useRegister()
+  
   return (
     <form className="flex flex-col gap-2 lg:w-1/2 lg:mx-auto sm:mx-auto mt-10" onSubmit={handleRegister}>
+         {error.length > 0 && <AlertSignal setError={setError} message={error}/>}
       <h1 className="text-4xl text-center font-subtitle">Register a new account</h1>
       <img style={{width:"24rem"}} className="mb-2 text-center -mt-5 sm:max-w-xs lg:max-w-full" src={Logo} alt="logo" /> 
       <label className="block text-withe-700 text-sm">Nickname</label>

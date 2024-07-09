@@ -4,7 +4,9 @@ import { useStateContext } from "../contexts/ContextProvider"
 import axiosClientAuth from "../services/axios-client-auth"
 import { useNavigate } from "react-router-dom"
 
+
 export const useLogin = () => {
+    const [error, setError] = useState('')
     const [email, _setEmail] = useState("")
    const [password, setPassword] = useState("") 
 
@@ -27,21 +29,28 @@ export const useLogin = () => {
             setId(data.response.id)
             // Set the local Storage
           })
-          .catch(err => {
-            const response = err.response
-            console.log(response)
+          .catch(error => {
+            const res = error.response
+            console.log(res.data.message)
+            if(res.data.message.length > 0 || undefined){
+              setError(res.data.message)
+            }else{
+              setError('Something went wrong!')
+            }
+            
          })
           
     
    }
 
-   return { email, _setEmail, password, setPassword, handleSubmit }
+   return { email, _setEmail, password, setPassword, handleSubmit, error, setError }
 }
 
 export const useRegister = () => {
     const [nickname, setNickname] = useState("")
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
+   const [error, setError] = useState('')
    const [confirmPassword, setConfirmPassword] = useState("")
    const { setNotification } = useStateContext()
    const navigate = useNavigate()
@@ -62,12 +71,17 @@ export const useRegister = () => {
             navigate("/auth/portal/signin")
           },2000)
        })
-       .catch(err=>{
-        const res = err.response
-        console.log(res.data.message)
-        setNotification(res.data.message)
+       .catch(error=>{
+        const res = error.response
+        console.log(res.data.message[0].message)
+        if (res.data.message[0].message.length > 0 || undefined){
+          setError(res.data.message[0].message)
+        }else{
+          setError('Something went wrong, please try again...')
+        }
+        
        })
    }
 
-   return { nickname, setNickname, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, handleRegister }
+   return { nickname, setNickname, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, handleRegister, error, setError }
 }

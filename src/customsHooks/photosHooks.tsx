@@ -11,6 +11,7 @@ export const usePicsAlbums = (page: number, tag:string | null) => {
     useEffect(()=>{
       pornHubPicsAlbums(page, tag)
         .then((data)=>{  
+          console.log(data.data)
           setPages(data.pages)
           setPics(data.data)
         })
