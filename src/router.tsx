@@ -21,6 +21,7 @@ import Legal from "./pages/Legal";
 import ModelIndex from "./pages/ModelIndex";
 import ModelSearch from "./pages/ModelSearch";
 import CategoriesList from "./pages/CategoriesList";
+import Album from "./pages/Album";
 //
 
 // Page Components //
@@ -111,6 +112,10 @@ const router = createBrowserRouter([
                         element: <Navigate to={generatePath("/photos?tag=all&page=1")}/>
                     }
                 ]
+            },
+            {
+                path: "/album/:tag/:album",
+                element: <Album/>
             },
             {
                 path: "/redirect",
