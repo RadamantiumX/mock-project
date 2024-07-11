@@ -1,49 +1,31 @@
-import axiosClientAuth from "../../services/axios-client-auth";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Eye } from "../icons/Eye";
 
-export const CardsModels = () => {
+interface Props {
+    name: string;
+    photo: string;
+    views: string;
+    
+}
 
-    const [ models, setModels ] = useState([])
+export const CardsModels: React.FC<Props> = ({ name, photo, views }) => {
+  
 
-
-
-useEffect(()=>{
-   axiosClientAuth.get('/phub/models')
-    .then(({data})=>{
-		
-		setModels(data.models.data)
-        console.log(data)
-	})
-	.catch(err=>{
-		console.log(err.message)
-	})
-
-	console.log(models)
-},[setModels])	
-  return (
-     <>
-   {models?.map((item:any)=>(
-
-    <article key={item.key} className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-2 mt-10 mb-5">
-
-   <div className="flex flex-col items-center">
-    <div className="bg-white shadow-md rounded-xl overflow-hidden duration-500 hover:scale-105 hover:shadow-xl w-64 h-auto mb-2">
-        <a href="#">
-            <img src={`${item.photo}`} alt="Product" className="object-cover rounded-t-xl w-full h-96" />
-        </a>
-    </div>
-    <div className="px-4 py-3 w-72 ">
-        <span className="text-gray-400 mr-3 uppercase text-xs">{item.views} Views</span>
-        <p className="text-lg font-bold text-white truncate block capitalize">{item.name}</p>
-    </div>
+    return (
+        <div className="flex flex-col items-center">
+            <div className="w-64 h-auto mb-2 overflow-hidden duration-200 bg-white shadow-md rounded-xl hover:shadow-xl">
+                <Link to={`/model-index/${name}`} reloadDocument>
+                    <img src={photo} alt="Vanilla Leak Model Photo" className="object-cover w-full rounded-t-xl h-96" title={`${name} profile photo`}/>
+                </Link>
+            </div>
+            <div className="px-4 py-3 w-72">
+    <span className="flex items-center">
+        <span className="mr-2 text-sm text-gray-400 uppercase">{views}</span>
+        <Eye size={'w-4 h-5'} /> 
+    </span>
+    <p className="block text-lg font-bold text-white capitalize truncate">{name}</p>
 </div>
 
-</article>
-   ))}  
-   
-
-
-     
-     </>
-  )
-}
+        </div>
+    );
+};

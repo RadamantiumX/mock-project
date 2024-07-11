@@ -19,8 +19,7 @@ export default function Footer() {
             <p
               className="max-w-md mx-auto mt-6 leading-relaxed text-center font-medium text-white sm:max-w-xs sm:mx-0 sm:text-left"
             >
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt
-              consequuntur amet culpa cum itaque neque.
+              The best selection of free porn videos, please send us your comment to improve this content. We work every day to offer you the best. Enjoy it...
             </p>
           </div>
 
@@ -34,7 +33,12 @@ export default function Footer() {
                 <ul className="space-y-4 text-sm">
                   <li>
                     <a className="text-white transition hover:text-white/75" target="blank" href="https://www.eporner.com/">
-                      Source
+                      Source #1
+                    </a>
+                  </li>
+                  <li>
+                    <a className="text-white transition hover:text-white/75" target="blank" href="https://es.redtube.com/">
+                      Source #2
                     </a>
                   </li>
 

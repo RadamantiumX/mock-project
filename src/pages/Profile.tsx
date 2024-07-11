@@ -1,9 +1,9 @@
-import { Header } from "../components/profileComponents/Header"
+import { PageHeader } from "../components/commonComponents/PageHeader"
 import { UserInfo } from "../components/profileComponents/UserInfo"
 export default function Profile () {
     return(
         <main>
-          <Header/>
+          <PageHeader title={'Account Settings'}/>
           <UserInfo/>
         </main>
     )

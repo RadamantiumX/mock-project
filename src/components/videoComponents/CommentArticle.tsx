@@ -1,16 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Like } from "../icons/Like";
-import { Response } from "../icons/Response";
-import { ResponsePost } from "../icons/ResponsePost";
-import { Trash } from "../icons/Trash";
-import { useEffect, useState } from "react";
+import { ActionsButtons } from "./ActionsButtons";
 import moment from "moment";
-import { useStateContext } from "../../contexts/ContextProvider";
-import { useNavigate } from "react-router-dom";
 import { ReponsePostForm } from "./ReponsePostForm";
 import { ResponseArticle } from "./ResponseArticle";
-import {  useAppSelector } from "../../redux/hooks";
-
+import { useShowForm, useShowArticle, useResponses } from '../../customsHooks/videoHooks'
 
 interface Props {
    id: number;
@@ -20,38 +13,10 @@ interface Props {
 }
 
 export const CommentArticle: React.FC<Props>=  ({id, created, nick_name, content}) => {
-  const [showForm, setShowForm] = useState(false)
-  const [showArticle, setShowArticle] = useState(false)
-  const [currentUser, setCurrentUser] = useState(false)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [responses, setResponses] = useState<any>([])
-  const { setPostId, token, nickname } = useStateContext()
-  const navigate = useNavigate()
-  const data = useAppSelector( state => state.replys.data )
+  const { showForm, handleFormResponse } = useShowForm()
+  const { currentUser, showArticle, setShowArticle } = useShowArticle(nick_name, id)
+  const { responses } = useResponses(id)
 
- 
- 
-  const handleFormResponse = () => {
-    if (token){
-       !showForm ? setShowForm(true) : setShowForm(false)
-    }else{
-      navigate('/auth/portal/signin')
-    }
-  }
-
-
-
-  useEffect(() =>{
-   setPostId(id)
-   data.forEach((item:any, index:any)=>{
-      if (item.postId === id){
-        responses.push(data[index])
-      }
-   })
-   
-   if (nickname === nick_name)setCurrentUser(true)  
-   
-  },[id])
   return (
 <>
 <article className="relative flex antialiased" key={id} id="article">
@@ -70,19 +35,7 @@ export const CommentArticle: React.FC<Props>=  ({id, created, nick_name, content
               </div>
             </div>
           </div>
-          <button onClick={handleFormResponse} className="inline-flex items-center px-1 pt-2 ml-1 flex-column" aria-label="button response">
-           <Response />
-          </button>
-          <button className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like">
-            <Like/>
-          </button>
-          {currentUser &&<button className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button trash">
-            <Trash/>
-          </button>}
-          <button onClick={()=>{ !showArticle ? setShowArticle(true) : setShowArticle(false) }} className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like">
-            <div className="flex flex-row"><ResponsePost/>{responses.length}</div>
-          </button>
-          
+         <ActionsButtons path={'post'} id={id}  handleFormResponse={handleFormResponse} currentUser={currentUser} responses={responses} showArticle={showArticle} setShowArticle={setShowArticle}/>
         </div>
       </div>
     </div>

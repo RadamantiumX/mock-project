@@ -1,40 +1,12 @@
-import axiosClientAuth from "../../services/axios-client-auth"
-import { useStateContext } from "../../contexts/ContextProvider"
-import { useState, useEffect } from "react"
-import { useAppDispatch } from "../../redux/hooks"
-import { getReplysSource } from "../../redux/replySources/replysSlice"
+import { useNewResponse } from "../../customsHooks/videoHooks"
 
 interface Props {
    id: number
 }
 
 export const ReponsePostForm:React.FC<Props> = ({id}) => {
-  const { token, setNotification } = useStateContext()
-  const [content, setContent] = useState('')
-  const dispatch = useAppDispatch()
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-     const payload = {
-        token: token,
-        content: content,
-        postId: id,
-        response: true
-     }
-
-     await axiosClientAuth.post('/post/newpost',payload)
-     .then(({data})=>{
-       setNotification(data.message)
-       setContent('')// <--- reset form
-       dispatch(getReplysSource)
-     })
-     .catch( err => {
-       const res = err.response
-       console.log(res)
-     })
-  }
-  useEffect(()=>{
-    
-  },[token])
+  const { handleSubmit, content, setContent } = useNewResponse(id)
+ 
   return (
     <>
     <form className="w-1/2" onSubmit={handleSubmit}>

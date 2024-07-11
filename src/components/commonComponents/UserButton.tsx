@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { useToogleButton } from '../../customsHooks/customsHooks';
 // Icons
 import { Logout } from "../icons/Logout";
 import { Settings } from "../icons/Settings";
@@ -8,17 +7,7 @@ import { Hearth } from "../icons/Hearth";
 
 
 export const UserButton = (props: {onClick:()=>void, nickname: string | null}) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleLogout = () => {
-    // console.log("Logout");
-    props.onClick();
-    setIsOpen(false);
-  };
+  const { isOpen, toggleDropdown, handleLogout } = useToogleButton(props.onClick)
 
   return (
 <div className="relative z-10">

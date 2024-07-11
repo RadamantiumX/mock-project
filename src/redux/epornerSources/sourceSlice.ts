@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { getLatestContent } from '../../services/resources'
-import { getRelatedVideos } from '../../services/resources'
-import  { type Video } from '../../types/eporner'
+
+// import  { type Video } from '../../types/eporner'
+// import type { APIEpornerResponse } from '../../types/eporner'
 export interface EpornerState {
-  data: Video[] | null,
+  data: any,
   loading: boolean,
   error: string | null
 }
@@ -17,14 +19,9 @@ const initialState: EpornerState = {
 
 
 
-export const getEpornerSource = createAsyncThunk("eporner", async (payload:string | number) => {
-  if (typeof payload === "string"){
-    
-    return await getRelatedVideos(payload)
-  }else{
+export const getEpornerSource = createAsyncThunk("eporner", async (payload:number) => {
  
   return await getLatestContent(payload)
-}
 
 })
 

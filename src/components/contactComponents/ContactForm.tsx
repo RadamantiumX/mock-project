@@ -1,15 +1,10 @@
-
 import { Notice } from "./Notice"
 import Logo from "../../assets/project/logo.png"
 
 export const ContactForm = () => {
   return (
 
-    <>
-    
-   
-
-      
+    <>  
     <div className="max-w-screen-xl mt-7 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto text-gray-900 rounded-lg shadow-lg mb-5">
   <div className="flex flex-col justify-star align-items-star">
     <img className="left-30 mb-8" style={{ width: "18rem", marginLeft: "-2.3rem" }} src={Logo} alt="Logo DirtyHub" aria-labelledby="Vanilla Leak Logo" />

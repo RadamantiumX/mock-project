@@ -1,10 +1,6 @@
-import { Like } from "../icons/Like";
-import { Response } from "../icons/Response";
-import { Trash } from "../icons/Trash";
 import moment from "moment";
-import { useState, useEffect } from "react";
-import { ReponsePostForm } from "./ReponsePostForm";
-import { useStateContext } from "../../contexts/ContextProvider";
+import { ActionsButtons } from "./ActionsButtons";
+import { useCurrentUser } from "../../customsHooks/videoHooks";
 
 interface Props{
    user: boolean,
@@ -14,14 +10,9 @@ interface Props{
    content: string | null
 }
 
-export const ResponseArticle:React.FC<Props> = ({ user, id, created, _nickname, content}) => {
-   const [showForm, setShowForm] = useState(false)
-   const [currentUser, setCurrentUser] = useState(false)
-   const { nickname } = useStateContext()
-
-   useEffect(()=>{
-      if(nickname === _nickname) setCurrentUser(true)
-   },[nickname])
+export const ResponseArticle:React.FC<Props> = ({ id, created, _nickname, content}) => {
+  const { currentUser } = useCurrentUser(_nickname)
+ 
   return (
 <>
 <article className="relative flex antialiased" key={id} id="article-response">
@@ -40,18 +31,10 @@ export const ResponseArticle:React.FC<Props> = ({ user, id, created, _nickname, 
               </div>
             </div>
           </div>
-          <button className="inline-flex items-center px-1 pt-2 ml-1 flex-column" aria-label="button response">
-           {user && <a href="#article" onClick={()=>!showForm ? setShowForm(true) : setShowForm(false)}><Response /></a>}
-          </button>
-          <button className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button like">
-            <Like/>
-          </button>
-          {currentUser && <button className="inline-flex items-center px-1 -ml-1 flex-column" aria-label="button trash">
-            <Trash/>
-          </button>}
+          <ActionsButtons path={'response'} id={id}  handleFormResponse={null} currentUser={currentUser} responses={[]} showArticle={null} setShowArticle={null}/>        
         </div>
       </div>
-      {showForm && <ReponsePostForm id={id}/>}
+     
     </div>
    
   </div>

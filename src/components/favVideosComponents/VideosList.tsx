@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react"
+import {  useEffect, useState } from "react"
 import { VideoFavCard } from "./VideoFavCard"
 import "./videoList.scss";
 import { Header } from "./Header"
@@ -8,6 +8,7 @@ export const VideosList = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [request, setRequest] = useState<any>([])
 
+  // Temporal fetch on users Videos FAVORITES
   const fetchTest = async () => {
     const req = await fetch('https://www.eporner.com/api/v2/video/search/?query=4k&per_page=12&page=2&thumbsize=small&gay=1&lq=1&format=json&order=latest')
     const { videos: data } = await req.json()
@@ -38,7 +39,7 @@ export const VideosList = () => {
         </aside>
         <section className="w-full  pl-2 pr-2 overflow-hidden lg:overflow-y-auto">
           <div className="flex flex-col "> 
-            {request?.map((item: { id: string; default_thumb: { src: string }; title: string }, key: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined) => (
+            {request?.map((item: { id: string; default_thumb: { src: string }; title: string }, key: string ) => (
               <div className="flex flex-col gap-y-5 justify-center" key={key}>
                 <VideoFavCard id={item.id} default_thumb={item.default_thumb.src} title={item.title} />
               </div>

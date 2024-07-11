@@ -1,18 +1,14 @@
-import { ORDER } from '../const/categories'
+import { ORDER } from '../const/order';
 import { Star } from '../icons/Star'
 import { Link } from 'react-router-dom'
-import {  SetStateAction, useState } from 'react';
+import { useActiveTab } from '../../customsHooks/orderVideosHooks';
+import { useParams } from 'react-router-dom';
 
 import "./buttonsSelectOrder.scss"
 
 export const ButtonsSelectOrder = () => {
-
-    const [activeTab, setActiveTab] = useState(0);
-
-    const handleTabClick = (index: SetStateAction<number>) => {
-       setActiveTab(index);
-    };
- 
+const { activeTab, handleTabClick } = useActiveTab()
+const { param } = useParams()
    
   return (
       <div className="lg:flex lg:flex-col mt-3 -mb-5">
@@ -22,7 +18,7 @@ export const ButtonsSelectOrder = () => {
                       <Link
                           to={`${item.param}`}
                           key={key}
-                          className={`p-3 pt-2 pb-2 textTab rounded ${activeTab === key ? 'bg-pink-500 text-white shadow-md' : 'bg-black border border-white text-white shadow-md'} mb-2 lg:mb-0 inline-block lg:inline`}
+                          className={`p-3 pt-2 pb-2 textTab rounded ${param === item.param ? 'bg-pink-500 text-white shadow-md' : 'bg-black border border-white text-white shadow-md'} mb-2 lg:mb-0 inline-block lg:inline`}
                           onClick={() => handleTabClick(key)}
                           aria-controls={item.param}
                           aria-selected={activeTab === key ? 'true' : 'false'}

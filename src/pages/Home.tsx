@@ -1,27 +1,19 @@
-import { useEffect, useState } from "react"
-import { Videos } from "../components/displayComponents/Videos"
-import { useAppDispatch, useAppSelector } from "../redux/hooks"
-import { getEpornerSource } from "../redux/epornerSources/sourceSlice"
-import { LoadButton } from "../components/commonComponents/LoadButton"
+import { Videos } from "../components/displayComponents/Videos";
+import {SkeletonLoader} from "../components/commonComponents/SkeletonLoader"; 
+import { useHomeVideos } from "../customsHooks/homeHooks";
+import { useRange, useQuery } from "../customsHooks/customsHooks";
+import { Pagination } from "../components/commonComponents/Pagination";
 
-export default function Home () {
-  const [counter, setCounter] = useState<number>(12)
-  const dispatch = useAppDispatch()
-  const eporner = useAppSelector(state => state.source.data)
-  
-  const handleResults = () => {
-    setCounter(counter + 10)
-  }
-
-  useEffect(() => {
-    
-    dispatch(getEpornerSource(counter))
-   
-  },[counter])
-    return(
-        <main>
-          <Videos source={eporner}/>
-         <LoadButton onClick={handleResults} title={'Load more Videos..'}/>
-        </main>
-    )
+export default function Home() {
+  const query = useQuery()
+  const currentPage = query.get('page')
+  const {isLoading, eporner } = useHomeVideos(currentPage === null ? 1 : parseInt(currentPage))
+  const { rangePages } = useRange(1, Math.round(eporner.total_pages))
+  return (
+    <main>
+      <Videos source={eporner?.videos} />
+      {isLoading ? <SkeletonLoader /> : null} 
+      <Pagination itemsPage={rangePages} currentPage={currentPage === null ? 1: parseInt(currentPage)} optParam={null}/>
+    </main>
+  );
 }

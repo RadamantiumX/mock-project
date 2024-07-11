@@ -18,6 +18,10 @@ import Photos from "./pages/Photos";
 import Redirect from "./pages/Redirect";
 import Contact from "./pages/Contact";
 import Legal from "./pages/Legal";
+import ModelIndex from "./pages/ModelIndex";
+import ModelSearch from "./pages/ModelSearch";
+import CategoriesList from "./pages/CategoriesList";
+import Album from "./pages/Album";
 //
 
 // Page Components //
@@ -62,7 +66,7 @@ const router = createBrowserRouter([
                 element: <Video/>
             },
             {
-                path: "/search/:query",
+                path: "/search",
                 element: <Search/>
             },
             {
@@ -70,8 +74,20 @@ const router = createBrowserRouter([
                 element: <Categories/>
             },
             {
+                path: "/categories-list",
+                element: <CategoriesList/>
+            },
+            {
                 path: "/models",
                 element: <Models/>
+            },
+            {
+                path: "/model-search",
+                element: <ModelSearch/>
+            },
+            {
+                path: "/model-index/:name",
+                element: <ModelIndex/>
             },
             {
                 path: "/videos",
@@ -89,7 +105,17 @@ const router = createBrowserRouter([
             },
             {
                 path: "/photos",
-                element: <Photos/>
+                element: <Photos/>,
+                children: [
+                    {
+                        path: '/photos',
+                        element: <Navigate to={generatePath("/photos?tag=all&page=1")}/>
+                    }
+                ]
+            },
+            {
+                path: "/album/:tag/:album",
+                element: <Album/>
             },
             {
                 path: "/redirect",
