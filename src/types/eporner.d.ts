@@ -35,3 +35,33 @@ export enum Size {
     Big = "big",
 }
 
+
+
+
+export type FavVideosProfile = {
+    id:            string;
+    title:         string;
+    keywords:      string;
+    views:         number;
+    rate:          string;
+    url:           string;
+    added:         Date;
+    length_sec:    number;
+    length_min:    string;
+    embed:         string;
+    default_thumb: Thumb;
+    thumbs:        Thumb[];
+}
+
+export type Thumb = {
+    size:   Size;
+    width:  number;
+    height: number;
+    src:    string;
+}
+
+export enum Size {
+    Medium = "medium",
+}
+
+
