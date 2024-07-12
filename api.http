@@ -28,5 +28,5 @@ GET https://api.redtube.com/?data=redtube.Tags.getTagList&output=json
 ### Stars
 GET https://api.redtube.com/?data=redtube.Stars.getStarDetailedList&output=json&page=2
 
-### Pics
-GET https://www.eporner.com/api
+### Search for ID
+GET https://www.eporner.com/api/v2/video/id/?id=myN2CUu4n75

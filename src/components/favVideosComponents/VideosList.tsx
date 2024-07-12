@@ -1,21 +1,46 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {  useEffect, useState } from "react"
 import { VideoFavCard } from "./VideoFavCard"
 import "./videoList.scss";
 import { Header } from "./Header"
+import axiosClientAuth from "../../services/axios-client-auth";
+import { useStateContext } from "../../contexts/ContextProvider";
+import { fetchTest } from "../../services/resources";
 
 export const VideosList = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [request, setRequest] = useState<any>([])
+  const { token } = useStateContext()
+  
 
   // Temporal fetch on users Videos FAVORITES
-  const fetchTest = async () => {
-    const req = await fetch('https://www.eporner.com/api/v2/video/search/?query=4k&per_page=12&page=2&thumbsize=small&gay=1&lq=1&format=json&order=latest')
-    const { videos: data } = await req.json()
-    setRequest(data)
-  }
+
   useEffect(() => {
-    fetchTest()
+    fetchTest('zGJQYOb1PQ5')
+      .then(({data})=>{
+        console.log(data)
+      })
+      .catch(error=>{
+        console.log(error)
+      })
+    axiosClientAuth.post('/social/fav-videos', {token})
+     .then(({data})=>{
+      console.log(data.results[0])
+      for (let i = 0; i < data.results.length; i++){
+          fetchTest( data.results[i])
+          .then(({res})=>{
+              console.log(res)
+          })
+          .catch(error=>{
+            console.error(error)
+          })
+      }
+
+     })
+     .catch(error=>{
+       console.error(error.message)
+     })
 
   }, [])
 

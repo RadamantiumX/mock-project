@@ -43,3 +43,11 @@ export const getModelVideos = async (name:string | undefined) => {
     const data = await res.json()
     return data
 }
+
+
+export const fetchTest = async (id:any) => {
+    const response = await fetch(`https://www.eporner.com/api/v2/video/id/?id=${id}`)
+    const data = await response.json()
+    console.log(data)
+    return data
+  }
