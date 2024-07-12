@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { usePicsAlbums } from "../../customsHooks/photosHooks"
-import { AlbumCard } from "./AlbumCard"
+import { AlbumCard } from "./albumCard"
 import { Pagination } from "../commonComponents/Pagination"
 import { useRange } from "../../customsHooks/customsHooks"
 import { Link } from "react-router-dom"
