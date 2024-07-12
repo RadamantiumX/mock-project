@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {  type APIEpornerResponse } from "../types/eporner"
+import {  type APIEpornerResponse, type FavVideosProfile } from "../types/eporner"
 
 
 // const configValue : string = (process.env.EPORNER_API_URL as string)
@@ -45,9 +45,8 @@ export const getModelVideos = async (name:string | undefined) => {
 }
 
 
-export const fetchTest = async (id:any) => {
+export const fetchTest = async (id:string) => {
     const response = await fetch(`https://www.eporner.com/api/v2/video/id/?id=${id}`)
-    const data = await response.json()
-    console.log(data)
+    const data = await response.json() as FavVideosProfile
     return data
   }
