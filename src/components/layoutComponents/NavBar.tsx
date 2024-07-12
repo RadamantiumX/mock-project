@@ -67,7 +67,7 @@ export default function NavBar() {
                   <div className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800">
                     <Selection />
                   </div>
-                  <Link to="/videos" className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/photos?tag=all&page=1">Videos</Link>
+                  <Link to="/videos" className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800">Videos</Link>
              </div>
            </div>
          </div>
