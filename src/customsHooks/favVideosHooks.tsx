@@ -40,6 +40,7 @@ export const useDelFav = (videoId:string) => {
         axiosClientAuth.post(`/social/delfav`, {videoId, token})
          .then(({data})=>{
             console.log(data)
+            setNotification(data.message)
          })
          .catch(error=>{
             console.error(error.message)
