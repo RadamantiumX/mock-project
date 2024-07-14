@@ -18,11 +18,13 @@ export const PicPages:React.FC<Props> = ({tag, page}) => {
 
   return (
     <>
-    <section className="mt-20">
-     <div className="grid grid-flow-row grid-cols-4">
+    <section className="mt-4">
+     <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
         {album?.map((item, key)=>(<Link key={key} to={`/album/${tag}/${item.url.slice(item.url.lastIndexOf('/') + 1)}`}><AlbumCard  title={item.title} preview={item.preview}/></Link>))}
      </div>
+     <div style={{ marginTop:"2rem" }}>
      <Pagination itemsPage={rangePages} currentPage={parseInt(page)} optParam={`tag=${tag}`}/>
+     </div>
     </section>
     </>
   )
