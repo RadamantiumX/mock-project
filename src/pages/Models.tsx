@@ -26,26 +26,26 @@ export default function Models() {
 
   return (
 	<>
-	      {models.length!==0 ? <div className="container px-8 mx-auto mt-10 mb-5">
-    <SearchModelQuery/>
-    <section className="grid justify-center grid-cols-1 mx-auto mt-10 mb-5 w-fit lg:grid-cols-5 md:grid-cols-2 justify-items-center gap-y-20 gap-x-24"> {/* Aumentamos el valor de gap-x */}
-    {models?.map((item, key) => (
-        <CardsModels key={key} name={item.name} photo={item.photo} views={item.views}  />
-    ))}
-</section>
+	   {models.length !== 0 ? (
+  <div className="container mx-auto mt-10 mb-5">
+    <SearchModelQuery />
+
+    <section className="grid justify-center grid-cols-1 gap-y-4 lg:grid-cols-5 md:grid-cols-3 gap-x-6">
+      {models.map((item, key) => (
+        <CardsModels key={key} name={item.name} photo={item.photo} views={item.views} />
+      ))}
+    </section>
 
     <nav className="flex justify-center mt-20 mb-20">
-    <div className="flex items-center">
-      
-      <Pagination  itemsPage={rangePages} currentPage={parseInt(currentPage)} optParam={null}/>
-        
-    </div>
-</nav>
+      <div className="flex items-center">
+        <Pagination itemsPage={rangePages} currentPage={parseInt(currentPage)} optParam={null} />
+      </div>
+    </nav>
+  </div>
+) : (
+  <Loading />
+)}
 
-</div> : 
-
-<Loading/>
-}
 
 	</>
   )
