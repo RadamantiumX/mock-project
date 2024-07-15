@@ -1,4 +1,6 @@
 import { useShowFields, useUpdateUserInfo } from "../../customsHooks/profileHooks"
+import { AlertSignal } from "../commonComponents/AlertSignal"
+import { InputForm } from "./InputForm"
 
 interface Props {
   nickname: string | undefined
@@ -7,39 +9,25 @@ interface Props {
 
 export const InfoCard:React.FC<Props> = ({ nickname, email }) => {
    const { showFirst, setShowFirst, showSecond, setShowSecond } = useShowFields()
-   const { setField, payload, setPayload, handleSubmit } = useUpdateUserInfo()
+   const { setField, payload, setPayload, handleSubmit,error, setError } = useUpdateUserInfo()
   return (
     <div className='border rounded-md w-1/2 h-1/3'>
         <div className='flex flex-col gap-y-10 p-5'>
+          {error.length > 0 && <AlertSignal setError={setError} message={error}/>}
         <h2 className='text-2xl font-semibold'>Basic Info</h2> 
         <div className='flex flex-row gap-x-10'>
           <h3>
             {nickname}
           </h3>
          {!showFirst&& <button className='border rounded-md p-2' onClick={()=>{setShowFirst(true); setShowSecond(false); setPayload('');}}>Change</button>}
-
-         {showFirst&& <div>
-          <form onSubmit={handleSubmit}>
-          <input type="text" value={payload} onChange={(e)=>{setPayload(e.target.value); setField('nickname')}}/>  
-          <button className='border rounded-md p-2' type="submit">Update</button>
-          </form>
-          </div>}
-
+          {showFirst && <InputForm type={"text"} handleSubmit={handleSubmit} payload={payload} setPayload={setPayload} setField={setField} field={'nickname'}/>}
         </div>  
         <div className='flex flex-row gap-x-10'>
          <h3>
             {email}
          </h3>
         {!showSecond&& <button className='border rounded-md p-2' onClick={()=>{setShowSecond(true); setShowFirst(false); setPayload('')}}>Change</button>}
-
-         {showSecond&&<div>
-          <form onSubmit={handleSubmit}> 
-          <p>❗When click "Update" on the email field, we will dismiss your session...</p>  
-         <input type="email" value={payload} onChange={(e)=>{setPayload(e.target.value); setField('email')}}/>
-         <button className='border rounded-md p-2' type="submit">Update</button>
-         </form> 
-         </div>}
-
+         {showSecond&& <InputForm type={"email"} handleSubmit={handleSubmit} payload={payload} setPayload={setPayload} setField={setField} field={'email'}/>}
          </div>
       </div>
     </div>
