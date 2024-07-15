@@ -8,7 +8,7 @@ export const AlertSignal:React.FC<ActionProps> = ({setError, message}) => {
   return (
     <div className="alert">
   <span onClick={()=>setError('')} className="closebtn" title="Close Alert">&times;</span> 
-  <strong>Error!</strong> {message}
+  <strong>Ups!</strong> {message}
 </div>
   )
 }
