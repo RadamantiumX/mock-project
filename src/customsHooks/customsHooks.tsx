@@ -192,6 +192,32 @@ export const useToggleFlag = (flagEsp:any, flagUk:any) => {
   return {selectedFlag, toggleFlag}
 }
 
+export const useAuth = () => {
+  const { token, setNotification, notification } = useStateContext()
+  const navigate = useNavigate()
+
+useEffect(() => {
+  if(!token){
+
+    navigate('/redirect')
+     }else{
+    axiosClientAuth.post('/auth/token', {token: token})
+      .then(({data})=>{
+        console.log(data)
+        // setNotification(data.message)
+      })
+      .catch(err => {
+        const res = err.response
+        setNotification(res.message)
+        navigate('/redirect')
+      })
+  }
+
+},[])
+
+return { notification }
+}
+
 
 
 
