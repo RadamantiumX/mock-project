@@ -31,6 +31,7 @@ export const useShowFields = () => {
 }
 
 export const useUpdateUserInfo = () => {
+  const [error, setError] = useState('')
   const [field, setField] = useState('')
    const [payload, setPayload] = useState('')
    const {token, setNotification, setToken, setNickname, setPath} = useStateContext()
@@ -62,9 +63,10 @@ export const useUpdateUserInfo = () => {
         }
        })
        .catch(error=>{
-        console.error(error)
+        const res = error.response
+        setError(res.data.message[0].message)
        })
    }
 
-   return { field, setField, payload, setPayload, handleSubmit }
+   return { field, setField, payload, setPayload, handleSubmit, error, setError }
 }
