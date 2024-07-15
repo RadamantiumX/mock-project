@@ -70,3 +70,34 @@ export const useUpdateUserInfo = () => {
 
    return { field, setField, payload, setPayload, handleSubmit, error, setError }
 }
+
+export const useUpdateUserPassword = () => {
+  const [oldPassword, setOldPassword] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState('')
+  const {token, setNotification} = useStateContext()
+
+  const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    axiosClientAuth.post('/user/user-password', {oldPassword, password, confirmPassword, token})
+      .then(({data})=>{
+        console.log(data)
+        setNotification(data.message)
+        setOldPassword('')
+        setPassword('')
+        setConfirmPassword('')
+      })
+      .catch(error=>{
+        const res = error.response
+        if (res.data.message[0].message !== undefined){
+          setError(res.data.message[0].message)
+        }
+        setError(res.data.message)
+        console.error(error.message)
+        console.error('Something went wrong!')
+      })
+  }
+
+  return { oldPassword, setOldPassword, password, setPassword, confirmPassword, setConfirmPassword, handleSubmit, error, setError }
+}
