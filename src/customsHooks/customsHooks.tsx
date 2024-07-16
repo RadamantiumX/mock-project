@@ -218,6 +218,22 @@ useEffect(() => {
 return { notification }
 }
 
+export const useDisplaySecret = () => {
+  const [set, setSet] = useState(true)
+  const [unSet, setUnSet] = useState(false)
+
+  const handleDisplay = () => {
+    if(set){
+      setSet(false)
+      setUnSet(true)
+    }else{
+      setSet(true)
+      setUnSet(false)
+    }
+  }
+   return {set, unSet, handleDisplay}
+}
+
 
 
 
