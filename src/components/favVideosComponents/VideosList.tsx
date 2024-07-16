@@ -3,14 +3,14 @@ import { VideoFavCard } from "./VideoFavCard"
 import "./videoList.scss";
 import { Header } from "./Header"
 import { useFavVideos } from "../../customsHooks/favVideosHooks";
-import { Loading } from "../redirectComponents/Loading";
+import { Spinner } from "../commonComponents/Spinner";
 
 export const VideosList = () => {
-  const { request } = useFavVideos()
+  const { request, isLoading, noFavs } = useFavVideos()
   return (
 
     <div style={{ marginTop: "1rem" }} className="mx-auto max-w-screen-xl mb-20">
-      {request.length !== 0 ?<> <aside className="w-full bg-gray-200 p-4 md:hidden"> {/* Visible solo en dispositivos móviles y tabletas */}
+       <aside className="w-full bg-gray-200 p-4 md:hidden"> {/* Visible solo en dispositivos móviles y tabletas */}
         <h1>anuncio</h1>
       </aside>
 
@@ -19,12 +19,14 @@ export const VideosList = () => {
           <Header />
         </div>
       </header>
-
+      {isLoading && <div className="py-3 lg:flex lg:justify-center lg:h-screen"><Spinner/></div> }
+     
       <div className="py-3 lg:flex lg:justify-center lg:h-screen">
         <aside className="w-2/4 bg-gray-200 p-4 hidden md:block"> {/*Visible en desktop*/}
           <h1>anuncio</h1>
         </aside>
-        <section className="w-full  pl-2 pr-2 overflow-hidden lg:overflow-y-auto">
+      {!noFavs ? <>  
+       <section className="w-full  pl-2 pr-2 overflow-hidden lg:overflow-y-auto">
           <div className="flex flex-col "> 
             {request?.map((item, key) => (
               <div className="flex flex-col gap-y-5 justify-center" key={key}>
@@ -32,8 +34,10 @@ export const VideosList = () => {
               </div>
             ))}
           </div>
-        </section>
-      </div></>: <Loading/>}
+        </section></>: <div className="py-3 lg:flex lg:justify-center lg:h-screen">You don't have favorite videos yet...</div>}
+      </div>
+      
+      
     </div>
   )
 }

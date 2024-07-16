@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom"
 
 export const useFavVideos = () => {
     const [request, setRequest] = useState<FavVideosProfile[]>([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [noFavs, setNoFavs] = useState(false)
     const { token } = useStateContext()
 
     useEffect(()=>{
@@ -16,7 +18,13 @@ export const useFavVideos = () => {
   
       getFavVideos([data.results])
        .then((data)=>{
-         setRequest(data)
+        if(data.length !== 0){
+          setRequest(data)
+          setIsLoading(false)
+        }else{
+          setIsLoading(false)
+          setNoFavs(true) 
+        }    
        })
        .catch(error=>{
         console.error('Something went wrong!')
@@ -30,7 +38,7 @@ export const useFavVideos = () => {
 
     },[])
 
-    return { request }
+    return { request, isLoading, noFavs }
 }
 
 export const useDelFav = (videoId:string) => {
