@@ -1,3 +1,4 @@
+import { Spinner } from "../commonComponents/Spinner"
 export const Loading = () => {
 	return (
 		<>
@@ -8,8 +9,7 @@ export const Loading = () => {
 				<div className="opacity-50 mb-8">
 					please wait...
 				</div>
-				<div className="w-12 h-12 rounded-full animate-spin
-                    border-8 border-solid border-pink-500 border-t-transparent shadow-md"></div>
+				<Spinner/>
 			</div>
 		</>
 	)

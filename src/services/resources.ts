@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {  type APIEpornerResponse } from "../types/eporner"
+import {  type APIEpornerResponse, type FavVideosProfile } from "../types/eporner"
 
 
 // const configValue : string = (process.env.EPORNER_API_URL as string)
@@ -39,7 +39,19 @@ export const getOrderVideos = async (page:number | null, order:string | undefine
 
 // RedTube Videos
 export const getModelVideos = async (name:string | undefined) => {
-    const res = await fetch(`https://scraping-server.vercel.app/rtube/model/${name}`)
+    const res = await fetch(`${import.meta.env.VITE_SCRAPPING_DATA_URL}/rtube/model/${name}`)
     const data = await res.json()
     return data
 }
+
+
+export const getFavVideos = async ([resultsArray]:string[]) => {
+    let results:FavVideosProfile[] = [] 
+    for(let i = 0; i < resultsArray.length; i++){
+        const response = await fetch(`https://www.eporner.com/api/v2/video/id/?id=${resultsArray[i]}`)
+        const data = await response.json() as FavVideosProfile
+        console.log(data)
+        results = [data,...results]
+    }
+    return results
+  }

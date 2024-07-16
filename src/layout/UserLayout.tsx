@@ -1,30 +1,20 @@
 import NavBar from "../components/layoutComponents/NavBar"
 import Footer from "../components/layoutComponents/Footer"
-import { Outlet, Navigate } from "react-router-dom"
-import axiosClientAuth from "../services/axios-client-auth"
-import { useStateContext } from "../contexts/ContextProvider"
+import { Outlet} from "react-router-dom"
+import { Notifications } from "../components/layoutComponents/Notifications"
+import { useAuth } from "../customsHooks/customsHooks"
 
 export default function UserLayout() {
-  const { token, setNotification } = useStateContext()
-
-  if(!token){
-    return <Navigate to="/redirect"/>
-  }else{
-    axiosClientAuth.post('/auth/token', {token: token})
-      .then(({data})=>{
-         setNotification(data.message)
-      })
-      .catch(err => {
-        const res = err.response
-        setNotification(res.message)
-      })
-  }
+ const { notification } = useAuth()
+  
 
   return (
     <>
     <NavBar/>
       <Outlet/>
+      
     <Footer/>
+    {notification && <Notifications notification={notification} />}
     </>
   )
 }
