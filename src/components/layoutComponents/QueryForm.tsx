@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const QueryForm:React.FC<Props> = ({path, placeholder}) => {
-    const { query, border,message,show, handleInput, handleKeyDown } = useInputSearch(path)
+    const { query, message,show, handleInput, handleKeyDown } = useInputSearch(path)
     
   return (
       <>  

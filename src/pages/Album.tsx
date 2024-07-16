@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useParams } from 'react-router-dom';
 import { useAlbumContent } from '../customsHooks/photosHooks';
 import { PicCard } from '../components/albumComponents/PicCard';
 import { ArrowRight } from '../components/icons/ArrowRight';
 
-interface RouteParams {
+/*interface RouteParams {
   album: string;
   tag: string;
-}
+}*/
 
 export const Album: React.FC = () => {
-  const { album, tag } = useParams<RouteParams>();
+  const { album, tag } = useParams<any | undefined>();
   const { pics, title } = useAlbumContent(tag, album);
 
   return (
@@ -27,7 +28,7 @@ export const Album: React.FC = () => {
           </li>
           <li className="inline-flex items-center">
             <Link
-              to={`/photos?tag=${tag.toLowerCase()}&page=1`}
+              to={`/photos?tag=${tag?.toLowerCase()}&page=1`}
               className="flex items-center text-2xl text-gray-500 hover:text-pink-600 focus:outline-none focus:text-blue-600 dark:text-neutral-500 dark:hover:text-pink-600 dark:focus:text-pink-600"
             >
               {tag}
