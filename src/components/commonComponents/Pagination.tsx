@@ -15,20 +15,71 @@ export const Pagination:React.FC<Props> = ({ itemsPage, currentPage, optParam })
  
   return (
     <>
-    <nav className="flex flex-row gap-y-2">
-      {currentPage!== 1&& <Link to={optParam ? `?${optParam}&page=${currentPage - 1}` :`?page=${currentPage - 1}`} reloadDocument title="Previus Page"><Prev/></Link> }
+  <nav className="flex justify-center mb-4 space-x-4" aria-label="Pagination">
+    {currentPage !== 1 && (
+        <Link
+            to={optParam ? `?${optParam}&page=${currentPage - 1}` : `?page=${currentPage - 1}`}
+            reloadDocument
+            title="Previous Page"
+            className="px-2 py-2 text-white border border-white rounded-lg"
+        >
+            <span className="sr-only">Previous</span>
+           <Prev/>
+        </Link>
+    )}
 
-      {/** First Page */} 
-      {rangePage[0] !== 1 && <Link reloadDocument to={optParam ? `?${optParam}&page=${itemsPage[0]}`:`?page=${itemsPage[0]}`} title={`Go to page ${itemsPage[0]}`} className={itemsPage[0] === currentPage ? `border rounded-sm mr-2 p-2 bg-yellow-600 pointer-events-none` : "border rounded-sm mr-2 p-2 pointer-events-auto"}>{itemsPage[0]}</Link>}
-      
-      {/** All pages mapped */}
-      {rangePage.map((item, key)=>(<Link reloadDocument to={optParam ? `?${optParam}&page=${item}`:`?page=${item}`} title={`Go to page ${item}`} key={key} className={item === currentPage ? `border rounded-sm mr-2 p-2 bg-yellow-600 pointer-events-none` : "border rounded-sm mr-2 p-2 pointer-events-auto"}>{item}</Link>))}
+    {rangePage[0] !== 1 && (
+        <Link
+            reloadDocument
+            to={optParam ? `?${optParam}&page=${itemsPage[0]}` : `?page=${itemsPage[0]}`}
+            title={`Go to page ${itemsPage[0]}`}
+            className={`rounded-lg border border-white px-4 py-2 ${
+                itemsPage[0] === currentPage ? 'bg-pink-600 text-white' : 'text-white'
+            }`}
+        >
+            {itemsPage[0]}
+        </Link>
+    )}
 
-      {/** Last page */}
-      {rangePage[rangePage.length -1] !== itemsPage.length &&<Link reloadDocument to={optParam ? `?${optParam}&page=${itemsPage[itemsPage.length - 1]}`: `?page=${itemsPage[itemsPage.length - 1]}`} title={`Go to page ${itemsPage[itemsPage.length - 1]}`} className={itemsPage[itemsPage.length - 1] === currentPage ? `border rounded-sm mr-2 p-2 bg-yellow-600 pointer-events-none` : "border rounded-sm mr-2 p-2 pointer-events-auto"}>{itemsPage[itemsPage.length - 1]}</Link>}
-      
-      {currentPage !== itemsPage[itemsPage.length -1] &&<Link to={optParam ? `?${optParam}&page=${currentPage + 1}`:`?page=${currentPage + 1}`} reloadDocument title="Next page"><Next/></Link>}
-    </nav>
+    {rangePage.map((item, key) => (
+        <Link
+            reloadDocument
+            to={optParam ? `?${optParam}&page=${item}` : `?page=${item}`}
+            title={`Go to page ${item}`}
+            key={key}
+            className={`rounded-lg border border-white px-4 py-2 ${
+                item === currentPage ? 'bg-pink-600 text-white' : 'text-white'
+            }`}
+        >
+            {item}
+        </Link>
+    ))}
+
+    {rangePage[rangePage.length - 1] !== itemsPage.length && (
+        <Link
+            reloadDocument
+            to={optParam ? `?${optParam}&page=${itemsPage[itemsPage.length - 1]}` : `?page=${itemsPage[itemsPage.length - 1]}`}
+            title={`Go to page ${itemsPage[itemsPage.length - 1]}`}
+            className={`rounded-lg border border-white px-4 py-2 ${
+                itemsPage[itemsPage.length - 1] === currentPage ? 'bg-pink-600 text-white' : 'text-white'
+            }`}
+        >
+            {itemsPage[itemsPage.length - 1]}
+        </Link>
+    )}
+
+    {currentPage !== itemsPage[itemsPage.length - 1] && (
+        <Link
+            to={optParam ? `?${optParam}&page=${currentPage + 1}` : `?page=${currentPage + 1}`}
+            reloadDocument
+            title="Next Page"
+            className="px-2 py-2 text-white border border-white rounded-lg"
+        >
+            <span className="sr-only">Next</span>
+          <Next/>
+        </Link>
+    )}
+</nav>
     </>
   )
 }

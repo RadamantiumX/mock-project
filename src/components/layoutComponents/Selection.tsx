@@ -6,7 +6,7 @@ export const Selection = () => {
   const {selectedFlag, toggleFlag} = useToggleFlag(flagEsp, flagUk)
   return (
     <div className="relative flex items-center" onClick={toggleFlag}>
-      <p className="text-lenguaje">Lang:</p>
+    
       <img
         src={selectedFlag}
         alt={selectedFlag === flagEsp ? "Bandera de España" : "UK Flag"}

@@ -6,9 +6,7 @@ import RTA from "../../assets/project/rta-2.gif"
 export default function Footer() {
   return (
     <footer  className="bg-black">
-      <div className="max-w-screen-xl mx-auto ">
-        <div className="border-t-2 border-gray-500 "></div>
-      </div>
+    
       <div className="max-w-screen-xl px-4 pt-16 pb-6 mx-auto sm:px-6 lg:px-8 lg:pt-24">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
@@ -17,7 +15,7 @@ export default function Footer() {
             </div>
 
             <p
-              className="max-w-md mx-auto mt-6 leading-relaxed text-center font-medium text-white sm:max-w-xs sm:mx-0 sm:text-left"
+              className="max-w-md mx-auto mt-6 font-medium leading-relaxed text-center text-white sm:max-w-xs sm:mx-0 sm:text-left"
             >
               The best selection of free porn videos, please send us your comment to improve this content. We work every day to offer you the best. Enjoy it...
             </p>

@@ -20,50 +20,54 @@ export default function NavBar() {
   return (
     <>
       <nav className="relative">
-        <header className="md:flex md:items-center md:justify-around p-4 pb-0 md:pb-4">
+        <header className="p-4 pb-0 md:flex md:items-center md:justify-around md:pb-4">
           <div className="flex items-center justify-between mb-4 md:mb-0">
             <Link reloadDocument className="-mt-3" style={{ width: "16rem" }} to="/">
               <img src={Logo} alt="Logo Vanilla Leak" aria-labelledby="Vanilla Leak Logo" title="This is our Logo, Vanilla Leak"/>
             </Link>
-            <div className="md:hidden flex items-center">
+            <div className="flex items-center md:hidden">
               {token ?
                 <UserButton onClick={logout} nickname={nickname} /> :
-                <Link reloadDocument className="sm:flex text-center text-nav w-20" to="/auth/portal/signin">
+                <Link reloadDocument className="w-20 text-center sm:flex text-nav" to="/auth/portal/signin">
                   <User/>
                 </Link>
               }
-              <button className="mobile-menu-button ml-3" onClick={toggleDropdown}  aria-label="menu">
+              <button className="ml-3 mobile-menu-button" onClick={toggleDropdown}  aria-label="menu">
                 <Hamburguer/>
               </button>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row mb-4 w-full md:mb-0 md:w-1/4 gap-5">
+          <div className="flex flex-col w-full gap-5 mb-4 sm:flex-row md:mb-0 md:w-2/5">
             <QueryForm path={"search"} placeholder={"something"}/>
           </div>
-          <div className="flex flex-col sm:flex-row mb-4 w-full md:mb-0 md:w-1/4 gap-5">
-            {token ?
-              <div className=" hidden sm:flex">
-                <UserButton onClick={logout} nickname={nickname} />
-              </div> :
-              <Link className=" hidden sm:flex text-center text-nav w-20" to="/auth/portal/signin">Sign In</Link>
-            }
-            <div className="flex-1 hidden sm:flex">
+          <div className="flex flex-col w-full mb-2 sm:flex-row md:mb-0 md:w-1/6">
+            <div className="hidden mr-8 sm:flex">
               <Selection />
             </div>
+            {token ?
+              <div className="hidden sm:flex">
+                <UserButton onClick={logout} nickname={nickname} />
+              </div> :
+              <Link to="/auth/portal/signin" className="relative hidden px-4 py-2 font-medium group md:block">
+              <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+              <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+              <span className="relative text-black group-hover:text-white">Sign In</span>
+              </Link>
+            }
           </div>
 
           {isOpen && (
-           <div className="absolute top-full left-0 w-full bg-black z-50">
-              <div className="max-w-6xl mx-auto px-4 pt-4 pb-4">
+           <div className="absolute left-0 z-50 w-full bg-black top-full">
+              <div className="max-w-6xl px-4 pt-4 pb-4 mx-auto">
                 <div className="mobile-menu md:hidden">
-                  <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/">Home</Link>
-                  <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/categories-list">Categories</Link>
-                  <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/models?page=1">Models</Link>
-                  <Link className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800" to="/photos?tag=all&page=1">Photos</Link>
-                  <div className="navresponsive block py-2 px-4 text-sm hover:bg-gray-800">
+                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/">Home</Link>
+                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/categories-list">Categories</Link>
+                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/models?page=1">Models</Link>
+                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/photos?tag=all&page=1">Photos</Link>
+                  <div className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800">
                     <Selection />
                   </div>
-                 <OrderVideosButton/>
+                  <Link to="/videos" className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800">Videos</Link>
              </div>
            </div>
          </div>
@@ -73,7 +77,7 @@ export default function NavBar() {
         </header>
       </nav>
       {!isOpen && (
-        <div className="hidden bg-indigo-300 bg-opacity-25 pt-2 pb-2 md:flex mt-2 w-full justify-center md:justify-around">
+        <div className="justify-start hidden w-full pt-1 pb-1 mt-2 md:flex md:justify-center">
           <nav>
             <ul className="flex flex-row gap-4 mobile-menu">
               <li><Link reloadDocument className="subnav" to="/">Home</Link></li>
