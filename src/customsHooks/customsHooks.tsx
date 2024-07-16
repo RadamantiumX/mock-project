@@ -185,7 +185,7 @@ return {query, border,message,show, handleInput, handleKeyDown}
 export const useToggleFlag = (flagEsp:any, flagUk:any) => {
   const [selectedFlag, setSelectedFlag] = useState(flagEsp);
 
-  const toggleFlag = () => {
+  const toggleFlag = (flag: any) => {
     setSelectedFlag(selectedFlag === flagEsp ? flagUk : flagEsp);
   };
 
