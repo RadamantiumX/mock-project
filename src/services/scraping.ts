@@ -5,7 +5,7 @@ import type { PhubScrapingData } from "../types/phubScrapingData"
 
 
 export const pornHubDataModels = async (page:number) => {
- const res = await fetch(`https://scraping-server.vercel.app/phmongo/data/${page}`)
+ const res = await fetch(`${import.meta.env.VITE_SCRAPPING_DATA_URL}/phmongo/data/${page}`)
  const data = await res.json() as PhubScrapingData
 
  return data 

@@ -3,6 +3,7 @@ import {SkeletonLoader} from "../components/commonComponents/SkeletonLoader";
 import { useHomeVideos } from "../customsHooks/homeHooks";
 import { useRange, useQuery } from "../customsHooks/customsHooks";
 import { Pagination } from "../components/commonComponents/Pagination";
+import { Spinner } from "../components/commonComponents/Spinner";
 
 export default function Home() {
   const query = useQuery()
@@ -11,9 +12,9 @@ export default function Home() {
   const { rangePages } = useRange(1, Math.round(eporner.total_pages))
   return (
     <main>
-      <Videos source={eporner?.videos} />
+      {eporner.length !== 0 ? <Videos source={eporner?.videos} /> : <Spinner/>}
       {isLoading ? <SkeletonLoader /> : null} 
-      <Pagination itemsPage={rangePages} currentPage={currentPage === null ? 1: parseInt(currentPage)} optParam={null}/>
+      {eporner.length !== 0 && <Pagination itemsPage={rangePages} currentPage={currentPage === null ? 1: parseInt(currentPage)} optParam={null}/>}
     </main>
   );
 }

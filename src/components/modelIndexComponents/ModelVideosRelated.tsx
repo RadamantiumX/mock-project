@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { MovieCard } from "../commonComponents/MovieCard"
 import { type Response } from "../../types/redtube"
+import { Spinner } from "../commonComponents/Spinner"
 
 interface Props{
     source?: Response[]
@@ -15,7 +16,7 @@ export const ModelVideosRelated:React.FC<Props> = ({ source }) => {
     <div className="">
      <h5 className="text-2xl font-bold">Most Recent Videos</h5>
     </div> 
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+    {source?.length !== 0 ?<div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
   {source?.map((item) => (
     <div key={item.video_id}>
       <MovieCard
@@ -28,7 +29,7 @@ export const ModelVideosRelated:React.FC<Props> = ({ source }) => {
       />
     </div>
   ))}
-</div>
+</div> : <Spinner/>}
 
   </section>
   )
