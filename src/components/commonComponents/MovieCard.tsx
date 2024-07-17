@@ -25,11 +25,11 @@ interface Props {
 export const MovieCard:React.FC<Props> = ({ title, image, id, lengthMin, views, keywords }) => {
   return (
     <> 
-          <div className="block relative group transition max-w-sm mx-auto mt-3 mb-4">
+          <div className="block relative group transition max-w-sm mx-auto mt-3 mb-4" >
               <Link reloadDocument to={`/video/${id}/${keywords}/${title}/${views}`} className="block">
                   <div className="aspect-w-2 aspect-h-1 rounded-2xl shadow overflow-hidden bg-gray-100 relative">
                       <Link reloadDocument to={`/video/${id}/${keywords}/${title}/${views}`}>
-                          <img src={image} loading="lazy" className="object-center object-cover" alt='Image Porn dirtyhub'/>
+                          <img src={image} loading="lazy" className="object-center object-cover" alt='Image Porn dirtyhub' title={`${title}`}/>
                           <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white ml-2 mb-1 p-2 text-sm">{lengthMin} min</div>
                       </Link>
                   </div>
