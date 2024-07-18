@@ -2,6 +2,7 @@ import  { useState } from "react";
 import flagEsp from "../../assets/project/Spain_flags_flag_8858.png";
 import flagUk from "../../assets/project/icon-uk.png";
 import { useToggleFlag } from "../../customsHooks/customsHooks";
+import { EyeOff } from "../icons/EyeOff";
 
 export const Selection = () => {
   const { selectedFlag, toggleFlag } = useToggleFlag(flagEsp, flagUk);
@@ -18,7 +19,11 @@ export const Selection = () => {
 
   return (
     <div className="relative flex items-center">
-      <div onClick={handleToggleDropdown}>
+      <select className="w-20" name="" id="">
+        <option value="" >EN <EyeOff/></option>
+        <option value="">ES<img src={flagUk} alt="" /></option>
+      </select>
+      {/*<div onClick={handleToggleDropdown}>
         <img
           src={selectedFlag}
           alt={selectedFlag === flagEsp ? "Bandera de España" : "UK Flag"}
@@ -37,7 +42,7 @@ export const Selection = () => {
             <span>Eng</span>
           </div>
         </div>
-      )}
+      )}*/}
     </div>
   );
 };
