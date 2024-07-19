@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axiosClientAuth from "../services/axios-client-auth";
 import { useStateContext } from "../contexts/ContextProvider";
 import { Video } from "../types/eporner";
+import { useLangContext } from "../contexts/LangContext";
 
 export const useQuery = () => new URLSearchParams(useLocation().search)
 
@@ -185,7 +186,7 @@ return {query, border,message,show, handleInput, handleKeyDown}
 export const useToggleFlag = (flagEsp:any, flagUk:any) => {
   const [selectedFlag, setSelectedFlag] = useState(flagEsp);
 
-  const toggleFlag = (flag: any) => {
+  const toggleFlag = () => {
     setSelectedFlag(selectedFlag === flagEsp ? flagUk : flagEsp);
   };
 
@@ -232,6 +233,24 @@ export const useDisplaySecret = () => {
     }
   }
    return {set, unSet, handleDisplay}
+}
+
+export const useLang = () => {
+  const selectedLang = useLangContext()
+  const {lang, setLang} = useStateContext()
+  const navigate = useNavigate()
+
+  const handleSelect = (e:React.ChangeEvent<HTMLSelectElement>) => {
+    localStorage.removeItem('lang-selected')
+    setLang(e.target.value)
+   
+    navigate(0)
+ }
+
+  useEffect(()=>{
+    selectedLang.handleMessages(lang)
+  },[])
+  return {lang, handleSelect}
 }
 
 

@@ -1,9 +1,64 @@
 {
+    "lang": "Idioma",
+
     "nav.home": "Home",
     "nav.categories": "Categorías",
     "nav.models": "Modelos",
     "nav.photos": "Fotos",
     "nav.videos": "Videos",
 
-    "auth.signin": "Ingresar"
+    "nav.auth.button": "Ingresar",
+
+    "auth.layout": "Retornar a página principal",
+
+    "auth.forgot.title": "Restablecer contraseña",
+    "auth.forgot.message": "Le enviaremos un vínculo al mail registrado.",
+    "auth.forgot.button": "Enviar email",
+    "auth.forgot.link#1.msg": "¿Aun no esta registrado?",
+    "auth.forgot.link#1.ref": "Crear una nueva cuenta",
+
+    "auth.recovery.button": "Restablecer",
+    "auth.recovery.link#1": "¿Ya estas registrado? Ingresar",
+
+    "auth.signin.title": "Ingresar en",
+    "auth.signin.email": "Correo Electrónico",
+    "auth.signin.password": "Contraseña",
+    "auth.signin.button": "Ingresar",  
+    "auth.signin.link#1": "¿Olvidaste tu contraseña?",
+    "auth.signin.link#2.msg":"¿Aún no se registra?",
+    "auth.signin.link#2": "Crear una cuenta",
+    "auth.signin.link#3": "Terminos y Condiciones",
+    "auth.signin.link#4": "Política de Privacidad",
+
+    "auth.signup.title": "Registrar una nueva cuenta",
+    "auth.signup.nickname": "Apodo",
+    "auth.signup.email": "Correo Electrónico",
+    "auth.signup.password": "Contraseña",
+    "auth.signup.password-confirm": "Confirmar contraseña",
+    "auth.signup.button": "Registrarse",
+    "auth.signup.link#1.msg": "¿Ya tiénes una cuenta?",
+    "auth.signup.link#1": "Ingresar",
+    "auth.signup.msg": "AL crear una cuenta estoy de acuerdo con la suscripción",
+    "auth.signup.link#2": "Política de Privacidad.",
+
+    "common.noresults.title": "No se encontraron resultados",
+    "common.noresults.link": "Retornar a la pagina principal",
+
+    "common.pagination.link#1": "Previa",
+    "common.pagination.link#2": "Siguiente",
+
+    "common.userbtn.btn#1": "Salir",
+    "common.userbtn.btn#2": "Configuración de cuenta",
+    "common.userbtn.btn#3": "Favoritos",
+
+    "contact.title": "Llena el formulario, y te responderemos a la brevedad!",
+    "contact.name": "Nombre completo",
+    "contact.email": "Correo Electrónico",
+    "contact.message": "Mensaje",
+    "contact.button": "Enviar Mensaje",
+
+    "contact.notice.p#1": "Al enviar el formulario, estoy de acuerdo con la Politica de Privacidad",
+    "contact.notice.p#2":"Al enviar, confirma de haber leíedo y comprendido la",
+    "contact.notice.p#2.inner":"Política de Privacidad"
+
 }

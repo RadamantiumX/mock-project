@@ -51,7 +51,7 @@ export default function NavBar() {
               <Link to="/auth/portal/signin" className="relative hidden px-4 py-2 font-medium group md:block">
               <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
               <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-              <span className="relative text-black group-hover:text-white"><FormattedMessage id="auth.signin" defaultMessage='Sign In' /></span>
+              <span className="relative text-black group-hover:text-white"><FormattedMessage id="nav.auth.button" defaultMessage='Sign In' /></span>
               </Link>
             }
           </div>
@@ -60,14 +60,14 @@ export default function NavBar() {
            <div className="absolute left-0 z-50 w-full bg-black top-full">
               <div className="max-w-6xl px-4 pt-4 pb-4 mx-auto">
                 <div className="mobile-menu md:hidden">
-                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/">Home</Link>
-                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/categories-list">Categories</Link>
-                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/models?page=1">Models</Link>
-                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/photos?tag=all&page=1">Photos</Link>
+                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/"><FormattedMessage id="nav.home" defaultMessage="Home"/></Link>
+                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/categories-list"><FormattedMessage id="nav.categories" defaultMessage="Categories"/></Link>
+                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/models?page=1"><FormattedMessage id="nav.models" defaultMessage="Models"/></Link>
+                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/photos?tag=all&page=1"><FormattedMessage id="nav.photos" defaultMessage="Photos"/></Link>
                   <div className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800">
                     <Selection />
                   </div>
-                  <Link to="/videos" className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800">Videos</Link>
+                  <Link to="/videos" className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800"><FormattedMessage id="nav.videos" defaultMessage="Videos"/></Link>
              </div>
            </div>
          </div>
@@ -80,10 +80,10 @@ export default function NavBar() {
         <div className="justify-start hidden w-full pt-1 pb-1 mt-2 md:flex md:justify-center">
           <nav>
             <ul className="flex flex-row gap-4 mobile-menu">
-              <li><Link reloadDocument className="subnav" to="/">Home</Link></li>
+              <li><Link reloadDocument className="subnav" to="/"><FormattedMessage  id="nav.home" defaultMessage="Home"/></Link></li>
               <SelectCategories />
               <SelectModels />
-              <li><Link className="subnav" to="/photos?tag=all&page=1">Photos</Link></li>
+              <li><Link className="subnav" to="/photos?tag=all&page=1"><FormattedMessage id="nav.photos" defaultMessage="Photos"/></Link></li>
               <OrderVideosButton/>
             </ul>
           </nav>

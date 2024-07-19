@@ -2,6 +2,7 @@ import { usePagination } from "../../customsHooks/customsHooks"
 import { Link } from "react-router-dom"
 import { Next } from "../icons/Next"
 import { Prev } from "../icons/Prev"
+import { FormattedMessage } from "react-intl"
 
 interface Props{
     itemsPage: number[]
@@ -23,7 +24,7 @@ export const Pagination:React.FC<Props> = ({ itemsPage, currentPage, optParam })
             title="Previous Page"
             className="px-2 py-2 text-white border border-white rounded-lg"
         >
-            <span className="sr-only">Previous</span>
+            <span className="sr-only"><FormattedMessage id="common.pagination.link#1" defaultMessage="Previous"/></span>
            <Prev/>
         </Link>
     )}
@@ -75,7 +76,7 @@ export const Pagination:React.FC<Props> = ({ itemsPage, currentPage, optParam })
             title="Next Page"
             className="px-2 py-2 text-white border border-white rounded-lg"
         >
-            <span className="sr-only">Next</span>
+            <span className="sr-only"><FormattedMessage id="common.pagination.link#1" defaultMessage="Next"/></span>
           <Next/>
         </Link>
     )}

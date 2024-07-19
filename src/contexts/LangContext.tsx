@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createContext, PropsWithChildren, useState } from "react";
+import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { IntlProvider } from "react-intl";
 import { useStateContext } from "./ContextProvider";
 import SpanishMsg from '../lang/es-lang.json'
@@ -7,7 +7,7 @@ import EnglishMsg from '../lang/en-lang.json'
 
 const LangContext = createContext<any>({})
 
-const LangProvider = ({children}:PropsWithChildren) => {
+export const LangProvider = ({children}:PropsWithChildren) => {
     const [messages, setMessages] = useState(EnglishMsg)
     const {lang} = useStateContext()
 
@@ -32,4 +32,4 @@ const LangProvider = ({children}:PropsWithChildren) => {
     )
 }
 
-export {LangProvider, LangContext}
+export const useLangContext = () => useContext(LangContext)

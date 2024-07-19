@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useToogleButton } from '../../customsHooks/customsHooks';
+import { FormattedMessage } from 'react-intl';
 // Icons
 import { Logout } from "../icons/Logout";
 import { Settings } from "../icons/Settings";
@@ -20,9 +21,9 @@ export const UserButton = (props: {onClick:()=>void, nickname: string | null}) =
   {isOpen && (
     <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg">
       <div className="py-1">
-        <button className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" onClick={handleLogout}><div className='flex flex-row gap-1'>Logout<Logout/></div></button>
-        <Link className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" reloadDocument to="/user/profile"><div className='flex flex-row gap-1'>Account Settings<Settings/></div></Link>
-        <Link className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" reloadDocument to="/user/fav"><div className='flex flex-row gap-1'>Favorites<Hearth/></div></Link>
+        <button className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" onClick={handleLogout}><div className='flex flex-row gap-1'><FormattedMessage id='common.userbtn.btn#1' defaultMessage="Logout"/><Logout/></div></button>
+        <Link className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" reloadDocument to="/user/profile"><div className='flex flex-row gap-1'><FormattedMessage id='common.userbtn.btn#2' defaultMessage="Account Settings"/><Settings/></div></Link>
+        <Link className="block px-2 py-1 text-white hover:bg-gray-800 w-full text-center" reloadDocument to="/user/fav"><div className='flex flex-row gap-1'><FormattedMessage id='common.userbtn.btn#3' defaultMessage="Favorites"/><Hearth/></div></Link>
       </div>
     </div>
   )}

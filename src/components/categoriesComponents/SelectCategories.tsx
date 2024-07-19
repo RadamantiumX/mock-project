@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./selectCategories.scss"
 import { CATEGORIES } from "../const/categories";
 import { useDropDownCategories } from "../../customsHooks/categoriesHooks";
+import { FormattedMessage } from "react-intl";
 
 export default function SelectCategories() {
   const { isOpen, handleMouseEnter, handleMouseLeave } = useDropDownCategories()
@@ -11,7 +12,7 @@ export default function SelectCategories() {
  {/* /////////   DropDown Categories ///////// */}
 <div className="relative inline-block dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
   <Link to="/categories-list" className="inline-flex items-center rounded subnav">
-    Categories
+    <FormattedMessage id="nav.categories" defaultMessage='Categories'/>
     <svg className="w-4 h-4 mt-3 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
       <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
     </svg>

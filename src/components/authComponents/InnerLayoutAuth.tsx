@@ -1,6 +1,8 @@
+import { FormattedMessage } from 'react-intl'
 import Logo from '../../assets/project/logoSecundario.png'
 import { Outlet } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { Return } from '../icons/Return'
 
 export const InnerLayoutAuth = () => {
  
@@ -14,7 +16,7 @@ export const InnerLayoutAuth = () => {
     </div>
     <div className='flex flex-col items-center justify-center lg:w-1/2 gap-y-5'>
       <Outlet/>
-      <Link to="/" className='w-4subnav p-2 hover:text-pink-500'><i className="fa-solid fa-rotate-left mr-1"></i>Return to main page</Link>
+      <Link to="/" className='w-4subnav p-2 hover:text-pink-500 flex flex-row' reloadDocument><Return/><FormattedMessage id="auth.layout" defaultMessage="Return to main page"/></Link>
     </div>
   </div>
 </section>

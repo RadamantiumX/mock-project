@@ -1,9 +1,63 @@
 {
+    "lang": "Language", 
+
     "nav.home": "Home",
     "nav.categories": "Categories",
     "nav.models": "Models",
     "nav.photos": "Photos",
     "nav.videos": "Videos",
 
-    "auth.signin": "Sign In"
+    "nav.auth.button": "Sign In",
+
+    "auth.layout": "Return to main page",
+
+    "auth.forgot.title": "Forgot Password",
+    "auth.forgot.message": "We'll send you a link with the email address registered.",
+    "auth.forgot.button": "Send email",
+    "auth.forgot.link#1.msg": "¿Not registered?",
+    "auth.forgot.link#1.ref": "Create an account",
+
+    "auth.recovery.button": "Reset",
+    "auth.recovery.link#1": "¿Already have an account? Sign in",
+
+    "auth.signin.title": "Login in to",
+    "auth.signin.email": "Email address",
+    "auth.signin.password": "Password",
+    "auth.signin.button": "Sign In",  
+    "auth.signin.link#1": "¿Forgot your password?",
+    "auth.signin.link#2.msg":"¿Not registered?",
+    "auth.signin.link#2": "Create an account",
+    "auth.signin.link#3": "Term & Conditions",
+    "auth.signin.link#4": "Privacy Policy",
+
+    "auth.signup.title": "Register a new account",
+    "auth.signup.nickname": "Nickname",
+    "auth.signup.email": "Email",
+    "auth.signup.password": "Password",
+    "auth.signup.password-confirm": "Password Confirmation",
+    "auth.signup.button": "Sign Up",
+    "auth.signup.link#1.msg": "¿Already have and account?",
+    "auth.signup.link#1": "Sign In",
+    "auth.signup.msg": "By creating an account I agree to the Subscription",
+    "auth.signup.link#2": "Privacy Policy.",
+
+    "common.noresults.title": "No results founded",
+    "common.noresults.link": "Return to main page",
+
+    "common.pagination.link#1": "Previus",
+    "common.pagination.link#2": "Next",
+
+    "common.userbtn.btn#1": "Logout",
+    "common.userbtn.btn#2": "Account Settings",
+    "common.userbtn.btn#3": "Favorites",
+
+    "contact.title": "Fill out the form below we'll respond quickly!",
+    "contact.name": "Full name",
+    "contact.email": "Email",
+    "contact.message": "Message",
+    "contact.button": "Send message",
+
+    "contact.notice.p#1": "By submitting this, I confirm that I have read and understood the Privacy Policy.",
+    "contact.notice.p#2":"By submitting this, I confirm that I have read and understood the",
+    "contact.notice.p#2.inner":"Privacy Policy"
 }
