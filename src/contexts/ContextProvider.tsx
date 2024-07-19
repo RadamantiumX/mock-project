@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, useContext, useState, PropsWithChildren } from "react";
-import { type ContextType } from "../types/api";
+import type { ContextType } from "../types/context";
 
 
 const StateContext = createContext<ContextType>({
@@ -13,6 +13,7 @@ const StateContext = createContext<ContextType>({
     notification: null,
     videoId: undefined,
     postId: undefined,
+    lang: null,
 
     setNickname: () => {},
     setEmail: () => {},
@@ -22,7 +23,8 @@ const StateContext = createContext<ContextType>({
     setAge: () => {},
     setNotification: ()=>{},
     setVideoId: ()=>{},
-    setPostId: () =>{}
+    setPostId: () =>{},
+    setLang: () => {}
 })
 
 export const ContextProvider = ({ children }:PropsWithChildren) => {
@@ -35,6 +37,7 @@ export const ContextProvider = ({ children }:PropsWithChildren) => {
     const [notification, _setNotification] = useState("")
     const [videoId, setVideoId] = useState<any>("")
     const [postId, setPostId] = useState<any>(null)
+    const [lang, _setLang] = useState<any>(localStorage.getItem('lang-selected'))
     
     const setToken = (token:any) => {
         _setToken(token)
@@ -90,8 +93,13 @@ export const ContextProvider = ({ children }:PropsWithChildren) => {
         }, 5000)
     }
 
+    const setLang = (lang:any) => {
+        _setLang(lang)
+        localStorage.setItem('lang-selected', lang)
+    }
+
     return (
-        <StateContext.Provider value={{ nickname, setNickname, path, setPath, age, setAge, token, setToken, email, setEmail, id, setId, notification, setNotification, videoId, setVideoId, postId, setPostId }}>
+        <StateContext.Provider value={{ nickname, setNickname, path, setPath, age, setAge, token, setToken, email, setEmail, id, setId, notification, setNotification, videoId, setVideoId, postId, setPostId, lang, setLang }}>
             {children}
         </StateContext.Provider>
     )

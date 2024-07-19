@@ -5,15 +5,18 @@ import { RouterProvider } from 'react-router-dom'
 import { ContextProvider } from './contexts/ContextProvider.tsx'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
+import { LangProvider } from './contexts/LangContext.tsx'
 
-// import { client } from './gqlClient/client.ts'
-// import { ApolloProvider } from '@apollo/client'
+
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-   
-      <Provider store={store}>
+  
+      <Provider store={store}>  
           <ContextProvider>
+            <LangProvider>
              <RouterProvider router={router}/>
+            </LangProvider>
           </ContextProvider>
       </Provider>
     

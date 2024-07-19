@@ -1,0 +1,9 @@
+{
+    "nav.home": "Home",
+    "nav.categories": "Categorías",
+    "nav.models": "Modelos",
+    "nav.photos": "Fotos",
+    "nav.videos": "Videos",
+
+    "auth.signin": "Ingresar"
+}

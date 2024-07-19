@@ -11,12 +11,12 @@ import { User } from "../icons/User";
 import { Hamburguer } from "../icons/Hamburguer";
 import { Selection } from "./Selection";
 import { useToogleButton, useLogout } from "../../customsHooks/customsHooks";
-
+import { FormattedMessage } from "react-intl";
 
 export default function NavBar() {
   const { isOpen, toggleDropdown } = useToogleButton(()=>{})
   const { token, nickname, logout } = useLogout()
- 
+
   return (
     <>
       <nav className="relative">
@@ -51,7 +51,7 @@ export default function NavBar() {
               <Link to="/auth/portal/signin" className="relative hidden px-4 py-2 font-medium group md:block">
               <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
               <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-              <span className="relative text-black group-hover:text-white">Sign In</span>
+              <span className="relative text-black group-hover:text-white"><FormattedMessage id="auth.signin" defaultMessage='Sign In' /></span>
               </Link>
             }
           </div>

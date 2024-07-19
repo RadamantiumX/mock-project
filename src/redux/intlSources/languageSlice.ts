@@ -1,19 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-const initialState = {
-   locale: 'en'
-}
+import { createSlice } from "@reduxjs/toolkit";
+import { LANG } from "../../components/const/lang";
+import { changeLanguage } from "../actions/langActions";
 
-const languageReducer = (state = initialState, action:any) => {
-    switch (action.type) {
-        case 'CHANGE_LANGUAGE':
-            return {
-                ...state,
-                locale: action.payload
-            };
-    
-        default:
-            return state;
+const initialState = LANG
+
+export const languageSlice = createSlice({
+    name: "lang",
+    initialState,
+    reducers: {
+        changeLanguage
     }
-}
-
-export default languageReducer;
+})

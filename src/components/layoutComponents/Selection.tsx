@@ -1,12 +1,20 @@
-import  { useState } from "react";
+import  {  useState, useContext } from "react";
 import flagEsp from "../../assets/project/Spain_flags_flag_8858.png";
 import flagUk from "../../assets/project/icon-uk.png";
 import { useToggleFlag } from "../../customsHooks/customsHooks";
-import { EyeOff } from "../icons/EyeOff";
+import { useNavigate } from "react-router-dom";
+import { useStateContext } from "../../contexts/ContextProvider";
+import { LangContext } from "../../contexts/LangContext";
+
+
 
 export const Selection = () => {
   const { selectedFlag, toggleFlag } = useToggleFlag(flagEsp, flagUk);
   const [isOpen, setIsOpen] = useState(false);
+  
+  const selectedLang = useContext(LangContext)
+  const {setLang,lang} = useStateContext()
+  const navigate = useNavigate()
 
   const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -17,11 +25,17 @@ export const Selection = () => {
     setIsOpen(false);
   };
 
+ const handleSelect = (e) => {
+    localStorage.removeItem('lang-selected')
+    setLang(e.target.value)
+    selectedLang.handleMessages(lang)
+    navigate(0)
+ }
   return (
     <div className="relative flex items-center">
-      <select className="w-20" name="" id="">
-        <option value="" >EN <EyeOff/></option>
-        <option value="">ES<img src={flagUk} alt="" /></option>
+      <select className="w-20" name="" id="" onChange={handleSelect} defaultValue={lang}>
+        <option value="en">EN</option>
+        <option value="es">ES </option>
       </select>
       {/*<div onClick={handleToggleDropdown}>
         <img
