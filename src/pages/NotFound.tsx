@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/project/logoSecundario.png"
+import { FormattedMessage } from "react-intl";
 
 export default function NotFound() {
     return (
@@ -8,12 +9,12 @@ export default function NotFound() {
         <div className="max-w-md mx-auto text-center bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
           <img src={Logo} alt="logo" />
           <div className="text-9xl font-bold text-pink-600 mb-4">Oops!</div>
-          <h1 className="text-4xl font-bold text-gray-800 mb-6">404 Page Not Found</h1>
-          <p className="text-lg text-gray-600 mb-8">The page you're looking for seems to have gone on a little adventure. Don't
-            worry, we'll help you find your way back home.</p>
+          <h1 className="text-4xl font-bold text-gray-800 mb-6"><FormattedMessage id="notfound.title" defaultMessage="404 Page Not Found"/></h1>
+          <p className="text-lg text-gray-600 mb-8"><FormattedMessage id="notfound.msg" defaultMessage="The page you're looking for seems to have gone on a little adventure. Don't
+            worry, we'll help you find your way back home."/></p>
           <Link to="/"
             className="inline-block bg-pink-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-pink-700 transition-colors duration-300">
-            Go Back Home
+            <FormattedMessage id="notfound.link#1" defaultMessage="Go Back Home"/>
           </Link>
         </div>
       </main>

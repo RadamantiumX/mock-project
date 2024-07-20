@@ -48,7 +48,7 @@
     "common.pagination.link#2": "Siguiente",
 
     "common.userbtn.btn#1": "Salir",
-    "common.userbtn.btn#2": "Configuración de cuenta",
+    "common.userbtn.btn#2": "Config. de cuenta",
     "common.userbtn.btn#3": "Favoritos",
 
     "contact.title": "Llena el formulario, y te responderemos a la brevedad!",
@@ -59,6 +59,30 @@
 
     "contact.notice.p#1": "Al enviar el formulario, estoy de acuerdo con la Politica de Privacidad",
     "contact.notice.p#2":"Al enviar, confirma de haber leíedo y comprendido la",
-    "contact.notice.p#2.inner":"Política de Privacidad"
+    "contact.notice.p#2.inner":"Política de Privacidad",
 
+    "fav.videos.title": "Videos Favoritos",
+    "fav.videos.msg": "Aún no tienes videos favoritos...",
+    "fav.videos.button": "Eliminar de favoritos",
+
+    "footer.msg": "La mejor seleccón de videos para ti, por favor, evíanos tu comentarios para mejorar el contenido. Trabajamos para ofrecerte el mejor entretenimiento. Disfrútalo...",
+    "footer.link#1": "Contacto",
+    "footer.link#2": "Desarrolladores",
+    "footer.link#3": "Términos y Condiciones",
+    "footer.link#4": "Política de Privacidad",
+
+    "models.index.msg": "No disponible",
+    "models.index.link#1": "Continua con la búsqueda de Modelos",
+
+    "rta.layout.age": "Eres mayor de 18 años?",
+    "rta.layout.msg": "  Este sitio web está diseñado para un público adulto y puede contener material que no es adecuado para menores de edad. Al continuar, certificas que tienes al menos la edad mínima requerida en tu jurisdicción para acceder a contenido para adultos y que estás dispuesto a ver dicho contenido de manera responsable.",
+    "rta.layout.button": "Entrar",
+
+    "model.search.title": "Resultados para",
+    "model.search.msg.nf": "Sin resultados",
+
+    "notfound.title": "404 Página no encontrada",
+    "notfound.msg": "Parece que la página que buscas ha tenido una travesura. No te preocupes, podemos ayudarte a volver al inicio",
+    "notfound.link#1": "Volver a la página principal"
+    
 }

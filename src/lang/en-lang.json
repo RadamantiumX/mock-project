@@ -59,5 +59,29 @@
 
     "contact.notice.p#1": "By submitting this, I confirm that I have read and understood the Privacy Policy.",
     "contact.notice.p#2":"By submitting this, I confirm that I have read and understood the",
-    "contact.notice.p#2.inner":"Privacy Policy"
+    "contact.notice.p#2.inner":"Privacy Policy",
+
+    "fav.videos.title": "Favorites Videos",
+    "fav.videos.msg": "You don't have favorite videos yet...",
+    "fav.videos.button": "Delete from favorites",
+
+    "footer.msg": "The best selection of free porn videos, please send us your comment to improve this content. We work every day to offer you the best. Enjoy it...",
+    "footer.link#1": "Contact us",
+    "footer.link#2": "Developers",
+    "footer.link#3": "Terms & Conditions",
+    "footer.link#4": "Privacy Policy",
+
+    "models.index.msg": "Not Available",
+    "models.index.link#1": "Continue exploring more models",
+
+    "rta.layout.age": "Are you older than 18?",
+    "rta.layout.msg": "This website is designed for an adult audience and may contain material that is not suitable for minors. By continuing, you certify that you are at least the minimum age required in your jurisdiction to access adult content and that you are willing to view such content responsibly.",
+    "rta.layout.button": "Enter",
+
+    "model.search.title": "Results for",
+    "model.search.msg.nf": "No results found",
+
+    "notfound.title": "404 Page Not Found",
+    "notfound.msg": "The page you're looking for seems to have gone on a little adventure. Don't worry, we'll help you find your way back home.",
+    "notfound.link#1": "Go back home"
 }

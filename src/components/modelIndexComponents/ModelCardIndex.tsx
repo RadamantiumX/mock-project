@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/project/logo.png'
+import { FormattedMessage } from 'react-intl'
 interface Props{
     name: string | undefined
     cover: string | undefined
@@ -41,10 +42,10 @@ export const ModelCardIndex:React.FC<Props> = ({name, cover, about, avatar, heig
       <div className="py-2 my-0 mb-8 overflow-visible bg-black">
       <div className="flex flex-col items-center text-center text-white">
         <img src={Logo}/>
-        <h2 className="text-2xl font-bold lg:text-4xl">Not Available</h2>
+        <h2 className="text-2xl font-bold lg:text-4xl"><FormattedMessage id='models.index.msg' defaultMessage="Not Avilable"/></h2>
         
         <Link className="mt-8 rounded-md bg-white px-5 py-2.5 text-base font-semibold leading-7 text-black hover:bg-gray-200 transition focus:outline-none focus:ring focus:border-blue-300"
-          to="/models?page=1">Continue exploring more models</Link>
+          to="/models?page=1"><FormattedMessage id='models.index.link#1' defaultMessage="Continue exploring more models"/></Link>
       </div>
     </div>
     )}

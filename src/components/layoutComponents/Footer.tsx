@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import Logo from "../../assets/project/logo.png"
 import RTA from "../../assets/project/rta-2.gif"
+import { FormattedMessage } from "react-intl"
 
 
 export default function Footer() {
@@ -17,7 +18,7 @@ export default function Footer() {
             <p
               className="max-w-md mx-auto mt-6 font-medium leading-relaxed text-center text-white sm:max-w-xs sm:mx-0 sm:text-left"
             >
-              The best selection of free porn videos, please send us your comment to improve this content. We work every day to offer you the best. Enjoy it...
+              <FormattedMessage id="footer.msg" defaultMessage="The best selection of free porn videos, please send us your comment to improve this content. We work every day to offer you the best. Enjoy it..."/>
             </p>
           </div>
 
@@ -42,13 +43,13 @@ export default function Footer() {
 
                   <li>
                     <Link className="text-white transition hover:text-white/75" reloadDocument to="/contact">
-                      Contact us
+                      <FormattedMessage id="footer.link#1" defaultMessage="Contact us"/>
                     </Link>
                   </li>
 
                   <li>
                     <a className="text-white transition hover:text-white/75" target="blanck" href="https://epsiweb.online/">
-                      Developers
+                      <FormattedMessage id="footer.link#2" defaultMessage="Developers"/>
                     </a>
                   </li>
 
@@ -68,13 +69,13 @@ export default function Footer() {
                 <ul className="space-y-4 text-sm">
                   <li>
                     <Link reloadDocument className="text-white transition hover:text-white/75" to="/legal/terms">
-                      Terms & Conditions
+                      <FormattedMessage id="footer.link#3" defaultMessage="Terms & Conditions"/>
                     </Link>
                   </li>
 
                   <li>
                     <Link reloadDocument className="text-white transition hover:text-white/75" to="/legal/privacy">
-                      Privacy Policy
+                      <FormattedMessage id="footer.link#4" defaultMessage="Privacy Policy"/>
                     </Link>
                   </li>
                 </ul>

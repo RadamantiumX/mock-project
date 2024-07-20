@@ -3,6 +3,7 @@ import { useStateContext } from "../contexts/ContextProvider";
 import Logo from "../assets/project/logo.png";
 import "./rtaLayout.scss";
 import RTA from "../assets/project/rta-2.gif"
+import { FormattedMessage } from "react-intl";
 
 export default function RTALayout() {
   const { age, setAge } = useStateContext();
@@ -26,11 +27,11 @@ export default function RTALayout() {
           <img src={Logo} alt="Logo DirtyHub" aria-labelledby="Vanilla Leak Logo" />
         </div>
         <h3 className="pb-[18px] text-xl font-semibold text-dark dark:text-pink-600 sm:text-2xl">
-          Eres mayor de 18 años?
+          <FormattedMessage id="rta.layout.age" defaultMessage="Are you older than 18?"/>
         </h3>
         <span className="mx-auto mb-6 inline-block h-1 w-[90px] rounded bg-pink-600"></span>
         <p className="mb-10 text-base leading-relaxed text-body-color text-white">
-          Este sitio web está diseñado para un público adulto y puede contener material que no es adecuado para menores de edad. Al continuar, certificas que tienes al menos la edad mínima requerida en tu jurisdicción para acceder a contenido para adultos y que estás dispuesto a ver dicho contenido de manera responsable.
+          <FormattedMessage id="rta.layout.msg" defaultMessage="This website is designed for an adult audience and may contain material that is not suitable for minors. By continuing, you certify that you are at least the minimum age required in your jurisdiction to access adult content and that you are willing to view such content responsibly."/>
         </p>
 
         <div className="flex flex-wrap -mx-3">
@@ -39,7 +40,7 @@ export default function RTALayout() {
               onClick={handleAccess}
               className="block w-full p-3 text-base font-medium text-center transition border rounded-md border-stroke text-dark dark:text-white hover:border-pink-600 hover:bg-pink-600 hover:text-white"
             >
-              Entrar
+              <FormattedMessage id="rta.layout.button" defaultMessage="Enter"/>
             </button>
           </div>
           <div className="w-1/2 px-3">

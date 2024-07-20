@@ -15,8 +15,8 @@ export const useFavVideos = () => {
     useEffect(()=>{
         axiosClientAuth.post('/social/fav-videos', {token})
      .then(({data})=>{
-  
-      getFavVideos([data.results])
+      console.log(data.results[0])
+      getFavVideos([data.results[0]])
        .then((data)=>{
         if(data.length !== 0){
           setRequest(data)

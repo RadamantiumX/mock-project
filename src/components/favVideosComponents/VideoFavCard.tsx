@@ -1,6 +1,8 @@
 import { Trash } from "../icons/Trash"
 import { Link } from "react-router-dom"
 import { useDelFav } from "../../customsHooks/favVideosHooks"
+import { FormattedMessage } from "react-intl"
+import moment from "moment"
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface Props {
@@ -28,7 +30,7 @@ export const VideoFavCard:React.FC<Props> = ({id, default_thumb, title, keywords
       <div className="absolute bottom-0 right-0 mr-2 mb-2 text-sm text-white underline group" onClick={handleDeleteFav}>
          
         <Trash/>
-        <span className="absolute hidden text-white bg-gray-700 rounded-md p-3  bottom-full -left-20 transform -translate-x-7 -translate-y-1 group-hover:block whitespace-nowrap">Eliminar de favoritos</span>
+        <span className="absolute hidden text-white bg-gray-700 rounded-md p-3  bottom-full -left-20 transform -translate-x-7 -translate-y-1 group-hover:block whitespace-nowrap"><FormattedMessage id="fav.videos.button" defaultMessage="Delete from favorites"/></span>
       </div>
     </div>
   </article>

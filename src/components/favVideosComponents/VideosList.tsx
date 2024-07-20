@@ -4,6 +4,7 @@ import "./videoList.scss";
 import { Header } from "./Header"
 import { useFavVideos } from "../../customsHooks/favVideosHooks";
 import { Spinner } from "../commonComponents/Spinner";
+import { FormattedMessage } from "react-intl";
 
 export const VideosList = () => {
   const { request, isLoading, noFavs } = useFavVideos()
@@ -34,7 +35,7 @@ export const VideosList = () => {
               </div>
             ))}
           </div>
-        </section></>: <div className="py-3 lg:flex lg:justify-center lg:h-screen">You don't have favorite videos yet...</div>}
+        </section></>: <div className="py-3 lg:flex lg:justify-center lg:h-screen"><FormattedMessage id="fav.videos.msg" defaultMessage="You don't have favorite videos yet..."/></div>}
       </div>
       
       
