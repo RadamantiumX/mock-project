@@ -46,12 +46,15 @@ export const getModelVideos = async (name:string | undefined) => {
 
 
 export const getFavVideos = async ([resultsArray]:string[]) => {
-    let results:FavVideosProfile[] = [] 
+    const results:FavVideosProfile[] = [] 
     for(let i = 0; i < resultsArray.length; i++){
         const response = await fetch(`https://www.eporner.com/api/v2/video/id/?id=${resultsArray[i]}`)
         const data = await response.json() as FavVideosProfile
         console.log(data)
-        results = [data,...results]
+       // results = [data,...results]
+
+      results.push(data)
     }
+    console.log(results)
     return results
   }
