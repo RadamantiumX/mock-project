@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 
 export const useFavVideos = () => {
     const [request, setRequest] = useState<FavVideosProfile[]>([])
+    const [timestamp, setTimestamp] = useState<string[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [noFavs, setNoFavs] = useState(false)
     const { token } = useStateContext()
@@ -15,16 +16,19 @@ export const useFavVideos = () => {
     useEffect(()=>{
         axiosClientAuth.post('/social/fav-videos', {token})
      .then(({data})=>{
-      console.log(data.results[0])
-      getFavVideos([data.results[0]])
+      setTimestamp(data.timestamp)
+      getFavVideos([data.results])
        .then((data)=>{
         if(data.length !== 0){
+          console.log(data[0].data)
           setRequest(data)
           setIsLoading(false)
         }else{
           setIsLoading(false)
           setNoFavs(true) 
-        }    
+        }  
+        
+        
        })
        .catch(error=>{
         console.error('Something went wrong!')
@@ -37,8 +41,8 @@ export const useFavVideos = () => {
      })
 
     },[])
-
-    return { request, isLoading, noFavs }
+    
+    return { request, isLoading, noFavs, timestamp }
 }
 
 export const useDelFav = (videoId:string) => {

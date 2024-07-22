@@ -26,7 +26,7 @@ export const CommentArticle: React.FC<Props>=  ({id, created, nick_name, content
         <img className="object-cover w-12 h-12 border-2 border-gray-300 rounded-full ml-3" alt="Noob master's avatar" src="https://quarantine.doh.gov.ph/wp-content/uploads/2016/12/no-image-icon-md.png" />
         <div className="flex-col mt-1">
           <div className="flex items-center flex-1 px-4 font-bold leading-tight text-white">{nick_name}
-            <span className="ml-2 text-xs font-normal text-gray-500">{moment(created, "YYYYMMDD hhmmss").fromNow()}</span>
+            <span className="ml-2 text-xs font-normal text-gray-500">{moment(created).startOf('minutes').fromNow()}</span>
           </div>
           <div className="flex">
             <div className="flex-1">

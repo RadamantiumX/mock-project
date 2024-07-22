@@ -7,7 +7,8 @@ import { Spinner } from "../commonComponents/Spinner";
 import { FormattedMessage } from "react-intl";
 
 export const VideosList = () => {
-  const { request, isLoading, noFavs } = useFavVideos()
+  const { request, isLoading, noFavs, timestamp } = useFavVideos()
+ 
   return (
 
     <div style={{ marginTop: "1rem" }} className="mx-auto max-w-screen-xl mb-20">
@@ -29,9 +30,9 @@ export const VideosList = () => {
       {!noFavs ? <>  
        <section className="w-full  pl-2 pr-2 overflow-hidden lg:overflow-y-auto">
           <div className="flex flex-col "> 
-            {request?.map((item, key) => (
+            {request.map((item, key) => (
               <div className="flex flex-col gap-y-5 justify-center" key={key}>
-                <VideoFavCard id={item.id} default_thumb={item.default_thumb.src} title={item.title} keywords={item.keywords} views={item.views}/>
+                <VideoFavCard id={item.id} default_thumb={item.default_thumb.src} title={item.title} keywords={item.keywords} views={item.views} date={timestamp[key]}/>
               </div>
             ))}
           </div>
