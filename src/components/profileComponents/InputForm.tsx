@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { FormattedMessage } from "react-intl";
 
 interface Props{
     type:string
@@ -15,7 +16,7 @@ export const InputForm:React.FC<Props> = ({type, handleSubmit, payload, setPaylo
     <div>
           <form onSubmit={handleSubmit}>
           <input type={type} value={payload} onChange={(e)=>{setPayload(e.target.value); setField(field)}}/>  
-          <button className='border rounded-md p-2' type="submit">Update</button>
+          <button className='border rounded-md p-2' type="submit"><FormattedMessage id="profile.inputform.button" defaultMessage="Update"/></button>
           </form>    
     </div>
   )

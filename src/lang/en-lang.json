@@ -83,5 +83,16 @@
 
     "notfound.title": "404 Page Not Found",
     "notfound.msg": "The page you're looking for seems to have gone on a little adventure. Don't worry, we'll help you find your way back home.",
-    "notfound.link#1": "Go back home"
+    "notfound.link#1": "Go back home",
+
+    "profile.infocard.title": "Basic Information",
+    "profile.infocard.button":"Change",
+    
+    "profile.inputform.button": "Update",
+
+    "profile.passwordcard.title": "Password Update",
+    "profile.passwordcard.label#1": "Old Password",
+    "profile.passwordcard.label#2": "New Password",
+    "profile.passwordcard.label#3": "Retype New Password",
+    "profile.passwordcard.button": "Update"
 }

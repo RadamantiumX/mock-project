@@ -83,6 +83,17 @@
 
     "notfound.title": "404 Página no encontrada",
     "notfound.msg": "Parece que la página que buscas ha tenido una travesura. No te preocupes, podemos ayudarte a volver al inicio",
-    "notfound.link#1": "Volver a la página principal"
+    "notfound.link#1": "Volver a la página principal",
+
+    "profile.infocard.title": "Información Básica",
+    "profile.infocard.button":"Modificar",
+
+    "profile.inputform.button": "Actualizar",
+
+    "profile.passwordcard.title": "Actualización de contraseña",
+    "profile.passwordcard.label#1": "Antígua Contraseña",
+    "profile.passwordcard.label#2": "Nueva Contraseña",
+    "profile.passwordcard.label#3": "Repetir la nueva contraseña",
+    "profile.passwordcard.button": "Actualizar"
     
 }
