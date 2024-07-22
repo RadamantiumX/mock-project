@@ -52,46 +52,57 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <GuestLayout/>,
+        errorElement: <NotFound/>,
         children: [
             {
                 path: "/",
-                element: <Navigate to="/home"/>
+                element: <Navigate to="/home"/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/home",
-                element: <Home/>
+                element: <Home/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/video/:id/:keywords/:title/:views",
-                element: <Video/>
+                element: <Video/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/search",
-                element: <Search/>
+                element: <Search/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/categories/:category",
-                element: <Categories/>
+                element: <Categories/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/categories-list",
-                element: <CategoriesList/>
+                element: <CategoriesList/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/models",
-                element: <Models/>
+                element: <Models/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/model-search",
-                element: <ModelSearch/>
+                element: <ModelSearch/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/model-index/:name",
-                element: <ModelIndex/>
+                element: <ModelIndex/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/videos",
                 element: <OrderVideos/>,
+                errorElement: <NotFound/>,
                 children: [  
                              {
                                 path: '/videos',
@@ -106,40 +117,49 @@ const router = createBrowserRouter([
             {
                 path: "/photos",
                 element: <Photos/>,
+                errorElement: <NotFound/>,
                 children: [
                     {
                         path: '/photos',
-                        element: <Navigate to={generatePath("/photos?tag=all&page=1")}/>
+                        element: <Navigate to={generatePath("/photos?tag=all&page=1")}/>,
+                        errorElement: <NotFound/>
                     }
                 ]
             },
             {
                 path: "/album/:tag/:album",
-                element: <Album/>
+                element: <Album/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/redirect",
-                element: <Redirect/>
+                element: <Redirect/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/contact",
-                element: <Contact/>
+                element: <Contact/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/legal",
                 element: <Legal/>,
+                errorElement: <NotFound/>,
                 children: [
                     {
                         path: "/legal",
-                        element: <Navigate to="/legal/terms"/>
+                        element: <Navigate to="/legal/terms"/>,
+                        errorElement: <NotFound/>
                     },
                     {
                         path: "/legal/terms",
-                        element: <Terms/>
+                        element: <Terms/>,
+                        errorElement: <NotFound/>
                     },
                     {
                         path: "/legal/privacy",
-                        element: <Privacy/>
+                        element: <Privacy/>,
+                        errorElement: <NotFound/>
                     }
                 ]
             },
@@ -149,52 +169,64 @@ const router = createBrowserRouter([
     {
         path: "/user",
         element: <UserLayout/>,
+        errorElement: <NotFound/>,
         children: [
             {
                 path: "/user",
-                element: <Navigate to="/user/profile"/>
+                element: <Navigate to="/user/profile"/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/user/profile",
-                element: <Profile/>
+                element: <Profile/>,
+                errorElement: <NotFound/>
             },
             {
                 path: "/user/fav",
-                element: <FavVideos/>
+                element: <FavVideos/>,
+                errorElement: <NotFound/>
             }
         ]
     },
     {
         path: "/auth",
         element: <AuthLayout/>,
+        errorElement: <NotFound/>,
         children: [
               {
                  path: "/auth",
-                 element: <Navigate to="/auth/portal/signin"/>
+                 element: <Navigate to="/auth/portal/signin"/>,
+                 errorElement: <NotFound/>
               },
               {
                  path: "/auth/portal",
                  element: <Auth/>,
+                 errorElement: <NotFound/>,
                  children: [
                     {
                        path: "/auth/portal",
                        element: <InnerLayoutAuth/>,
+                       errorElement: <NotFound/>,
                        children: [
                         {
                             path: "/auth/portal/signin",
-                            element: <SignIn/>
+                            element: <SignIn/>,
+                            errorElement: <NotFound/>
                         },
                         {
                             path: "/auth/portal/signup",
-                            element: <SignUp/>
+                            element: <SignUp/>,
+                            errorElement: <NotFound/>
                         },
                         {
                             path: "/auth/portal/forgotten-password",
-                            element: <ForgotPassword/>
+                            element: <ForgotPassword/>,
+                            errorElement: <NotFound/>
                         },
                         {
                             path: "/auth/portal/password-recovery",
-                            element: <PasswordRecovery/>
+                            element: <PasswordRecovery/>,
+                            errorElement: <NotFound/>
                         }
                        ]
 
