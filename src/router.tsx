@@ -191,42 +191,42 @@ const router = createBrowserRouter([
     {
         path: "/auth",
         element: <AuthLayout/>,
-        errorElement: <NotFound/>,
+       
         children: [
               {
                  path: "/auth",
                  element: <Navigate to="/auth/portal/signin"/>,
-                 errorElement: <NotFound/>
+                 
               },
               {
                  path: "/auth/portal",
                  element: <Auth/>,
-                 errorElement: <NotFound/>,
+                 
                  children: [
                     {
                        path: "/auth/portal",
                        element: <InnerLayoutAuth/>,
-                       errorElement: <NotFound/>,
+                       
                        children: [
                         {
                             path: "/auth/portal/signin",
                             element: <SignIn/>,
-                            errorElement: <NotFound/>
+                            
                         },
                         {
                             path: "/auth/portal/signup",
                             element: <SignUp/>,
-                            errorElement: <NotFound/>
+                           
                         },
                         {
                             path: "/auth/portal/forgotten-password",
                             element: <ForgotPassword/>,
-                            errorElement: <NotFound/>
+                            
                         },
                         {
                             path: "/auth/portal/password-recovery",
                             element: <PasswordRecovery/>,
-                            errorElement: <NotFound/>
+                            
                         }
                        ]
 
