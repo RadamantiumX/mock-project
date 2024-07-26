@@ -7,6 +7,7 @@ import { getPostsSource } from "../redux/postSources/postsSlice";
 import axiosClientAuth from "../services/axios-client-auth";
 import { getLikesSource } from "../redux/likeSources/likesSlice";
 import { useNavigate } from "react-router-dom";
+import { error } from "console";
 
 
 const MAX_TITLE_WORDS = 10; 
@@ -19,6 +20,23 @@ export const useTruncateTitle = (title:string | undefined) => {
   }
 }
   return title;
+}
+
+export const useFetchFav = ({payload}:any) => {
+   const [favorite, setFavorite] = useState()
+
+   useEffect(()=>{
+    axiosClientAuth.post('/social/fav',{payload})
+   .then(({data})=>{
+    console.log(data)
+    setFavorite(data)
+   })
+   .catch(error=>{
+    console.log(error.message)
+   })
+   },[])
+   
+   return {favorite}
 }
 
 export const useFetchPost = () => {

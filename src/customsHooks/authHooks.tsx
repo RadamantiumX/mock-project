@@ -74,7 +74,7 @@ export const useRegister = () => {
        .catch(error=>{
         const res = error.response
         //console.log(res.data.message[0].message)
-        if (res !== undefined){
+        if (res.data.message !== undefined){
           if(res.data.message[0].message !== undefined){
             setError(res.data.message[0].message)
           }else{

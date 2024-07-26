@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { getFavsSource } from '../../redux/favSources/favsSlice';
 import { Frame } from './Frame';
-import { useTruncateTitle, useFetchPost } from '../../customsHooks/videoHooks';
+import { useTruncateTitle, useFetchPost, useFetchFav } from '../../customsHooks/videoHooks';
 
 interface Props {
   id?: string;
@@ -32,6 +32,7 @@ export const VideoSelected: React.FC<Props> = ({ id, title, views }) => {
     token: token,
     videoId: id
   }
+  const {favorite} = useFetchFav({payload})
   const { postData }: any = useFetchPost()
   const handleFavs = async () => {
     if (!token) {
