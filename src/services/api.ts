@@ -1,19 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { FavsPayload } from "../types/api"
-
-// Recovery FAVS videos from current user
-
 import  { type APIVanillaLeakPost } from "../types/api"
 import { type APIVanillaLeakReplys } from "../types/api"
-// import { type Like } from "../types/api"
+
+type ResponseFav = {
+    fill: string,
+    button: string
+}
+
 export const isFav = async ( {payload}:any) => {
 
-        const response = await fetch(`${import.meta.env.VITE_API_AUTH_URL}/social/isfav`,{
+        const isFavorite = await fetch(`${import.meta.env.VITE_API_AUTH_URL}/social/isfav`,{
             method: 'POST',
             headers: { 'Content-Type' : 'application/json' },
             body: JSON.stringify(payload)    
         })
-     return response.status
+     const res = await isFavorite.json() as ResponseFav
+     return res
 
    
 }

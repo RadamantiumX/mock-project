@@ -4,89 +4,19 @@ import { Eye } from '../icons/Eye';
 import { Hearth } from '../icons/Hearth';
 import { Share } from '../icons/Share';
 import { LikeVideo } from './LikeVideo';
-import { useStateContext } from '../../contexts/ContextProvider';
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { getFavsSource } from '../../redux/favSources/favsSlice';
 import { Frame } from './Frame';
-import { useTruncateTitle, useFetchPost, useFetchFav } from '../../customsHooks/videoHooks';
+import { useTruncateTitle,  useFetchFav } from '../../customsHooks/videoHooks';
 
 interface Props {
-  id?: string;
+  id: string;
   title?: string,
   views?: number,
 }
 
 export const VideoSelected: React.FC<Props> = ({ id, title, views }) => {
-  const fav: any = useAppSelector(state => state.favs.data)
-  const { token, setNotification, setToken, setNickname } = useStateContext()
-  const [filled, setFilled] = useState("none") // To fill "Hearth" icon
-  const [innerMessage, setInnerMessage] = useState('Favorites')
-  const navigate = useNavigate()
+  const {filled, innerButton, handleFav, commentsCount} = useFetchFav(id)
   const shortTitle = useTruncateTitle(title) // Use the custom Hook to truncate
-  const commentsCount = useAppSelector(state => state.posts.data) // posts quantity
-
-  const dispatch = useAppDispatch()
-  const payload = {
-    token: token,
-    videoId: id
-  }
-  const {favorite} = useFetchFav({payload})
-  const { postData }: any = useFetchPost()
-  const handleFavs = async () => {
-    if (!token) {
-      navigate('/auth/portal/signin')
-    }
-    if (filled === "none") {   // Adding to Favorites   
-      const favs = await postData('/social/fav', payload)
-      if (favs.status === 200) {
-        setFilled("red")
-        setNotification('Adding to favorites')
-        setInnerMessage('Favorite')
-      } else {
-        setNotification('Session expired')
-        setToken(null)
-        setNickname(null)
-        setTimeout(() => {
-          navigate('/auth/portal/signin') // ---> Redirect
-        }, 2000)
-      }
-    }
-    if (filled === "red") { // Deleting from favorites
-      const delFavs = await postData('/social/delfav', payload)
-      console.log(delFavs)
-      if (delFavs.status === 200) {
-        setFilled("none")
-        setNotification('Delete from favorites')
-        setInnerMessage('Add to Favorites')
-      } else {
-        setNotification('Session expired')
-        setToken(null)
-        setNickname(null)
-        setTimeout(() => {
-          navigate('/auth/portal/signin') // ---> Redirect
-        }, 2000)
-      }
-    }
-  }
-
-  // Obtain the state of "Favorite" videos for current user
-  useEffect(() => {
-
-    if (token) {
-      const payload = { token: token, videoId: id }
-      dispatch(getFavsSource({ payload }))
-      if (fav === 200) {
-        setFilled("red")
-        setInnerMessage("Favorite")
-      } else {
-        setFilled("none")
-        setInnerMessage("Add to Favorites")
-      }
-    }
-  }, [payload])
-
+ 
   return (
     <>
       <section style={{ marginTop: "4rem" }} className="lg:mr-10 lg:ml-10 mr-1 ml-1">
@@ -111,10 +41,10 @@ export const VideoSelected: React.FC<Props> = ({ id, title, views }) => {
 </a>
 
             <div className="ml-3"></div>
-            <button onClick={handleFavs} className="rounded-md flex flex-row p-2 gap-1 font-bold text-white">
+            <button onClick={handleFav} className="rounded-md flex flex-row p-2 gap-1 font-bold text-white">
               <Hearth filled={filled} />
               <span className="hidden lg:inline">
-                {innerMessage}
+                {innerButton}
               </span>
             </button>
             <div className="border-l border-gray-300 h-6 mx-2"></div> {/* Divider vertical */}
