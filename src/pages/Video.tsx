@@ -6,7 +6,7 @@ import { Comments } from "../components/videoComponents/Comments"
 
 
 type Params = {
-   id: string;
+   id?: string;
    keywords: string;
    title: string;
 }

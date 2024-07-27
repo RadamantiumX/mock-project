@@ -23,7 +23,7 @@ export const useTruncateTitle = (title:string | undefined) => {
   return title;
 }
 
-export const useFetchFav = (id:string) => {
+export const useFetchFav = (id:string | undefined) => {
  
   const commentsCount = useAppSelector(state => state.posts.data) // posts quantity
   const dispatch = useAppDispatch()

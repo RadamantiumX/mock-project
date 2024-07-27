@@ -8,7 +8,7 @@ import { Frame } from './Frame';
 import { useTruncateTitle,  useFetchFav } from '../../customsHooks/videoHooks';
 
 interface Props {
-  id: string;
+  id?: string;
   title?: string,
   views?: number,
 }
