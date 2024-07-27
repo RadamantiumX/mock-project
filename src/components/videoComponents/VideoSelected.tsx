@@ -4,7 +4,7 @@ import { Eye } from "../icons/Eye";
 import { LikeVideo } from "./LikeVideo";
 import { Frame } from "./Frame";
 import { useTruncateTitle, useFetchFav } from "../../customsHooks/videoHooks";
-import { ShareButton, LikeButton, CommentsButton } from "./VideoButtons";
+import { ShareButton, FavButton, CommentsButton } from "./VideoButtons";
 
 interface Props {
   id?: string;
@@ -43,7 +43,7 @@ export const VideoSelected: React.FC<Props> = ({ id, title, views }) => {
           <div className="flex flex-row mb-10 mt-4 items-center  lg:mr-1 lg:ml-1 mr-3 ml-3">
             <CommentsButton count={commentsCount.count}/>
             <div className="ml-3"></div>
-            <LikeButton
+            <FavButton
               handleFav={handleFav}
               filled={filled}
               innerButton={innerButton}

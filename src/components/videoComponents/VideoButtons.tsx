@@ -1,5 +1,8 @@
+import { useState } from "react"
 import { Hearth } from "../icons/Hearth"
 import { Share } from "../icons/Share"
+import { Copy } from "../icons/Copy"
+import { useTruncateTitle } from "../../customsHooks/videoHooks"
 
 interface PropsComments {
     count: number
@@ -31,7 +34,7 @@ interface PropsLike{
     innerButton: string
 }
 
-export const LikeButton:React.FC<PropsLike> = ({ handleFav, filled, innerButton }) => {
+export const FavButton:React.FC<PropsLike> = ({ handleFav, filled, innerButton }) => {
   return (
     <>
      <button onClick={handleFav} className="rounded-md flex flex-row p-2 gap-1 font-bold text-white">
@@ -45,14 +48,22 @@ export const LikeButton:React.FC<PropsLike> = ({ handleFav, filled, innerButton 
 }
 
 export const ShareButton = () => {
+    const [showButton, setShowButton] = useState(true)
+    const [isCopied, setIsCopied] = useState(false)
+    const pathname = window.location.pathname
+    const link = `https://vanillaleak.com${pathname}`
+    const shortLink = useTruncateTitle(link)
     return (
       <>
-        <button className="rounded-md flex flex-row p-2 gap-1 font-bold text-white">
+        {showButton ? <button onClick={()=>{showButton ? setShowButton(false): setShowButton(true)}} className="rounded-md flex flex-row p-2 gap-1 font-bold text-white">
                 <Share />
                 <span className="hidden lg:inline"> {/* Ocultar en dispositivos móviles y tabletas, mostrar en pantallas de escritorio */}
                   Share
                 </span>
-              </button>
+        </button> :
+        <button className="flex flex-row" title="Copy link">
+            {shortLink} <Copy/>
+        </button>}
       </>
     )
   }
