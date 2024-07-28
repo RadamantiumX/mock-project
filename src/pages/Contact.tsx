@@ -1,8 +1,8 @@
-import { ContactForm } from "../components/contactComponents/ContactForm"
+import { ContactMain } from "../components/contactComponents/ContactMain"
 export default function Contact() {
   return (
     <main>
-       <ContactForm/>
+       <ContactMain/>
     </main>
   )
 }
