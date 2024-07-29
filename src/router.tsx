@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate, generatePath } from "react-router-dom";
-
+import React from "react";
 // Layouts //
 import GuestLayout from "./layout/GuestLayout";
 import UserLayout from "./layout/UserLayout";
@@ -12,7 +12,7 @@ import NotFound from "./pages/NotFound";
 import Video from "./pages/Video"
 import Search from "./pages/Search";
 import Categories from "./pages/Categories";
-import Models from "./pages/Models";
+//import Models from "./pages/Models";
 import OrderVideos from "./pages/OrderVideos";
 import Photos from "./pages/Photos";
 import Redirect from "./pages/Redirect";
@@ -47,6 +47,9 @@ import { SignUp } from "./components/authComponents/SignUpForm";
 import { PasswordRecovery } from "./components/authComponents/PasswordRecovery";
 
 // 
+
+// Testing Lazy load
+const LazyModels = React.lazy(()=> import('./pages/Models'))
 
 const router = createBrowserRouter([
     {
@@ -86,7 +89,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/models",
-                element: <Models/>,
+                element: <React.Suspense><LazyModels/></React.Suspense> ,
                 errorElement: <NotFound/>
             },
             {
