@@ -1,60 +1,51 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter, Navigate, generatePath } from "react-router-dom";
-import React from "react";
-// Layouts //
-import GuestLayout from "./layout/GuestLayout";
-import UserLayout from "./layout/UserLayout";
-import AuthLayout from "./layout/AuthLayout";
-//
-
-// Only for Guest Layout
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
-import Video from "./pages/Video"
-import Search from "./pages/Search";
-import Categories from "./pages/Categories";
-//import Models from "./pages/Models";
-import OrderVideos from "./pages/OrderVideos";
-import Photos from "./pages/Photos";
-import Redirect from "./pages/Redirect";
-import Contact from "./pages/Contact";
-import Legal from "./pages/Legal";
-import ModelIndex from "./pages/ModelIndex";
-import ModelSearch from "./pages/ModelSearch";
-import CategoriesList from "./pages/CategoriesList";
-import Album from "./pages/Album";
-//
+import { lazy, Suspense } from "react";
+import { Spinner } from "./components/commonComponents/Spinner";
 
 // Page Components //
 import { Terms } from "./components/legalComponents/Terms";
 import { Privacy } from "./components/legalComponents/Privacy";
-//
-
-// Only for User Layout//
-import Profile from "./pages/Profile";
-import FavVideos from "./pages/FavVideos";
-//
 
 // Only for Videos Layout//
 import { Order } from "./components/orderVideosComponents/Order";
-//
 
 // Only for Auth Layout //
-import Auth from "./pages/Auth";
+// import Auth from "./pages/Auth";
 import { InnerLayoutAuth } from "./components/authComponents/InnerLayoutAuth";
 import { ForgotPassword } from "./components/authComponents/ForgotPassword";
 import { SignIn } from "./components/authComponents/SignInForm";
 import { SignUp } from "./components/authComponents/SignUpForm";
 import { PasswordRecovery } from "./components/authComponents/PasswordRecovery";
 
-// 
+// Lazy (Only defaults imports)
+const GuestLayout = lazy(()=> import('./layout/GuestLayout'))
+const UserLayout = lazy(()=> import('./layout/UserLayout'))
+const AuthLayout = lazy(()=> import('./layout/AuthLayout'))
+const Home = lazy(()=> import('./pages/Home'))
+const NotFound = lazy(()=> import('./pages/NotFound'))
+const Video = lazy(()=> import('./pages/Video'))
+const Search = lazy(()=> import('./pages/Search'))
+const Categories = lazy(()=> import('./pages/Categories'))
+const Models = lazy(()=> import('./pages/Models'))
+const OrderVideos = lazy(()=> import('./pages/OrderVideos'))
+const Photos = lazy(()=> import('./pages/Photos'))
+const Redirect = lazy(()=> import('./pages/Redirect'))
+const Contact = lazy(()=> import('./pages/Contact'))
+const Legal = lazy(()=>import('./pages/Legal'))
+const ModelIndex = lazy(()=> import('./pages/ModelIndex'))
+const ModelSearch = lazy(()=> import('./pages/ModelSearch'))
+const CategoriesList = lazy(()=> import('./pages/CategoriesList'))
+const Album = lazy(()=> import('./pages/Album'))
+const Profile = lazy(()=> import('./pages/Profile'))
+const FavVideos = lazy(()=> import('./pages/FavVideos'))
+const Auth = lazy(()=> import('./pages/Auth'))
 
-// Testing Lazy load
-const LazyModels = React.lazy(()=> import('./pages/Models'))
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <GuestLayout/>,
+        element:<Suspense fallback={<Spinner/>}><GuestLayout/></Suspense> ,
         errorElement: <NotFound/>,
         children: [
             {
@@ -64,47 +55,47 @@ const router = createBrowserRouter([
             },
             {
                 path: "/home",
-                element: <Home/>,
+                element: <Suspense fallback={<Spinner/>}><Home/></Suspense>,
                 errorElement: <NotFound/>
             },
             {
                 path: "/video/:id/:keywords/:title/:views",
-                element: <Video/>,
+                element: <Suspense fallback={<Spinner/>}><Video/></Suspense>,
                 errorElement: <NotFound/>
             },
             {
                 path: "/search",
-                element: <Search/>,
+                element: <Suspense fallback={<Spinner/>}><Search/></Suspense>,
                 errorElement: <NotFound/>
             },
             {
                 path: "/categories/:category",
-                element: <Categories/>,
+                element: <Suspense fallback={<Spinner/>}><Categories/></Suspense>,
                 errorElement: <NotFound/>
             },
             {
                 path: "/categories-list",
-                element: <CategoriesList/>,
+                element: <Suspense fallback={<Spinner/>}><CategoriesList/></Suspense>,
                 errorElement: <NotFound/>
             },
             {
                 path: "/models",
-                element: <React.Suspense><LazyModels/></React.Suspense> ,
+                element: <Suspense fallback={<Spinner/>}><Models/></Suspense> ,
                 errorElement: <NotFound/>
             },
             {
                 path: "/model-search",
-                element: <ModelSearch/>,
+                element: <Suspense fallback={<Spinner/>}><ModelSearch/></Suspense>,
                 errorElement: <NotFound/>
             },
             {
                 path: "/model-index/:name",
-                element: <ModelIndex/>,
+                element: <Suspense fallback={<Spinner/>}><ModelIndex/></Suspense>,
                 errorElement: <NotFound/>
             },
             {
                 path: "/videos",
-                element: <OrderVideos/>,
+                element: <Suspense fallback={<Spinner/>}><OrderVideos/></Suspense>,
                 errorElement: <NotFound/>,
                 children: [  
                              {
@@ -119,7 +110,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/photos",
-                element: <Photos/>,
+                element: <Suspense fallback={<Spinner/>}><Photos/></Suspense>,
                 errorElement: <NotFound/>,
                 children: [
                     {
@@ -131,22 +122,22 @@ const router = createBrowserRouter([
             },
             {
                 path: "/album/:tag/:album",
-                element: <Album/>,
+                element: <Suspense fallback={<Spinner/>}><Album/></Suspense>,
                 errorElement: <NotFound/>
             },
             {
                 path: "/redirect",
-                element: <Redirect/>,
+                element: <Suspense fallback={<Spinner/>}><Redirect/></Suspense>,
                 errorElement: <NotFound/>
             },
             {
                 path: "/contact",
-                element: <Contact/>,
+                element: <Suspense fallback={<Spinner/>}><Contact/></Suspense>,
                 errorElement: <NotFound/>
             },
             {
                 path: "/legal",
-                element: <Legal/>,
+                element: <Suspense fallback={<Spinner/>}><Legal/></Suspense>,
                 errorElement: <NotFound/>,
                 children: [
                     {
@@ -171,7 +162,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/user",
-        element: <UserLayout/>,
+        element: <Suspense fallback={<Spinner/>}><UserLayout/></Suspense>,
         errorElement: <NotFound/>,
         children: [
             {
@@ -181,19 +172,19 @@ const router = createBrowserRouter([
             },
             {
                 path: "/user/profile",
-                element: <Profile/>,
+                element: <Suspense fallback={<Spinner/>}><Profile/></Suspense>,
                 errorElement: <NotFound/>
             },
             {
                 path: "/user/fav",
-                element: <FavVideos/>,
+                element: <Suspense fallback={<Spinner/>}><FavVideos/></Suspense>,
                 errorElement: <NotFound/>
             }
         ]
     },
     {
         path: "/auth",
-        element: <AuthLayout/>,
+        element: <Suspense fallback={<Spinner/>}><AuthLayout/></Suspense>,
        
         children: [
               {
@@ -203,7 +194,7 @@ const router = createBrowserRouter([
               },
               {
                  path: "/auth/portal",
-                 element: <Auth/>,
+                 element: <Suspense fallback={<Spinner/>}><Auth/></Suspense>,
                  
                  children: [
                     {
