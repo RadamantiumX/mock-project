@@ -17,11 +17,12 @@ export const Selection = () => {
     
       <div className="relative w-20">
         <select
-          className="block w-full pr-8 leading-tight bg-transparent shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline"
+          className="block w-full pr-8 leading-tight bg-transparent shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline cursor-pointer"
           name="language"
           id="language"
           onChange={handleSelect}
           defaultValue={lang}
+          title="Language selection"
         >
           <option value="en">EN</option>
           <option value="es">ES</option>
