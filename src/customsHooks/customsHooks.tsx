@@ -157,7 +157,6 @@ return {token, nickname, logout}
 export const useInputSearch = (path:string) => {
   const [message, setMessage] = useState("")
   const [show, setShow] = useState(false)
- // const [query, setQuery] = useState("")
   const [border, setBorder] = useState("")
   const [query, setQuery] = useState("")
   const handleInput = (e:any) =>{
@@ -244,11 +243,18 @@ export const useLang = () => {
     localStorage.removeItem('lang-selected')
     setLang(e.target.value)
    
-    navigate(0)
+    navigate(0) // refresh page
  }
 
   useEffect(()=>{
     selectedLang.handleMessages(lang)
+
+    // Only style //
+    const options = document.querySelectorAll("#language option");
+    options.forEach(option => {
+      option.classList.add("bg-black", "text-white", "hover:border-gray-800");
+    // Only style //
+    });
   },[])
   return {lang, handleSelect}
 }

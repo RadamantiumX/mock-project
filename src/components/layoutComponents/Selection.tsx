@@ -1,16 +1,8 @@
 import { useLang } from "../../customsHooks/customsHooks";
 import { IconWorld } from "../icons/IconWorld";
-import { useEffect } from "react";
 
 export const Selection = () => {
   const { lang, handleSelect } = useLang();
-
-  useEffect(() => {
-    const options = document.querySelectorAll("#language option");
-    options.forEach(option => {
-      option.classList.add("bg-black", "text-white", "hover:border-gray-800");
-    });
-  }, []);
 
   return (
     <div className="relative flex flex-col justify-center h-full">
