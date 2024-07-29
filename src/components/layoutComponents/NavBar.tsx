@@ -60,14 +60,14 @@ export default function NavBar() {
            <div className="absolute left-0 z-50 w-full bg-black top-full">
               <div className="max-w-6xl px-4 pt-4 pb-4 mx-auto">
                 <div className="mobile-menu md:hidden">
-                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/"><FormattedMessage id="nav.home" defaultMessage="Home"/></Link>
-                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/categories-list"><FormattedMessage id="nav.categories" defaultMessage="Categories"/></Link>
-                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/models?page=1"><FormattedMessage id="nav.models" defaultMessage="Models"/></Link>
-                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/photos?tag=all&page=1"><FormattedMessage id="nav.photos" defaultMessage="Photos"/></Link>
+                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/" reloadDocument><FormattedMessage id="nav.home" defaultMessage="Home"/></Link>
+                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/categories-list" reloadDocument><FormattedMessage id="nav.categories" defaultMessage="Categories"/></Link>
+                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/models?page=1" reloadDocument><FormattedMessage id="nav.models" defaultMessage="Models"/></Link>
+                  <Link className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" to="/photos?tag=all&page=1" reloadDocument><FormattedMessage id="nav.photos" defaultMessage="Photos"/></Link>
                   <div className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800">
                     <Selection />
                   </div>
-                  <Link to="/videos" className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800"><FormattedMessage id="nav.videos" defaultMessage="Videos"/></Link>
+                  <Link to="/videos" className="block px-4 py-2 text-sm navresponsive hover:bg-gray-800" reloadDocument><FormattedMessage id="nav.videos" defaultMessage="Videos"/></Link>
              </div>
            </div>
          </div>

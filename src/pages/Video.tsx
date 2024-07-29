@@ -4,9 +4,10 @@ import { useParams } from "react-router-dom"
 import { SideBarVideos } from "../components/videoComponents/SideBarVideos"
 import { Comments } from "../components/videoComponents/Comments"
 
+import { useEffect } from "react"
 
 type Params = {
-   id: string;
+   id?: string;
    keywords: string;
    title: string;
 }
@@ -14,7 +15,12 @@ type Params = {
 export default function Video() {
   const { id, title, keywords } = useParams<Params>();
   const { views } = useParams() as any; /** Temporal FIX 😎 */
+
+ const pathname = window.location.pathname
   
+  useEffect(()=>{
+    console.log(pathname)
+  },[])
   return (
     <main>
       <div className="gap-20">

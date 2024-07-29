@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { useStateContext } from "../contexts/ContextProvider";
 import { latestReplys } from "../services/api";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
@@ -7,6 +7,8 @@ import { getPostsSource } from "../redux/postSources/postsSlice";
 import axiosClientAuth from "../services/axios-client-auth";
 import { getLikesSource } from "../redux/likeSources/likesSlice";
 import { useNavigate } from "react-router-dom";
+import { getFavsSource } from "../redux/favSources/favsSlice";
+
 
 
 const MAX_TITLE_WORDS = 10; 
@@ -21,28 +23,98 @@ export const useTruncateTitle = (title:string | undefined) => {
   return title;
 }
 
-export const useFetchPost = () => {
-    const postData =
-    useCallback(async (url:string, payload:any)=>{
-    const response = await fetch(`http://localhost:3000${url}`, {
-        method: "POST",
-        headers: {
-         "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
-     })
+export const useTruncateLink = (link:string) => {
+   const [shortLink, setShortLink] = useState('')
+
+   useEffect(()=>{
+     setShortLink(`${link.slice(0,30)}...`)
+   },[])
+
+   return {shortLink}
+}
+
+export const useShareLink = (link:string) => {
+  const [showButton, setShowButton] = useState(true)
+  const [isCopied, setIsCopied] = useState(false)
+  const { setNotification } = useStateContext()
+
+  const handleCopy = async () => {
+    try{
+         await navigator.clipboard.writeText(link)
+         setIsCopied(true)
+         setNotification('Link copied!')
+    }catch(error){
+      console.error(error)
+      setNotification('Something went wrong!')
+    }
+  }
+
+  return {showButton, setShowButton, isCopied, handleCopy}
+}
+
+export const useFetchFav = (id:string | undefined) => {
+ 
+  const commentsCount = useAppSelector(state => state.posts.data) // posts quantity
+  const dispatch = useAppDispatch()
+  const { token, setNotification, setToken, setNickname } = useStateContext()
+  const navigate = useNavigate()
+  const [filled, setFilled] = useState("none")
+  const [innerButton, setInnerButton] = useState("")
+  const payload = {
+    token: token,
+    videoId: id
+  }
+
+  const handleFav = () => {
+      if(!token){
+        navigate('/auth/portal/signin')
+      }
+      axiosClientAuth.post(filled === 'none'?'/social/fav':'/social/delfav', payload)
+       .then(({data})=>{
+        setFilled(data.fill)
+        setInnerButton(data.button)
+        setNotification(data.message)
+       })
+       .catch(error=>{
+        console.log(error)
+        setNotification('Session expired')
+        setToken(null)
+        setNickname(null)
+        setTimeout(() => {
+          navigate('/auth/portal/signin') // ---> Redirect
+        }, 2000)
+       })
+  }
+   useMemo(()=>{
+    if (token) {
+      const payload = { token: token, videoId: id }
+      dispatch(getFavsSource({ payload }))
+       .unwrap()
+       .then((data)=>{
+        setFilled(data.fill)
+        setInnerButton(data.button)
+       })
+       .catch(error=>{
+        console.error(error)
+       }) 
+    }
+   },[])
    
-   
-     if (!response.ok){
-       return response
-     }
-     if(response.ok){
-       return response
-   }
-    },[])
-    
-   return { postData }
-   }
+   return {filled, innerButton, handleFav, commentsCount}
+}
+
+export const useVideoTags = () => {
+  const [showAllTags, setShowAllTags] = useState(false);
+  const maxTagsToShow = 7; // Muestra solo 7 tags en dispositivos móviles
+
+  const toggleShowAllTags = () => {
+      setShowAllTags(!showAllTags);
+  };
+
+  return {maxTagsToShow, toggleShowAllTags, showAllTags}
+}
+
+
 
    export const useShowForm = () => {
     const { token } = useStateContext()

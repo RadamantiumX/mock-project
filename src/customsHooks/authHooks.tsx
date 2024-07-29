@@ -32,7 +32,7 @@ export const useLogin = () => {
           .catch(error => {
             const res = error.response
             console.log(res.data.message)
-            if(res.data.message.length > 0 || undefined){
+            if(res.data.message !== undefined){
               setError(res.data.message)
             }else{
               setError('Something went wrong!')
@@ -73,9 +73,14 @@ export const useRegister = () => {
        })
        .catch(error=>{
         const res = error.response
-        console.log(res.data.message[0].message)
-        if (res.data.message[0].message.length > 0 || undefined){
-          setError(res.data.message[0].message)
+        //console.log(res.data.message[0].message)
+        if (res.data.message !== undefined){
+          if(res.data.message[0].message !== undefined){
+            setError(res.data.message[0].message)
+          }else{
+            setError(res.data.message)
+          }   
+          
         }else{
           setError('Something went wrong, please try again...')
         }

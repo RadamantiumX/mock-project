@@ -2,7 +2,9 @@ import { usePagination } from "../../customsHooks/customsHooks"
 import { Link } from "react-router-dom"
 import { Next } from "../icons/Next"
 import { Prev } from "../icons/Prev"
+import { Dots } from "../icons/Dots"
 import { FormattedMessage } from "react-intl"
+
 
 interface Props{
     itemsPage: number[]
@@ -41,7 +43,7 @@ export const Pagination:React.FC<Props> = ({ itemsPage, currentPage, optParam })
             {itemsPage[0]}
         </Link>
     )}
-
+     {currentPage >= 3 && <Dots/>}
     {rangePage.map((item, key) => (
         <Link
             reloadDocument
@@ -56,18 +58,7 @@ export const Pagination:React.FC<Props> = ({ itemsPage, currentPage, optParam })
         </Link>
     ))}
 
-    {rangePage[rangePage.length - 1] !== itemsPage.length && (
-        <Link
-            reloadDocument
-            to={optParam ? `?${optParam}&page=${itemsPage[itemsPage.length - 1]}` : `?page=${itemsPage[itemsPage.length - 1]}`}
-            title={`Go to page ${itemsPage[itemsPage.length - 1]}`}
-            className={`rounded-lg border border-white px-4 py-2 ${
-                itemsPage[itemsPage.length - 1] === currentPage ? 'bg-pink-600 text-white' : 'text-white'
-            }`}
-        >
-            {itemsPage[itemsPage.length - 1]}
-        </Link>
-    )}
+   
 
     {currentPage !== itemsPage[itemsPage.length - 1] && (
         <Link

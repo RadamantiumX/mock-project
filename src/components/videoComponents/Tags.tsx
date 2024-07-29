@@ -1,17 +1,12 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useVideoTags } from "../../customsHooks/videoHooks";
 
 interface Props {
     limited: string[];
 }
 
 export const Tags: React.FC<Props> = ({ limited }) => {
-    const [showAllTags, setShowAllTags] = useState(false);
-    const maxTagsToShow = 7; // Muestra solo 7 tags en dispositivos móviles
-
-    const toggleShowAllTags = () => {
-        setShowAllTags(!showAllTags);
-    };
+    const { maxTagsToShow, toggleShowAllTags, showAllTags } = useVideoTags()
 
     return (
         <>
