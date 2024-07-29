@@ -23,6 +23,35 @@ export const useTruncateTitle = (title:string | undefined) => {
   return title;
 }
 
+export const useTruncateLink = (link:string) => {
+   const [shortLink, setShortLink] = useState('')
+
+   useEffect(()=>{
+     setShortLink(`${link.slice(0,30)}...`)
+   },[])
+
+   return {shortLink}
+}
+
+export const useShareLink = (link:string) => {
+  const [showButton, setShowButton] = useState(true)
+  const [isCopied, setIsCopied] = useState(false)
+  const { setNotification } = useStateContext()
+
+  const handleCopy = async () => {
+    try{
+         await navigator.clipboard.writeText(link)
+         setIsCopied(true)
+         setNotification('Link copied!')
+    }catch(error){
+      console.error(error)
+      setNotification('Something went wrong!')
+    }
+  }
+
+  return {showButton, setShowButton, isCopied, handleCopy}
+}
+
 export const useFetchFav = (id:string | undefined) => {
  
   const commentsCount = useAppSelector(state => state.posts.data) // posts quantity

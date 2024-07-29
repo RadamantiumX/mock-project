@@ -1,8 +1,7 @@
-import { useState } from "react"
 import { Hearth } from "../icons/Hearth"
 import { Share } from "../icons/Share"
 import { Copy } from "../icons/Copy"
-import { useTruncateTitle } from "../../customsHooks/videoHooks"
+import { useTruncateLink, useShareLink } from "../../customsHooks/videoHooks"
 
 interface PropsComments {
     count: number
@@ -48,11 +47,10 @@ export const FavButton:React.FC<PropsLike> = ({ handleFav, filled, innerButton }
 }
 
 export const ShareButton = () => {
-    const [showButton, setShowButton] = useState(true)
-    const [isCopied, setIsCopied] = useState(false)
     const pathname = window.location.pathname
     const link = `https://vanillaleak.com${pathname}`
-    const shortLink = useTruncateTitle(link)
+    const { showButton, setShowButton, isCopied, handleCopy } = useShareLink(link)
+    const {shortLink} = useTruncateLink(link)
     return (
       <>
         {showButton ? <button onClick={()=>{showButton ? setShowButton(false): setShowButton(true)}} className="rounded-md flex flex-row p-2 gap-1 font-bold text-white">
@@ -61,7 +59,7 @@ export const ShareButton = () => {
                   Share
                 </span>
         </button> :
-        <button className="flex flex-row" title="Copy link">
+        <button className={!isCopied ? `flex flex-row`:`flex flex-row border border-green-800 p-1 rounded-md`} title="Copy link to share" onClick={handleCopy}>
             {shortLink} <Copy/>
         </button>}
       </>
