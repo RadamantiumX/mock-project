@@ -1,36 +1,50 @@
+
 import { MessageCircle } from "../icons/MessageCircle"
 import { useParams } from "react-router-dom"
 import { useNewPost } from "../../customsHooks/videoHooks"
+import { SingInButton } from "./SingInButton"
 
-interface Props{
-   title: string
+interface Props {
+  title: string
+  isAuthenticated: boolean
 }
 
-export const PostCommentForm:React.FC<Props> = ({title}) => {
-  const {id} = useParams()
+export const PostCommentForm: React.FC<Props> = ({ title, isAuthenticated }) => {
+  const { id } = useParams()
+  const { handleSubmit, content, setContent } = useNewPost(id)
 
-  const {handleSubmit, content, setContent} = useNewPost(id)
-  
   return (
-    
-  <form onSubmit={handleSubmit}>
-    
-<div id="commentsContainer" className="w-full md:w-1/2 p-2 pt-4 rounded shadow-lg mx-auto sm:ml-4">
-  <div className="flex flex-col">
-    <div>
-      <h2 className="font-semibold flex flex-row gap-1"><MessageCircle/> {title} </h2>
-    </div> 
-  </div>
-  <div className="mt-3 p-3">
-    <textarea id="content" value={content} onChange={(e)=>setContent(e.target.value)} className="border p-2 rounded w-full resize-none" placeholder={`Write your ${title.toLowerCase()} here...`}></textarea>
-  </div>
-  <div className="flex justify-between mx-3">
-    <div>
-      <button type="submit" className="w-full md:w-auto px-4 py-1 bg-gray-800 text-white rounded font-light hover:bg-gray-700">Submit</button>
-    </div> 
-  </div>
-</div>
-</form>  
-   
+    <div id="commentsContainer" className="w-full p-2 pt-4 mx-auto rounded shadow-lg md:w-1/2 sm:ml-4">
+      <div className="flex flex-col">
+        <div>
+          <h2 className="flex flex-row gap-1 font-semibold"><MessageCircle /> {title} </h2>
+        </div>
+      </div>
+      <form onSubmit={handleSubmit} className="p-3 mt-3">
+        <textarea
+          id="content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          className="w-full p-2 border rounded resize-none"
+          placeholder={`Write your ${title.toLowerCase()} here...`}
+        ></textarea>
+        <div className="flex justify-between mx-3 mt-3">
+          <div>
+            {isAuthenticated ? (
+              <button
+                type="submit"
+                className="w-full px-4 py-1 font-light text-white bg-gray-800 rounded md:w-auto hover:bg-gray-700"
+              >
+                Submit
+              </button>
+            ) : (
+              <div className="flex items-center">
+                <SingInButton />
+              </div>
+            )}
+          </div>
+        </div>
+      </form>
+    </div>
   )
 }
