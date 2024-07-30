@@ -12,6 +12,7 @@ import { Hamburguer } from "../icons/Hamburguer";
 import { Selection } from "./Selection";
 import { useToogleButton, useLogout } from "../../customsHooks/customsHooks";
 import { FormattedMessage } from "react-intl";
+import { Photo } from "../icons/Photo";
 
 export default function NavBar() {
   const { isOpen, toggleDropdown } = useToogleButton(()=>{})
@@ -83,7 +84,14 @@ export default function NavBar() {
               <li><Link reloadDocument className="subnav" to="/"><FormattedMessage  id="nav.home" defaultMessage="Home"/></Link></li>
               <SelectCategories />
               <SelectModels />
-              <li><Link className="subnav" to="/photos?tag=all&page=1"><FormattedMessage id="nav.photos" defaultMessage="Photos"/></Link></li>
+              <li>
+                <Link className="inline-flex items-center subnav" to="/photos?tag=all&page=1">
+                  <div className="mr-1">
+                    <Photo />
+                  </div>
+                  <FormattedMessage id="nav.photos" defaultMessage="Photos" />
+                </Link>
+              </li>
               <OrderVideosButton/>
             </ul>
           </nav>
